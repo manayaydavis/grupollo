@@ -1,0 +1,11 @@
+{
+  "name": "grupollo-modern",
+  "private": true,
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  },
+  "scripts": {
+    "build:css": "tailwindcss -c tailwind.config.js -i ./tailwind.css -o ./tailwind-build.css --minify",
+    "watch:css": "tailwindcss -c tailwind.config.js -i ./tailwind.css -o ./tailwind-build.css --watch"
+  }
+}

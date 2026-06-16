@@ -1,0 +1,1241 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Grupollo - Recetario & Tienda</title>
+        <link rel="stylesheet" href="tailwind-build.css?v=1" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@400;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css?v=1" />
+        <link rel="stylesheet" href="recetario.css" />
+    </head>
+    <body class="bg-[#111111] overflow-x-hidden flex flex-col min-h-screen">
+        <div id="pageLoader">
+            <img src="img/6.png" alt="Grupollo" class="loader-logo" />
+            <div class="loader-bar-track">
+                <div class="loader-bar-fill"></div>
+            </div>
+            <p class="loader-tagline">Sabor & Calidad</p>
+        </div>
+
+        <div id="scrollProgress"></div>
+        <!-- <div id="seasonalBanner" class="hidden"></div> -->
+        <nav
+            class="fixed w-full z-50 flex flex-col transition-colors duration-300"
+            id="navbar"
+        >
+            <!-- ROW 1: logo + (wordmark sobre tagline) | atención | hacer pedido | trofeo -->
+            <div class="nav-top-bar">
+                <a
+                    href="index.html"
+                    class="gp-brand logo-anim"
+                    aria-label="Grupollo"
+                >
+                    <span class="gp-brand-text-stack">
+                        <img
+                            src="img/logos/grupollo-logo-blanco.png"
+                            alt="Grupollo"
+                            class="gp-brand-word"
+                        />
+                        <span class="gp-brand-tagline" s
+                            >Calidad y frescura para ti</span
+                        >
+                    </span>
+                </a>
+
+                <div class="gp-customer-care hidden md:flex">
+                    <span class="gp-customer-care-label"
+                        >Atención al cliente:</span
+                    >
+                    <span class="gp-customer-care-number">56 31 00 28 99</span>
+                </div>
+
+                <div class="gp-actions">
+                    <button
+                        id="cartBtn"
+                        class="gp-order-btn"
+                        type="button"
+                        aria-label="Hacer Pedido"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="gp-order-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                        </svg>
+                        Hacer Pedido
+                        <span class="cart-count hidden">0</span>
+                    </button>
+                    <button
+                        type="button"
+                        id="mobileMenuBtn"
+                        class="gp-mobile-menu-btn md:hidden"
+                        aria-label="Menú"
+                        aria-controls="mobileMenu"
+                        aria-expanded="false"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-7 w-7"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Línea horizontal dorada -->
+            <div class="gp-nav-divider" aria-hidden="true"></div>
+
+            <!-- ROW 2: nav links (der) + rayas diagonales (extremo der) -->
+            <div class="nav-bottom-bar">
+                <div class="nav-bottom-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="producto.html">Productos</a>
+                    <a href="contacto.html">Contacto</a>
+                    <a href="recetario.html" class="nav-current">Recetas</a>
+                </div>
+                <span class="gp-stripe-end" aria-hidden="true"></span>
+            </div>
+        </nav>
+
+        <div
+            id="mobileMenu"
+            class="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center"
+        >
+            <button
+                type="button"
+                id="closeMobileMenu"
+                class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors cursor-pointer"
+                aria-label="Cerrar menú"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-8 w-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+            </button>
+            <img
+                src="img/PNG sin fondo.png"
+                alt="Grupollo"
+                class="mobile-menu-logo h-16 w-auto brightness-200"
+            />
+            <a href="index.html" class="mobile-nav-link"
+                >INICIO</a
+            >
+            <a href="producto.html" class="mobile-nav-link">PRODUCTOS</a>
+            <a href="contacto.html" class="mobile-nav-link">CONTACTO</a>
+            <a href="recetario.html" class="mobile-nav-link mobile-current">RECETARIO</a>
+            <a href="contacto.html" class="btn-pedido text-lg mt-6"
+                >Hacer Pedido</a
+            >
+            <p class="mobile-menu-phone">Tel: <span>56 31 00 28 99</span></p>
+        </div>
+
+        <main class="rec-layout">
+            <!-- SIDEBAR -->
+            <nav class="rec-sidebar">
+                <div class="rec-cat-header">Especiales</div>
+                <button
+                    class="rec-nav-btn"
+                    onclick="showCategory('acompañamientos_especiales', this)"
+                >
+                    Acompañamientos <span class="rec-nav-arrow">▼</span>
+                </button>
+
+                <div class="rec-cat-header">Pollo Fresco</div>
+                <button
+                    class="rec-nav-btn"
+                    onclick="showCategory('alitas', this)"
+                >
+                    Alitas <span class="rec-nav-arrow">▼</span>
+                </button>
+                <button
+                    class="rec-nav-btn"
+                    onclick="showCategory('pechuga', this)"
+                >
+                    Pechuga <span class="rec-nav-arrow">▼</span>
+                </button>
+                <button
+                    class="rec-nav-btn"
+                    onclick="showCategory('pierna_muslo', this)"
+                >
+                    Pierna &amp; Muslo <span class="rec-nav-arrow">▼</span>
+                </button>
+                <button
+                    class="rec-nav-btn"
+                    onclick="showCategory('pollo_entero', this)"
+                >
+                    Pollo Entero <span class="rec-nav-arrow">▼</span>
+                </button>
+                <button
+                    class="rec-nav-btn"
+                    onclick="showCategory('molida', this)"
+                >
+                    Molida <span class="rec-nav-arrow">▼</span>
+                </button>
+
+                <div class="rec-cat-header">Huevo</div>
+                <button
+                    class="rec-nav-btn"
+                    onclick="showCategory('huevo', this)"
+                >
+                    Huevo de Granja <span class="rec-nav-arrow">▼</span>
+                </button>
+            </nav>
+
+            <!-- MAIN -->
+            <main class="rec-main" id="recMain">
+                <div class="rec-empty">
+                    <div class="rec-empty-icon">&#8592;</div>
+                    <p class="rec-empty-title">Selecciona una categoría</p>
+                    <p class="rec-empty-sub">
+                        Elige una opción del menú lateral
+                    </p>
+                </div>
+            </main>
+        </main>
+
+        <footer
+            class="bg-brandBlack text-white pt-20 pb-10 px-6 md:px-8 border-t-4 border-brandGold"
+        >
+            <div class="container mx-auto">
+                <div class="grid md:grid-cols-4 gap-12 mb-16">
+                    <div>
+                        <img
+                            src="img/PNG sin fondo.png"
+                            alt="Grupollo"
+                            class="h-20 w-auto mb-6"
+                        />
+                        <p class="text-gray-400 leading-relaxed text-lg">
+                            Proveedor confiable de proteína de calidad con
+                            entregas puntuales y servicio personalizado.
+                        </p>
+                        <p class="text-brandGold font-bold mt-4">
+                            Calidad y frescura para ti
+                        </p>
+                    </div>
+                    <div>
+                        <h4
+                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+                        >
+                            Navegación
+                        </h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a
+                                    href="index.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Inicio</a
+                                >
+                            </li>
+
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Productos</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="contacto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Contacto</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4
+                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+                        >
+                            Productos
+                        </h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Pollo Fresco</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Congelados</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Huevo de Granja</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Mayoreo</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4
+                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+                        >
+                            Contacto
+                        </h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-gray-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-brandRed"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                    />
+                                </svg>
+                                56 31 00 28 99 / 55 36 14 33 07
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-brandRed"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                CDMX y Área Metropolitana
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-brandRed"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                Lun - Dom: 5:00 am - 5:00 pm
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-brandRed"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                    />
+                                    <path
+                                        d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                    />
+                                </svg>
+                                ventas@grupollo.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-white/10 pt-8 text-center text-gray-500"
+                >
+                    <p>© 2026 Grupollo. Calidad y frescura para ti.</p>
+                </div>
+            </div>
+            <a href="recetario.html" class="footer-recipes-corner">
+                <span class="title">Nuestras recetas</span>
+                <div class="shhh-wrap">
+                    <span class="shhh-pill">Shhh!</span>
+                    <span class="emoji">🤭</span>
+                </div>
+            </a>
+        </footer>
+
+        <div
+            id="loginModal"
+            class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center backdrop-blur-sm opacity-0 transition-opacity duration-300"
+        >
+            <div
+                class="bg-[#FFF4D2] p-8 md:p-12 rounded-[40px] shadow-2xl w-11/12 max-w-md transform scale-95 transition-all duration-300 modal-content relative"
+            >
+                <button
+                    class="absolute top-6 right-6 text-[#4A2C10] hover:text-[#D15E1D] close-login transition-colors"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                </button>
+                <div class="flex justify-center gap-8 mb-8">
+                    <button
+                        class="tab-btn active font-bold text-xl text-[#4A2C10] pb-2"
+                        data-tab="login"
+                    >
+                        Iniciar Sesión
+                    </button>
+                    <button
+                        class="tab-btn font-bold text-xl text-[#8B5A2B] pb-2"
+                        data-tab="register"
+                    >
+                        Registrarse
+                    </button>
+                </div>
+                <form id="loginForm" class="space-y-5">
+                    <div>
+                        <input
+                            type="email"
+                            placeholder="Correo electrónico"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="Contraseña"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full btn-primary text-xl py-4"
+                    >
+                        Entrar
+                    </button>
+                </form>
+                <form id="registerForm" class="space-y-5 hidden">
+                    <div
+                        class="bg-gradient-to-r from-[#111111] to-[#2B2B2B] p-4 rounded-2xl mb-4 text-center border-2 border-[#F2850F]"
+                    >
+                        <p class="font-black text-[#F2850F] text-lg">
+                            🎁 ¡DESCUENTO ESPECIAL! 🎁
+                        </p>
+                        <p class="text-sm font-bold text-white">
+                            Obtén
+                            <span class="text-2xl text-[#E31E24]"
+                                >10% de descuento</span
+                            >
+                            al registrarte
+                        </p>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Nombre completo"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="email"
+                            placeholder="Correo electrónico"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="tel"
+                            placeholder="Teléfono"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="Contraseña"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="Confirmar contraseña"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full btn-primary text-xl py-4 font-black"
+                    >
+                        Crear Cuenta y Activar Descuento
+                    </button>
+                </form>
+            </div>
+        </div>
+
+        <div
+            id="cartModal"
+            class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-gradient-to-b from-[#FFF4D2] to-[#FFFFFF] z-[90] shadow-2xl transform translate-x-full transition-transform duration-400 flex flex-col border-l-4 border-[#F2850F]"
+        >
+            <div
+                class="p-6 bg-gradient-to-r from-[#111111] to-[#2B2B2B] flex justify-between items-center border-b-4 border-[#F2850F] sticky top-0 z-10 rounded-bl-2xl"
+            >
+                <div class="flex items-center gap-3">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+                    </svg>
+                    <h2 class="text-2xl font-fredoka text-white">Tu Pedido</h2>
+                    <span
+                        class="bg-[#E31E24] text-white text-xs font-black px-3 py-1 rounded-full border border-[#F2850F] cart-badge"
+                        >0</span
+                    >
+                </div>
+                <button
+                    class="text-white hover:text-[#F2850F] close-cart transition-colors"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                </button>
+            </div>
+            <div
+                id="discountBanner"
+                class="hidden bg-gradient-to-r from-[#111111] to-[#2B2B2B] text-white p-4 mx-4 my-3 rounded-2xl border-2 border-[#F2850F] text-center shadow-lg"
+            >
+                <p class="font-black text-lg mb-1">🎉 DESCUENTO ACTIVADO 🎉</p>
+                <p class="text-sm mb-2">
+                    Obtén
+                    <span
+                        id="discountPercentage"
+                        class="font-black text-[#F2850F]"
+                        >10%</span
+                    >
+                    de descuento
+                </p>
+                <p class="text-xs opacity-90">
+                    Cupón:
+                    <span id="discountCode" class="font-bold text-[#F2850F]"
+                        >BIENVENIDA10</span
+                    >
+                </p>
+            </div>
+            <div class="flex-1 overflow-y-auto p-4" id="cartItems">
+                <p
+                    class="text-center text-[#2B2B2B] mt-16 text-lg font-bold empty-msg"
+                >
+                    🛒 Tu carrito está vacío
+                </p>
+                <p class="text-center text-[#6B7280] text-sm">
+                    Selecciona productos para comenzar
+                </p>
+            </div>
+            <div
+                class="p-6 bg-white border-t-4 border-[#F2850F] sticky bottom-0"
+            >
+                <div
+                    id="discountDisplay"
+                    class="hidden mb-4 p-3 bg-[#FFF4D2] rounded-xl border-2 border-[#F2850F]"
+                >
+                    <p class="text-sm font-bold text-[#111111]">
+                        ✅ Descuento aplicado:
+                        <span class="text-[#E31E24]"
+                            >-$<span id="discountAmountBig">0.00</span></span
+                        >
+                    </p>
+                </div>
+                <div class="space-y-2 mb-4">
+                    <div
+                        class="flex justify-between items-center text-sm text-[#2B2B2B]"
+                    >
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">$0.00</span>
+                    </div>
+                    <div
+                        id="discountRow"
+                        class="hidden flex justify-between items-center text-sm text-[#E31E24] font-bold"
+                    >
+                        <span>Descuento (10%):</span>
+                        <span
+                            >-$<span id="discountAmountSmall">0.00</span></span
+                        >
+                    </div>
+                    <div
+                        class="flex justify-between items-center text-2xl font-black text-[#111111] border-t-2 border-[#F2850F] pt-2"
+                    >
+                        <span>TOTAL:</span>
+                        <span id="cartTotal">$0.00</span>
+                    </div>
+                </div>
+                <div class="px-4 pb-3">
+                    <p
+                        class="text-xs font-black text-[#111111] uppercase tracking-tight mb-2"
+                    >
+                        📍 Sucursal
+                    </p>
+                    <div id="branchList" class="grid grid-cols-1 gap-1"></div>
+                    <p
+                        id="branchError"
+                        class="hidden text-xs text-[#E31E24] font-bold mt-1"
+                    >
+                        ⚠️ Selecciona una sucursal
+                    </p>
+                </div>
+                <button
+                    id="waCartBtn"
+                    class="w-full bg-[#E31E24] text-white text-xl py-4 rounded-full font-black flex items-center justify-center gap-3 hover:bg-[#C2181D] transition-all transform hover:scale-[1.02] shadow-xl border-2 border-[#F2850F]"
+                >
+                    <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                        />
+                    </svg>
+                    CONFIRMAR PEDIDO
+                </button>
+                <p class="text-center text-xs text-[#2B2B2B] font-bold">
+                    📦 Entregas en CDMX | Lun-Dom 5am-5pm
+                </p>
+            </div>
+        </div>
+
+        <div
+            id="cartOverlay"
+            class="fixed inset-0 bg-black/50 z-[85] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300"
+        ></div>
+        <div
+            id="toastContainer"
+            class="fixed top-24 right-6 flex flex-col gap-3"
+        ></div>
+        <a
+            id="whatsappFloat"
+            href="https://wa.me/525628328887"
+            target="_blank"
+            rel="noopener"
+            aria-label="Contactar por WhatsApp"
+        >
+            <span class="wa-pulse"></span>
+            <svg class="wa-icon" viewBox="0 0 24 24">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                />
+            </svg>
+        </a>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="script.js?v=2"></script>
+        <script src="shopingCart.js?v=2"></script>
+        <script>
+            const categorias = {
+                alitas: {
+                    nombre: "Alitas",
+                    variantes: [
+                        {
+                            id: "alitas_fresco",
+                            nombre: "Alitas Frescas",
+                            tipo: "fresco",
+                            precio: 65,
+                            unidad: "/kg",
+                            presentacion: "Fresco sin empaquetar",
+                            descripcion:
+                                "Alitas frescas, perfectas para alitas y botanas.",
+                        },
+                        {
+                            id: "alitas_grupollo",
+                            nombre: "Alitas Congeladas Grupollo",
+                            tipo: "fresco",
+                            precio: 60,
+                            unidad: "/kg",
+                            presentacion: "Congelado — Grupollo IQF",
+                            descripcion: "Alitas congeladas por Grupollo.",
+                        },
+                        {
+                            id: "alitas_sukarne",
+                            nombre: "Alitas SuKarne",
+                            tipo: "empaquetado",
+                            precio: 68,
+                            unidad: "/kg",
+                            presentacion: "Empaquetado — SuKarne",
+                            marca: "SuKarne",
+                            descripcion:
+                                "Alitas congeladas empaquetadas por SuKarne.",
+                        },
+                    ],
+                    metodos: [
+                        {
+                            nombre: "Freidora",
+                            tiempo: "20-25 min",
+                            temp: "180°C",
+                            detalles: [
+                                { label: "Rebozado", valor: "Harina sazonada" },
+                                { label: "Textura", valor: "Crujiente" },
+                                { label: "Popular", valor: "Alitas picosas" },
+                            ],
+                            tip: "<strong>Pro:</strong> Marina 30 min antes de cocinar.",
+                        },
+                        {
+                            nombre: "Parrilla",
+                            tiempo: "15-20 min",
+                            temp: "180°C",
+                            detalles: [
+                                { label: "Marinada", valor: "Importante" },
+                                { label: "Dorado", valor: "Uniforme" },
+                                { label: "Salsa", valor: "Al horno" },
+                            ],
+                            tip: "<strong>Pro:</strong> Voltea cada 3-4 min.",
+                        },
+                        {
+                            nombre: "Horno",
+                            tiempo: "20-25 min",
+                            temp: "200°C",
+                            detalles: [
+                                { label: "Spray aceite", valor: "Recomendado" },
+                                { label: "Textura", valor: "Excelente" },
+                                { label: "Salsa", valor: "Buffalo, BBQ" },
+                            ],
+                            tip: "<strong>Pro:</strong> Voltea a mitad de cocción.",
+                        },
+                    ],
+                },
+                pechuga: {
+                    nombre: "Pechuga",
+                    variantes: [
+                        {
+                            id: "pechuga_sin_hueso",
+                            nombre: "Pechuga sin Hueso",
+                            tipo: "fresco",
+                            precio: 120,
+                            unidad: "/kg",
+                            presentacion: "Fresco sin empaquetar",
+                            descripcion:
+                                "Pechuga fresca sin hueso. Baja en grasa, versátil.",
+                        },
+                        {
+                            id: "pechuga_con_hueso",
+                            nombre: "Pechuga con Hueso",
+                            tipo: "fresco",
+                            precio: 95,
+                            unidad: "/kg",
+                            presentacion: "Fresco sin empaquetar",
+                            descripcion:
+                                "Pechuga fresca con hueso. Mantiene más sabor.",
+                        },
+                        {
+                            id: "filete_pechuga",
+                            nombre: "Filete de Pechuga",
+                            tipo: "fresco",
+                            precio: 135,
+                            unidad: "/kg",
+                            presentacion: "Fresco sin empaquetar",
+                            descripcion:
+                                "Filete de pechuga fresco, listo para milanesa.",
+                        },
+                        {
+                            id: "pechuga_grupollo",
+                            nombre: "Pechuga Congelada Grupollo",
+                            tipo: "fresco",
+                            precio: 110,
+                            unidad: "/kg",
+                            presentacion: "Congelado — Grupollo IQF",
+                            descripcion: "Pechuga congelada por Grupollo.",
+                        },
+                        {
+                            id: "pechuga_sukarne",
+                            nombre: "Pechuga SuKarne",
+                            tipo: "empaquetado",
+                            precio: 115,
+                            unidad: "/kg",
+                            presentacion: "Empaquetado — SuKarne",
+                            marca: "SuKarne",
+                            descripcion:
+                                "Pechuga congelada empaquetada por SuKarne.",
+                        },
+                    ],
+                    metodos: [
+                        {
+                            nombre: "Sartén",
+                            tiempo: "5-7 min lado",
+                            temp: "180-200°C",
+                            detalles: [
+                                { label: "Fuego", valor: "Medio" },
+                                { label: "Grosor", valor: "1.5-2 cm" },
+                                { label: "Ideal para", valor: "Tacos, tortas" },
+                            ],
+                            tip: "<strong>Pro:</strong> Deja reposar 5 min antes de cortar.",
+                        },
+                        {
+                            nombre: "Freidora de Aire",
+                            tiempo: "10-12 min",
+                            temp: "180°C",
+                            detalles: [
+                                { label: "Rebozado", valor: "Harina + huevo" },
+                                { label: "Agitación", valor: "A los 6 min" },
+                                { label: "Resultado", valor: "Crujiente" },
+                            ],
+                            tip: "<strong>Pro:</strong> Rocía con spray de aceite.",
+                        },
+                        {
+                            nombre: "Horno",
+                            tiempo: "20-25 min",
+                            temp: "180°C",
+                            detalles: [
+                                { label: "Precaliente", valor: "Sí, 10 min" },
+                                { label: "Bandeja", valor: "Con papel" },
+                                { label: "Tipo", valor: "Rostizado" },
+                            ],
+                            tip: "<strong>Pro:</strong> Cubre con papel si se dora rápido.",
+                        },
+                    ],
+                },
+                pollo_entero: {
+                    nombre: "Pollo Entero",
+                    variantes: [
+                        {
+                            id: "pollo_entero_fresco",
+                            nombre: "Pollo Entero Fresco",
+                            tipo: "fresco",
+                            precio: 180,
+                            unidad: "/pza",
+                            presentacion: "Fresco sin empaquetar",
+                            descripcion:
+                                "Pollo entero fresco. Perfecto para familia.",
+                        },
+                        {
+                            id: "pollo_entero_grupollo",
+                            nombre: "Pollo Entero Congelado Grupollo",
+                            tipo: "fresco",
+                            precio: 165,
+                            unidad: "/pza",
+                            presentacion: "Congelado — Grupollo",
+                            descripcion: "Pollo entero congelado por Grupollo.",
+                        },
+                    ],
+                    metodos: [
+                        {
+                            nombre: "Rostizado",
+                            tiempo: "60-90 min",
+                            temp: "180°C",
+                            detalles: [
+                                { label: "Min/kg", valor: "20 min" },
+                                { label: "Relleno", valor: "Limón, ajo" },
+                                { label: "Reposo", valor: "10 min" },
+                            ],
+                            tip: "<strong>Pro:</strong> Ata las patas para cocción pareja.",
+                        },
+                        {
+                            nombre: "Caldo Completo",
+                            tiempo: "90-120 min",
+                            temp: "85°C simmer",
+                            detalles: [
+                                { label: "Agua", valor: "5-6 litros" },
+                                { label: "Verduras", valor: "Zanahoria, nabo" },
+                                { label: "Uso", valor: "Sopas y arroces" },
+                            ],
+                            tip: "<strong>Pro:</strong> Quita espuma cada 10 min.",
+                        },
+                    ],
+                },
+                huevo: {
+                    nombre: "Huevo de Granja",
+                    variantes: [
+                        {
+                            id: "huevo_blanco",
+                            nombre: "Huevo Blanco",
+                            tipo: "empaquetado",
+                            precio: 85,
+                            unidad: "/cartón (30 pzas)",
+                            presentacion: "Empaquetado — Cartón",
+                            descripcion: "Huevo blanco fresco de granja.",
+                        },
+                        {
+                            id: "huevo_moreno",
+                            nombre: "Huevo Moreno",
+                            tipo: "empaquetado",
+                            precio: 90,
+                            unidad: "/cartón (30 pzas)",
+                            presentacion: "Empaquetado — Cartón",
+                            descripcion: "Huevo moreno premium de granja.",
+                        },
+                    ],
+                    metodos: [
+                        {
+                            nombre: "Hervido",
+                            tiempo: "7-12 min",
+                            temp: "100°C",
+                            detalles: [
+                                {
+                                    label: "Agua hirviendo",
+                                    valor: "Importante",
+                                },
+                                { label: "Punto pasado", valor: "7 min" },
+                                { label: "Punto duro", valor: "12 min" },
+                            ],
+                            tip: "<strong>Pro:</strong> Agua fría después de cocinar.",
+                        },
+                        {
+                            nombre: "Revuelto",
+                            tiempo: "3-4 min",
+                            temp: "160°C",
+                            detalles: [
+                                { label: "Mantequilla", valor: "0.5 cda" },
+                                { label: "Fuego", valor: "Medio" },
+                                { label: "Textura", valor: "Suave" },
+                            ],
+                            tip: "<strong>Pro:</strong> Revuelve constantemente.",
+                        },
+                    ],
+                },
+                acompañamientos_especiales: {
+                    nombre: "Acompañamientos",
+                    variantes: [
+                        {
+                            id: "papas_fresco",
+                            nombre: "Papas Cocidas Grupollo",
+                            tipo: "fresco",
+                            precio: 40,
+                            unidad: "/kg",
+                            presentacion: "Fresco — Grupollo",
+                            descripcion:
+                                "Papas cocidas frescas, listas para acompañar.",
+                        },
+                        {
+                            id: "aros_fresco",
+                            nombre: "Aros de Cebolla Frescos",
+                            tipo: "fresco",
+                            precio: 75,
+                            unidad: "/kg",
+                            presentacion: "Fresco — Grupollo",
+                            descripcion:
+                                "Aros de cebolla frescos, listos para freidora.",
+                        },
+                        {
+                            id: "papas_congeladas",
+                            nombre: "Papas Congeladas Premium",
+                            tipo: "empaquetado",
+                            precio: 55,
+                            unidad: "/kg",
+                            presentacion: "Empaquetado — Premium",
+                            marca: "Premium",
+                            descripcion: "Papas precocidas congeladas.",
+                        },
+                        {
+                            id: "nuggets",
+                            nombre: "Nuggets de Pollo",
+                            tipo: "empaquetado",
+                            precio: 120,
+                            unidad: "/kg",
+                            presentacion: "Empaquetado — Congelado",
+                            marca: "Grupollo Premium",
+                            descripcion:
+                                "Nuggets crujientes, listos para freidora.",
+                        },
+                        {
+                            id: "boneless",
+                            nombre: "Boneless de Pollo",
+                            tipo: "empaquetado",
+                            precio: 135,
+                            unidad: "/kg",
+                            presentacion: "Empaquetado — Congelado",
+                            marca: "Grupollo Premium",
+                            descripcion: "Boneless premium sin hueso.",
+                        },
+                        {
+                            id: "jalapenos_rellenos",
+                            nombre: "Jalapeños Rellenos de Queso",
+                            tipo: "empaquetado",
+                            precio: 95,
+                            unidad: "/kg",
+                            presentacion: "Empaquetado — Congelado",
+                            marca: "Grupollo Gourmet",
+                            descripcion:
+                                "Jalapeños rellenos de queso empanizados.",
+                        },
+                    ],
+                    metodos: [
+                        {
+                            nombre: "Freidora",
+                            tiempo: "12-15 min",
+                            temp: "180°C",
+                            detalles: [
+                                { label: "Directo", valor: "Congeladas" },
+                                { label: "Color", valor: "Dorado perfecto" },
+                                { label: "Crisp", valor: "Máximo" },
+                            ],
+                            tip: "<strong>Pro:</strong> Dos cocciones = máxima textura.",
+                        },
+                        {
+                            nombre: "Horno",
+                            tiempo: "18-20 min",
+                            temp: "200°C",
+                            detalles: [
+                                {
+                                    label: "Bandeja",
+                                    valor: "Papel mantequilla",
+                                },
+                                { label: "Spray aceite", valor: "Importante" },
+                                { label: "Textura", valor: "Crujiente" },
+                            ],
+                            tip: "<strong>Pro:</strong> Voltea a mitad de cocción.",
+                        },
+                    ],
+                },
+                molida: {
+                    nombre: "Molida de Pollo",
+                    variantes: [
+                        {
+                            id: "molida_fresco",
+                            nombre: "Molida de Pollo Fresca",
+                            tipo: "fresco",
+                            precio: 98,
+                            unidad: "/kg",
+                            presentacion: "Fresco sin empaquetar",
+                            descripcion: "Pollo molido fresco, saludable.",
+                        },
+                    ],
+                    metodos: [
+                        {
+                            nombre: "Tacos / Relleno",
+                            tiempo: "8-10 min",
+                            temp: "190°C",
+                            detalles: [
+                                { label: "Cocción", valor: "Fuego vivo" },
+                                { label: "Textura", valor: "Desmenuzado" },
+                                {
+                                    label: "Ideal para",
+                                    valor: "Tacos, empanadas",
+                                },
+                            ],
+                            tip: "<strong>Pro:</strong> No compactes, deja que se desmorone.",
+                        },
+                    ],
+                },
+                pierna_muslo: {
+                    nombre: "Pierna y Muslo",
+                    variantes: [
+                        {
+                            id: "pierna_muslo_fresco",
+                            nombre: "Pierna y Muslo Frescos",
+                            tipo: "fresco",
+                            precio: 85,
+                            unidad: "/kg",
+                            presentacion: "Fresco sin empaquetar",
+                            descripcion:
+                                "Pierna y muslo frescos, carne con más sabor.",
+                        },
+                    ],
+                    metodos: [
+                        {
+                            nombre: "Horno",
+                            tiempo: "35-45 min",
+                            temp: "200°C",
+                            detalles: [
+                                {
+                                    label: "Con piel",
+                                    valor: "Dorada crujiente",
+                                },
+                                { label: "Marinada", valor: "Ajo, limón" },
+                                {
+                                    label: "Acompañamiento",
+                                    valor: "Papa, nabo",
+                                },
+                            ],
+                            tip: "<strong>Pro:</strong> No quites la piel, tiene sabor.",
+                        },
+                        {
+                            nombre: "Guiso",
+                            tiempo: "60-75 min",
+                            temp: "160°C",
+                            detalles: [
+                                { label: "Base", valor: "Sofrito" },
+                                { label: "Caldo", valor: "2-3 tazas" },
+                                { label: "Espeso", valor: "Harina de maíz" },
+                            ],
+                            tip: "<strong>Pro:</strong> La carne se deshebra suave.",
+                        },
+                    ],
+                },
+            };
+
+            let carrito = [];
+            let currentVariant = null;
+
+            function showCategory(key, btn) {
+                const cat = categorias[key];
+                document
+                    .querySelectorAll(".rec-nav-btn")
+                    .forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+
+                let html = `
+                <div class="rec-breadcrumb">
+                    <span class="rec-breadcrumb-item">Inicio</span>
+                    <span>&#8250;</span>
+                    <span class="rec-breadcrumb-item">${cat.nombre}</span>
+                </div>
+                <h2 class="rec-section-title">${cat.nombre}</h2>
+                <div class="rec-section-underline"></div>
+                <div class="rec-variants-grid">`;
+
+                cat.variantes.forEach((v) => {
+                    html += `
+                    <div class="rec-variant-card" onclick="selectVariant('${key}','${v.id}',this)">
+                        <div class="rec-variant-name">${v.nombre}</div>
+                        <div class="rec-variant-badge ${v.tipo}">${v.tipo === "fresco" ? "Fresco / Grupollo" : "Empaquetado"}</div>
+                        <div class="rec-variant-price">$${v.precio}</div>
+                        <div class="rec-variant-unit">${v.unidad}</div>
+                    </div>`;
+                });
+
+                html += `</div><div class="rec-detail" id="recDetail"></div>`;
+                document.getElementById("recMain").innerHTML = html;
+            }
+
+            function selectVariant(catKey, varId, el) {
+                const cat = categorias[catKey];
+                const v = cat.variantes.find((x) => x.id === varId);
+                currentVariant = v;
+
+                document
+                    .querySelectorAll(".rec-variant-card")
+                    .forEach((c) => c.classList.remove("selected"));
+                el.classList.add("selected");
+
+                const det = document.getElementById("recDetail");
+
+                let html = `
+                <div class="rec-detail-title">${v.nombre}</div>
+                <div class="rec-info-grid">
+                    <div class="rec-info-box">
+                        <div class="rec-info-label">Presentación</div>
+                        <div class="rec-info-value">${v.presentacion}</div>
+                    </div>
+                    <div class="rec-info-box">
+                        <div class="rec-info-label">Precio</div>
+                        <div class="rec-info-value price">$${v.precio}</div>
+                    </div>
+                    <div class="rec-info-box">
+                        <div class="rec-info-label">Unidad</div>
+                        <div class="rec-info-value">${v.unidad}</div>
+                    </div>
+                    ${v.marca ? `<div class="rec-info-box"><div class="rec-info-label">Marca</div><div class="rec-info-value">${v.marca}</div></div>` : ""}
+                </div>
+                <p class="rec-detail-desc">${v.descripcion}</p>
+                <div class="rec-methods-title">Métodos de preparación</div>`;
+
+                cat.metodos.forEach((m, i) => {
+                    html += `
+                    <div class="rec-accordion" id="acc-${i}">
+                        <button class="rec-accordion-header" onclick="toggleAcc(${i})">
+                            <div class="rec-accordion-left">
+                                <div>
+                                    <div>${m.nombre}</div>
+                                    <div class="rec-accordion-meta">
+                                        <span>${m.tiempo}</span>
+                                        <span>${m.temp}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="rec-accordion-toggle">&#9660;</span>
+                        </button>
+                        <div class="rec-accordion-body">
+                            ${m.detalles
+                                .map(
+                                    (d) => `
+                                <div class="rec-detail-row">
+                                    <span class="rec-detail-key">${d.label}</span>
+                                    <span class="rec-detail-val">${d.valor}</span>
+                                </div>`,
+                                )
+                                .join("")}
+                            <div class="rec-tip">${m.tip}</div>
+                            <button class="rec-add-btn" onclick="openBuyModal('${catKey}','${varId}')">
+                                Agregar al carrito
+                            </button>
+                        </div>
+                    </div>`;
+                });
+
+                det.innerHTML = html;
+                det.classList.add("show");
+                det.scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+
+            function toggleAcc(i) {
+                document
+                    .getElementById(`acc-${i}`)
+                    .classList.toggle("expanded");
+            }
+
+        </script>
+    </body>
+</html>

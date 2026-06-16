@@ -1,0 +1,2334 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Grupollo - Productos</title>
+        <link rel="stylesheet" href="tailwind-build.css?v=1" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@400;600;700;800;900&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css?v=1" />
+        <style>
+
+            /* Section tabs */
+            .section-tab {
+                cursor: pointer;
+                padding: 14px 32px;
+                border-radius: 50px;
+                font-weight: 900;
+                font-size: 1.1rem;
+                border: 2px solid transparent;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            .section-tab.active {
+                background: var(--color-gold);
+                color: var(--color-black);
+                border-color: var(--color-gold);
+                box-shadow: 0 8px 25px rgba(242, 181, 15, 0.3);
+            }
+            .section-tab:not(.active) {
+                background: #282b28;
+                color: var(--color-white);
+                border-color: rgba(255, 255, 255, 0.05);
+            }
+            .section-tab:not(.active):hover {
+                border-color: var(--color-gold);
+                color: var(--color-gold);
+            }
+
+            /* Product section panels */
+            .product-panel {
+                display: none;
+            }
+            .product-panel.active {
+                display: block;
+            }
+
+            /* Congelados banner */
+            .congelados-banner {
+                background: linear-gradient(135deg, #111 0%, #2b2b2b 100%);
+                border-radius: 40px;
+                padding: 50px;
+                color: #fff;
+                margin-bottom: 50px;
+                border: 3px solid var(--color-gold);
+            }
+
+            /* ========================================================
+           FLIP CARD SYSTEM — added so each product card flips to
+           reveal description + métodos de preparación on the back
+           ======================================================== */
+            .product-card.flip-card {
+                background: transparent !important;
+                border: none !important;
+                padding: 0 !important;
+                margin-top: 80px; /* keep room for the floating product image */
+                perspective: 1400px;
+                position: relative;
+                min-height: 440px;
+            }
+            .product-card.flip-card .flip-inner {
+                position: relative;
+                width: 100%;
+                min-height: 440px;
+                transition: transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+                transform-style: preserve-3d;
+            }
+            .product-card.flip-card.is-flipped .flip-inner {
+                transform: rotateY(180deg);
+            }
+            .flip-front,
+            .flip-back {
+                position: absolute;
+                inset: 0;
+                width: 100%;
+                min-height: 440px;
+                border-radius: 35px;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                padding: 24px;
+                padding-top: 96px;
+                box-shadow: 0 12px 40px rgba(0, 0, 0, 0.35);
+            }
+            .flip-front {
+                background: var(--color-dark-gray, #282b28);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                display: flex;
+                flex-direction: column;
+                transition: border-color 0.3s ease;
+            }
+            .product-card.flip-card:hover .flip-front {
+                border-color: rgba(242, 181, 15, 0.5);
+            }
+            /* Light-themed (white) cards keep their look */
+            .product-card.flip-card.flip-light .flip-front {
+                background: #ffffff;
+                border-color: rgba(0, 0, 0, 0.05);
+            }
+            .flip-back {
+                background: linear-gradient(
+                    160deg,
+                    #1a1a1a 0%,
+                    #2b2b2b 60%,
+                    #3a2a14 100%
+                );
+                border: 2px solid var(--color-gold, #fdbe1a);
+                transform: rotateY(180deg);
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding-top: 70px;
+            }
+
+            .flip-front,
+            .flip-back {
+                -webkit-clip-path: inset(-90px 0 0 0 round 35px);
+                clip-path: inset(-90px 0 0 0 round 35px);
+            }
+
+            .product-card.flip-card.is-flipped .product-img-3d {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px) scale(0.92);
+                pointer-events: none;
+            }
+            .product-card.flip-card.is-flipped .flip-front .absolute {
+                opacity: 0;
+                transform: translateY(-10px) scale(0.98);
+                pointer-events: none;
+            }
+
+            .product-card.flip-card .btn-primary,
+            .product-card.flip-card .flip-back-add {
+                padding: 10px 16px !important;
+                font-size: 0.85rem !important;
+                font-weight: 900 !important;
+                letter-spacing: 0.08em !important;
+                line-height: 1 !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                white-space: nowrap;
+            }
+
+            .product-card.flip-card.flip-light .btn-primary,
+            .product-card.flip-card.flip-light .flip-back-add {
+                background: var(--color-red, #e31e24) !important;
+                color: #fff !important;
+                box-shadow: 0 10px 24px rgba(227, 30, 36, 0.35) !important;
+            }
+
+            .product-card.flip-card.flip-light .btn-primary:hover,
+            .product-card.flip-card.flip-light .flip-back-add:hover {
+                background: var(--color-gold, #f2850f) !important;
+                color: #111 !important;
+                box-shadow: 0 12px 30px rgba(242, 133, 15, 0.35) !important;
+            }
+
+            /* Flip toggle button (info ⓘ on front, ← back on reverse) */
+            .flip-toggle {
+                position: absolute;
+                top: 16px;
+                z-index: 10;
+                width: 34px;
+                height: 34px;
+                border-radius: 50%;
+                background: rgba(253, 190, 26, 0.15);
+                border: 1.5px solid rgba(253, 190, 26, 0.5);
+                color: var(--color-gold, #fdbe1a);
+                font-weight: 900;
+                font-size: 1rem;
+                cursor: pointer;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.25s ease;
+                backdrop-filter: blur(4px);
+            }
+            .flip-front .flip-toggle {
+                left: 16px;
+                right: auto;
+            }
+            .flip-back .flip-toggle {
+                right: 16px;
+                left: auto;
+            }
+            .flip-toggle:hover {
+                background: var(--color-gold, #fdbe1a);
+                color: #111;
+                transform: scale(1.1);
+            }
+            .product-card.flip-card.flip-light .flip-toggle {
+                background: rgba(227, 30, 36, 0.1);
+                border-color: rgba(227, 30, 36, 0.5);
+                color: var(--color-red, #e31e24);
+            }
+            .product-card.flip-card.flip-light .flip-toggle:hover {
+                background: var(--color-red, #e31e24);
+                color: #fff;
+            }
+            .flip-toggle .flip-icon-back {
+                display: none;
+            }
+            .product-card.flip-card.is-flipped .flip-toggle .flip-icon-front {
+                display: none;
+            }
+            .product-card.flip-card.is-flipped .flip-toggle .flip-icon-back {
+                display: inline-flex;
+            }
+
+            /* "Tap para ver más" hint (front, bottom subtle text) */
+            .flip-hint {
+                margin-top: 25%;
+                text-align: center;
+                font-size: 0.7rem;
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                color: rgba(253, 190, 26, 0.6);
+                font-weight: 700;
+            }
+            .flip-light .flip-hint {
+                color: rgba(227, 30, 36, 0.6);
+            }
+
+            /* Back face content */
+            .flip-back-title {
+                font-family: "Fredoka One", sans-serif;
+                font-size: 1.3rem;
+                color: #fff;
+                margin-bottom: 4px;
+                line-height: 1.1;
+            }
+            .flip-back-tag {
+                color: var(--color-gold, #fdbe1a);
+                font-size: 0.75rem;
+                font-weight: 800;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                margin-bottom: 12px;
+                display: block;
+            }
+            .flip-back-desc {
+                color: #e5e5e5;
+                font-size: 0.88rem;
+                line-height: 1.55;
+                margin-bottom: 14px;
+            }
+
+            .flip-back > div:first-of-type {
+                flex: 1;
+                overflow: auto;
+                padding-right: 6px;
+            }
+            .flip-back-prep-label {
+                color: var(--color-gold, #fdbe1a);
+                font-size: 0.7rem;
+                font-weight: 900;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                gap: 6px;
+            }
+            .flip-prep-chips {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin-bottom: 18px;
+            }
+            .prep-chip {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
+                padding: 8px 12px;
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(253, 190, 26, 0.25);
+                border-radius: 999px;
+                font-size: 0.78rem;
+                font-weight: 700;
+                color: #fff;
+                transition: all 0.2s ease;
+            }
+            .prep-chip-icon {
+                font-size: 1rem;
+                line-height: 1;
+            }
+            .prep-chip:hover {
+                background: rgba(253, 190, 26, 0.15);
+                border-color: var(--color-gold, #fdbe1a);
+                transform: translateY(-1px);
+            }
+            .flip-back-footer {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: auto;
+                padding-top: 12px;
+                border-top: 1px dashed rgba(253, 190, 26, 0.25);
+            }
+            .flip-back-price {
+                font-size: 1.25rem;
+                font-weight: 900;
+                color: var(--color-red, #e31e24);
+            }
+            .flip-back-price small {
+                color: #999;
+                font-size: 0.65rem;
+                font-weight: 400;
+            }
+
+            @media (max-width: 640px) {
+                .product-card.flip-card,
+                .product-card.flip-card .flip-inner,
+                .flip-front,
+                .flip-back {
+                    min-height: 420px;
+                }
+                .flip-front,
+                .flip-back {
+                    -webkit-clip-path: inset(-80px 0 0 0 round 35px);
+                    clip-path: inset(-80px 0 0 0 round 35px);
+                }
+                .flip-back {
+                    padding-top: 64px;
+                }
+            }
+        </style>
+    </head>
+    <body class="bg-[#111111] overflow-x-hidden flex flex-col min-h-screen">
+        <div id="pageLoader">
+            <img src="img/6.png" alt="Grupollo" class="loader-logo" />
+            <div class="loader-bar-track">
+                <div class="loader-bar-fill"></div>
+            </div>
+            <p class="loader-tagline">Sabor & Calidad</p>
+        </div>
+
+        <div id="scrollProgress"></div>
+        <!-- <div id="seasonalBanner" class="hidden"></div> -->
+        <nav
+            class="fixed w-full z-50 flex flex-col transition-colors duration-300"
+            id="navbar"
+        >
+            <!-- ROW 1: logo + (wordmark sobre tagline) | atención | hacer pedido | trofeo -->
+            <div class="nav-top-bar">
+                <a
+                    href="index.html"
+                    class="gp-brand logo-anim"
+                    aria-label="Grupollo"
+                >
+                    <span class="gp-brand-text-stack">
+                        <img
+                            src="img/logos/grupollo-logo-blanco.png"
+                            alt="Grupollo"
+                            class="gp-brand-word"
+                        />
+                        <span class="gp-brand-tagline" s
+                            >Calidad y frescura para ti</span
+                        >
+                    </span>
+                </a>
+
+                <div class="gp-customer-care hidden md:flex">
+                    <span class="gp-customer-care-label"
+                        >Atención al cliente:</span
+                    >
+                    <span class="gp-customer-care-number">56 31 00 28 99</span>
+                </div>
+
+                <div class="gp-actions">
+                    <button
+                        id="cartBtn"
+                        class="gp-order-btn"
+                        type="button"
+                        aria-label="Hacer Pedido"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="gp-order-icon"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                            />
+                        </svg>
+                        Hacer Pedido
+                        <span class="cart-count hidden">0</span>
+                    </button>
+                    <button
+                        type="button"
+                        id="mobileMenuBtn"
+                        class="gp-mobile-menu-btn md:hidden"
+                        aria-label="Menú"
+                        aria-controls="mobileMenu"
+                        aria-expanded="false"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="h-7 w-7"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M4 6h16M4 12h16M4 18h16"
+                            />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Línea horizontal dorada -->
+            <div class="gp-nav-divider" aria-hidden="true"></div>
+
+            <!-- ROW 2: nav links (der) + rayas diagonales (extremo der) -->
+            <div class="nav-bottom-bar">
+                <div class="nav-bottom-links">
+                    <a href="index.html">Inicio</a>
+                    <a href="producto.html" class="nav-current">Productos</a>
+                    <a href="contacto.html">Contacto</a>
+                    <a href="recetario.html">Recetas</a>
+                </div>
+                <span class="gp-stripe-end" aria-hidden="true"></span>
+            </div>
+        </nav>
+
+        <div
+            id="mobileMenu"
+            class="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center"
+        >
+            <button
+                type="button"
+                id="closeMobileMenu"
+                class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors cursor-pointer"
+                aria-label="Cerrar menú"
+            >
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-8 w-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M6 18L18 6M6 6l12 12"
+                    />
+                </svg>
+            </button>
+            <img
+                src="img/PNG sin fondo.png"
+                alt="Grupollo"
+                class="mobile-menu-logo h-16 w-auto brightness-200"
+            />
+            <a href="index.html" class="mobile-nav-link"
+                >INICIO</a
+            >
+            <a href="producto.html" class="mobile-nav-link mobile-current">PRODUCTOS</a>
+            <a href="contacto.html" class="mobile-nav-link">CONTACTO</a>
+            <a href="recetario.html" class="mobile-nav-link">RECETARIO</a>
+            <a href="contacto.html" class="btn-pedido text-lg mt-6"
+                >Hacer Pedido</a
+            >
+            <p class="mobile-menu-phone">Tel: <span>56 31 00 28 99</span></p>
+        </div>
+
+        <main class="flex-grow hero-offset">
+            <section
+                class="min-h-[50vh] pb-12 px-6 md:px-8 relative overflow-hidden flex items-center bg-mundial-geometric"
+                style="padding-top: 60px"
+            >
+                <div class="container mx-auto text-center relative z-10">
+                    <p
+                        class="text-brandGold font-extrabold text-lg tracking-wider uppercase mb-4"
+                    >
+                        Catálogo completo
+                    </p>
+                    <h1
+                        class="text-5xl md:text-7xl font-fredoka text-white mb-6"
+                    >
+                        Nuestros <span class="text-brandGold">Productos</span>
+                    </h1>
+                    <p
+                        class="text-gray-300 text-xl max-w-2xl mx-auto leading-relaxed"
+                    >
+                        Selecciona tus productos favoritos y agrégalos a tu
+                        pedido. Calidad garantizada en cada corte.
+                    </p>
+                </div>
+            </section>
+
+            <section
+                class="py-20 px-6 md:px-8 bg-brandBlack section-wave relative overflow-hidden"
+                id="producto"
+            >
+                <div class="container mx-auto">
+                    <div class="flex flex-wrap justify-center gap-5 mb-14">
+                        <button
+                            class="section-tab active flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
+                            data-panel="frescos"
+                            onclick="switchPanel('frescos', this)"
+                        >
+                            <span class="text-5xl">🍗</span>
+                            <span
+                                class="font-black text-base uppercase tracking-wide"
+                                >Frescos</span
+                            >
+                        </button>
+                        <button
+                            class="section-tab flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
+                            data-panel="congelados"
+                            onclick="switchPanel('congelados', this)"
+                        >
+                            <span class="text-5xl">❄️</span>
+                            <span
+                                class="font-black text-base uppercase tracking-wide"
+                                >Congelados</span
+                            >
+                        </button>
+                        <button
+                            class="section-tab flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
+                            data-panel="huevo"
+                            onclick="switchPanel('huevo', this)"
+                        >
+                            <span class="text-5xl">🥚</span>
+                            <span
+                                class="font-black text-base uppercase tracking-wide"
+                                >Huevo</span
+                            >
+                        </button>
+                    </div>
+
+                    <div class="product-panel active" id="panel-frescos">
+                        <div
+                            class="flex flex-wrap justify-center gap-3 mb-10"
+                            id="filterContainer"
+                        >
+                            <button
+                                class="filter-btn active bg-brandRed text-white px-6 py-3 rounded-full font-bold shadow-md"
+                                data-filter="all"
+                            >
+                                Todos
+                            </button>
+                            <button
+                                class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
+                                data-filter="entero"
+                            >
+                                Pollo Entero
+                            </button>
+                            <button
+                                class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
+                                data-filter="pechugas"
+                            >
+                                Pechugas
+                            </button>
+                            <button
+                                class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
+                                data-filter="piernas"
+                            >
+                                Piernas
+                            </button>
+                            <button
+                                class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
+                                data-filter="pollo-rosticero"
+                            >
+                                Pollo Rosticero
+                            </button>
+                            <button
+                                class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
+                                data-filter="especial"
+                            >
+                                Especialidades
+                            </button>
+                        </div>
+
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"
+                            id="productsGrid"
+                        >
+                        <div
+                            class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                            data-category="pollo-rosticero"
+                        >
+                            <div
+                                class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                            >
+                                🔥 Popular
+                            </div>
+                            <img
+                                src="img/Productos/Pechuga_sin_hueso.png"
+                                alt="Pechuga sin hueso"
+                                class="product-img-3d w-44 md:w-52 h-auto"
+                            />
+                            <h3
+                                class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                            >
+                                Pollo Rosticero
+                            </h3>
+                            <p
+                                class="text-center text-brandGold mb-4 text-sm"
+                            >
+                                Pollo Rosticero
+                            </p>
+                            <div class="grid grid-cols-1 space-y-6 items-center">
+                                <span
+                                    class="text-xl text-center font-extrabold text-brandRed"
+                                    >$120<span
+                                        class="text-xs font-normal text-gray-400"
+                                        >/kg</span
+                                    ></span
+                                >
+                                <button
+                                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                    data-id="1"
+                                    data-name="Pechuga sin Hueso"
+                                    data-price="120"
+                                >
+                                    Añadir
+                                </button>
+                            </div>
+                        </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="pechugas"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    🔥 Popular
+                                </div>
+                                <img
+                                    src="img/Productos/Pechuga_sin_hueso.png"
+                                    alt="Pechuga sin hueso"
+                                    class="product-img-3d w-44 md:w-52 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pechuga sin Hueso
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Fresca y jugosa
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$120<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="1"
+                                        data-name="Pechuga sin Hueso"
+                                        data-price="120"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="pechugas"
+                            >
+                                <img
+                                    src="img/Productos/Pechuga_con_Hueso.png"
+                                    alt="Pechuga con hueso"
+                                    class="product-img-3d w-44 md:w-52 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pechuga con Hueso
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Corte tradicional
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$95<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="2"
+                                        data-name="Pechuga con Hueso"
+                                        data-price="95"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="pechugas"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-[#E87A3E] text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    ✨ Nuevo
+                                </div>
+                                <img
+                                    src="img/Productos/Filete_de_Pechuga.png"
+                                    alt="Filete de pechuga"
+                                    class="product-img-3d w-44 md:w-52 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Filete de Pechuga
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Listo para cocinar
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$135<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="3"
+                                        data-name="Filete de Pechuga"
+                                        data-price="135"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="piernas"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    🔥 Popular
+                                </div>
+                                <img
+                                    src="img/Productos/Pierna_y_Muslo.png"
+                                    alt="Pierna y Muslo"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pierna y Muslo
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    El mejor sabor
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$85<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="4"
+                                        data-name="Pierna y Muslo"
+                                        data-price="85"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="piernas"
+                            >
+                                <img
+                                    src="img/Productos/Muslo_de_Pollo .png"
+                                    alt="Muslo de Pollo"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Muslo de Pollo
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Jugoso y tierno
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$78<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="5"
+                                        data-name="Muslo de Pollo"
+                                        data-price="78"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="piernas"
+                            >
+                                <img
+                                    src="img/Productos/Pierna_de_Pollo.png"
+                                    alt="Pierna de Pollo"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pierna de Pollo
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Corte individual
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$72<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="6"
+                                        data-name="Pierna de Pollo"
+                                        data-price="72"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="entero"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandBlack text-brandGold px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-brandGold whitespace-nowrap"
+                                >
+                                    ⭐ Familiar
+                                </div>
+                                <img
+                                    src="img/Productos/Pollo_Entero.png"
+                                    alt="Pollo Entero"
+                                    class="product-img-3d w-44 md:w-56 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pollo Entero
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Para toda la familia
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$180<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/pza</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="7"
+                                        data-name="Pollo Entero"
+                                        data-price="180"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="entero"
+                            >
+                                <img
+                                    src="img/Productos/Pollo_Limpio.png"
+                                    alt="Pollo Limpio"
+                                    class="product-img-3d w-44 md:w-56 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pollo Limpio
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Listo para preparar
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$165<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/pza</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="8"
+                                        data-name="Pollo Limpio"
+                                        data-price="165"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="especial"
+                            >
+                                <img
+                                    src="img/Productos/Alas_de_Pollo.png"
+                                    alt="Alas de Pollo"
+                                    class="product-img-3d w-44 md:w-52 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Alas de Pollo
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Perfectas para botana
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$65<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="9"
+                                        data-name="Alas de Pollo"
+                                        data-price="65"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="especial"
+                            >
+                                <img
+                                    src="img/Productos/Menudencia.png"
+                                    alt="Menudencia"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Menudencia
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Para caldos y sopas
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$45<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="10"
+                                        data-name="Menudencia"
+                                        data-price="45"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="especial"
+                            >
+                                <img
+                                    src="img/Productos/Higado_de_Pollo.webp"
+                                    alt="Hígado de Pollo"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Hígado de Pollo
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Fresco y nutritivo
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$55<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="11"
+                                        data-name="Hígado de Pollo"
+                                        data-price="55"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                                data-category="especial"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandGold text-brandBlack px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    ✨ Nuevo
+                                </div>
+                                <img
+                                    src="img/Productos/Molida_de_Pollo.png"
+                                    alt="Molida de Pollo"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Molida de Pollo
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Versátil y saludable
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$98<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="12"
+                                        data-name="Molida de Pollo"
+                                        data-price="98"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-panel" id="panel-congelados">
+                        <div
+                            class="congelados-banner flex flex-col md:flex-row items-center gap-8 bg-brandDarkGray border-brandGold mb-10 p-8 rounded-3xl border-2"
+                        >
+                            <div class="text-5xl flex-shrink-0">❄️</div>
+                            <div>
+                                <h3
+                                    class="text-3xl font-fredoka text-white mb-2"
+                                >
+                                    Productos Congelados Grupollo
+                                </h3>
+                                <p class="text-gray-300 text-lg">
+                                    Mantenemos la cadena de frío para garantizar
+                                    la máxima frescura. Mismo sabor, mayor
+                                    duración.
+                                </p>
+                            </div>
+                        </div>
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"
+                        >
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    ❄️ Congelado
+                                </div>
+                                <img
+                                    src="img/Productos/Filete_Tilapia.png"
+                                    alt="Filete de Tilapia"
+                                    class="product-img-3d w-44 md:w-52 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Filete de Tilapia
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Sin espinas · IQF
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$145<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="c5"
+                                        data-name="Filete de Tilapia"
+                                        data-price="145"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    SuKarne
+                                </div>
+                                <img
+                                    src="img/Productos/Hamburguesa_Sirloin.png"
+                                    alt="Hamburguesa Sirloin"
+                                    class="product-img-3d w-44 md:w-52 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Hamburguesa Sirloin
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Arrachera/Sirloin · 8 pzas
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$160<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/paq</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="c6"
+                                        data-name="Hamburguesa Sirloin"
+                                        data-price="160"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    ❄️ Congelado
+                                </div>
+                                <img
+                                    src="img/Productos/Pechuga_Congelada.png"
+                                    alt="Pechuga Congelada"
+                                    class="product-img-3d w-44 md:w-52 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pechuga Congelada
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    IQF · Sin conservadores
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$110<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="c1"
+                                        data-name="Pechuga Congelada"
+                                        data-price="110"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    ❄️ Congelado
+                                </div>
+                                <img
+                                    src="img/Productos/Pierna_Congelada.png"
+                                    alt="Pierna Congelada"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pierna Congelada
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    IQF · 6 meses duración
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$75<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="c2"
+                                        data-name="Pierna Congelada"
+                                        data-price="75"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    ❄️ Congelado
+                                </div>
+                                <img
+                                    src="img/Productos/Pollo_Entero_Congelado.png"
+                                    alt="Pollo Entero Congelado"
+                                    class="product-img-3d w-44 md:w-56 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Pollo Entero Congelado
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Ideal para rosticería
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$165<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/pza</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="c3"
+                                        data-name="Pollo Entero Congelado"
+                                        data-price="165"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    ❄️ Congelado
+                                </div>
+                                <img
+                                    src="img/Productos/Alas_Congeladas.png"
+                                    alt="Alas Congeladas"
+                                    class="product-img-3d w-44 md:w-52 h-auto"
+                                />
+                                <h3
+                                    class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                                >
+                                    Alas Congeladas
+                                </h3>
+                                <p
+                                    class="text-center text-brandGold mb-4 text-sm"
+                                >
+                                    Por kilo o al mayoreo
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-xl text-center font-extrabold text-brandRed"
+                                        >$60<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-4 py-2 add-to-cart"
+                                        data-id="c4"
+                                        data-name="Alas Congeladas"
+                                        data-price="60"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-panel" id="panel-huevo">
+                        <div
+                            class="bg-gradient-to-br from-brandGold to-brandRed rounded-[40px] p-10 mb-16 text-center text-white shadow-2xl relative overflow-hidden"
+                        >
+                            <div
+                                class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-10"
+                            ></div>
+                            <div class="text-6xl mb-4 relative z-10">🥚</div>
+                            <h3
+                                class="text-4xl font-fredoka mb-2 relative z-10"
+                            >
+                                Huevo Grupollo
+                            </h3>
+                            <p
+                                class="text-white opacity-90 text-lg relative z-10"
+                            >
+                                Huevo fresco de granja, directo al consumidor.
+                                Calidad superior garantizada.
+                            </p>
+                        </div>
+                        <div
+                            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+                        >
+                            <div
+                                class="bg-brandDarkGray border border-white/5 rounded-[35px] p-8 shadow-xl product-card text-center pt-24 mt-20 relative hover:border-brandGold/50"
+                            >
+                                <img
+                                    src="img/Productos/Huevo_Blanco.png"
+                                    alt="Huevo Blanco"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-2xl font-fredoka text-white mb-2"
+                                >
+                                    Huevo Blanco
+                                </h3>
+                                <p class="text-brandGold mb-6 text-sm">
+                                    Cartón de 30 piezas. Fresco y de granja.
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-2xl font-extrabold text-brandRed"
+                                        >$85<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/cartón</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-6 py-3 add-to-cart"
+                                        data-id="h1"
+                                        data-name="Huevo Blanco (30pz)"
+                                        data-price="85"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray border border-white/5 rounded-[35px] p-8 shadow-xl product-card text-center pt-24 mt-20 relative hover:border-brandGold/50"
+                            >
+                                <img
+                                    src="img/Productos/Huevo_moreno.png"
+                                    alt="Huevo Moreno"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-2xl font-fredoka text-white mb-2"
+                                >
+                                    Huevo Moreno
+                                </h3>
+                                <p class="text-brandGold mb-6 text-sm">
+                                    Cartón de 30 piezas. Preferido de los
+                                    restaurantes.
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-2xl font-extrabold text-brandRed"
+                                        >$90<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/cartón</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-6 py-3 add-to-cart"
+                                        data-id="h2"
+                                        data-name="Huevo Moreno (30pz)"
+                                        data-price="90"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                            <div
+                                class="bg-brandDarkGray border border-white/5 rounded-[35px] p-8 shadow-xl product-card text-center pt-24 mt-20 relative hover:border-brandGold/50"
+                            >
+                                <div
+                                    class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[8deg] border-2 border-white whitespace-nowrap"
+                                >
+                                    🔥 Mayoreo
+                                </div>
+                                <img
+                                    src="img/Productos/Huevo_por_kilo.png"
+                                    alt="Huevo por Kilo"
+                                    class="product-img-3d w-40 md:w-48 h-auto"
+                                />
+                                <h3
+                                    class="text-2xl font-fredoka text-white mb-2 mt-2"
+                                >
+                                    Huevo por Kilo
+                                </h3>
+                                <p class="text-brandGold mb-6 text-sm">
+                                    Ideal para restaurantes y comedores. Precio
+                                    especial.
+                                </p>
+                                <div class="grid grid-cols-1 space-y-6 items-center">
+                                    <span
+                                        class="text-2xl font-extrabold text-brandRed"
+                                        >$38<span
+                                            class="text-xs font-normal text-gray-400"
+                                            >/kg</span
+                                        ></span
+                                    >
+                                    <button
+                                        class="btn-primary text-sm px-6 py-3 add-to-cart"
+                                        data-id="h3"
+                                        data-name="Huevo por Kilo"
+                                        data-price="38"
+                                    >
+                                        Añadir
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section
+                class="promo-banner py-16 px-6 md:px-8 relative overflow-hidden"
+            >
+                <div
+                    class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-8 relative z-10"
+                >
+                    <div class="text-white text-center md:text-left">
+                        <h2 class="text-3xl md:text-5xl font-fredoka mb-4">
+                            ¿Pedido al mayoreo?
+                        </h2>
+                        <p class="text-lg opacity-90 max-w-md">
+                            Contamos con precios especiales para restaurantes,
+                            comedores y eventos. Contáctanos para una cotización
+                            personalizada.
+                        </p>
+                    </div>
+                    <div class="flex flex-col items-center gap-4">
+                        <div
+                            class="bg-white/20 backdrop-blur-sm rounded-2xl p-6 text-center"
+                        >
+                            <p class="text-white font-bold text-lg mb-1">
+                                Llámanos
+                            </p>
+                            <p class="text-white text-3xl font-fredoka">
+                                55854094
+                            </p>
+                        </div>
+                        <a
+                            href="contacto.html"
+                            class="bg-white text-[#D15E1D] px-8 py-4 rounded-full font-bold text-xl hover:bg-[#FFF4D2] transition-colors shadow-xl"
+                            >Solicitar Cotización</a
+                        >
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- ===== FOOTER ===== -->
+        <footer
+            class="bg-brandBlack text-white pt-20 pb-10 px-6 md:px-8 border-t-4 border-brandGold"
+        >
+            <div class="container mx-auto">
+                <div class="grid md:grid-cols-4 gap-12 mb-16">
+                    <div>
+                        <img
+                            src="img/PNG sin fondo.png"
+                            alt="Grupollo"
+                            class="h-20 w-auto mb-6"
+                        />
+                        <p class="text-gray-400 leading-relaxed text-lg">
+                            Proveedor confiable de proteína de calidad con
+                            entregas puntuales y servicio personalizado.
+                        </p>
+                        <p class="text-brandGold font-bold mt-4">
+                            Calidad y frescura para ti
+                        </p>
+                    </div>
+                    <div>
+                        <h4
+                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+                        >
+                            Navegación
+                        </h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a
+                                    href="index.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Inicio</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Productos</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="contacto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Contacto</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4
+                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+                        >
+                            Productos
+                        </h4>
+                        <ul class="space-y-3">
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Pollo Fresco</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Congelados</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Huevo de Granja</a
+                                >
+                            </li>
+                            <li>
+                                <a
+                                    href="producto.html"
+                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                                    >Mayoreo</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4
+                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+                        >
+                            Contacto
+                        </h4>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-gray-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-brandRed"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                                    />
+                                </svg>
+                                56 31 00 28 99 / 55 36 14 33 07
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-brandRed"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                CDMX y Área Metropolitana
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-brandRed"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                                Lun - Dom: 5:00 am - 5:00 pm
+                            </li>
+                            <li class="flex items-center gap-3 text-gray-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    class="h-6 w-6 text-brandRed"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                >
+                                    <path
+                                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                                    />
+                                    <path
+                                        d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                                    />
+                                </svg>
+                                ventas@grupollo.com
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div
+                    class="border-t border-white/10 pt-8 text-center text-gray-500"
+                >
+                    <p>
+                        &copy; 2026 Grupollo. Calidad y frescura en cada
+                        entrega.
+                    </p>
+                </div>
+            </div>
+            <a href="recetario.html" class="footer-recipes-corner">
+                <span class="title">Nuestras recetas</span>
+                <div class="shhh-wrap">
+                    <span class="shhh-pill">Shhh!</span>
+                    <span class="emoji">🤭</span>
+                </div>
+            </a>
+        </footer>
+
+        <div
+            id="loginModal"
+            class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center backdrop-blur-sm opacity-0 transition-opacity duration-300"
+        >
+            <div
+                class="bg-[#FFF4D2] p-8 md:p-12 rounded-[40px] shadow-2xl w-11/12 max-w-md transform scale-95 transition-all duration-300 modal-content relative"
+            >
+                <button
+                    class="absolute top-6 right-6 text-[#4A2C10] hover:text-[#D15E1D] close-login transition-colors"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                </button>
+                <div class="flex justify-center gap-8 mb-8">
+                    <button
+                        class="tab-btn active font-bold text-xl text-[#4A2C10] pb-2"
+                        data-tab="login"
+                    >
+                        Iniciar Sesión
+                    </button>
+                    <button
+                        class="tab-btn font-bold text-xl text-[#8B5A2B] pb-2"
+                        data-tab="register"
+                    >
+                        Registrarse
+                    </button>
+                </div>
+                <form id="loginForm" class="space-y-5">
+                    <div>
+                        <input
+                            type="email"
+                            placeholder="Correo electrónico"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="Contraseña"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full btn-primary text-xl py-4"
+                    >
+                        Entrar
+                    </button>
+                </form>
+                <form id="registerForm" class="space-y-5 hidden">
+                    <div
+                        class="bg-gradient-to-r from-[#111111] to-[#2B2B2B] p-4 rounded-2xl mb-4 text-center border-2 border-[#F2850F]"
+                    >
+                        <p class="font-black text-[#F2850F] text-lg">
+                            🎁 ¡DESCUENTO ESPECIAL! 🎁
+                        </p>
+                        <p class="text-sm font-bold text-white">
+                            Obtén
+                            <span class="text-2xl text-[#E31E24]"
+                                >10% de descuento</span
+                            >
+                            al registrarte
+                        </p>
+                    </div>
+                    <div>
+                        <input
+                            type="text"
+                            placeholder="Nombre completo"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="email"
+                            placeholder="Correo electrónico"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="tel"
+                            placeholder="Teléfono"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="Contraseña"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <div>
+                        <input
+                            type="password"
+                            placeholder="Confirmar contraseña"
+                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+                            required
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-full btn-primary text-xl py-4 font-black"
+                    >
+                        Crear Cuenta y Activar Descuento
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div
+            id="cartModal"
+            class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-gradient-to-b from-[#FFF4D2] to-[#FFFFFF] z-[90] shadow-2xl transform translate-x-full transition-transform duration-400 flex flex-col border-l-4 border-[#F2850F]"
+        >
+            <div
+                class="p-6 bg-gradient-to-r from-[#111111] to-[#2B2B2B] flex justify-between items-center border-b-4 border-[#F2850F] sticky top-0 z-10 rounded-bl-2xl"
+            >
+                <div class="flex items-center gap-3">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8 text-white"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        stroke-width="2"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+                    </svg>
+                    <h2 class="text-2xl font-fredoka text-white">Tu Pedido</h2>
+                    <span
+                        class="bg-[#E31E24] text-white text-xs font-black px-3 py-1 rounded-full border border-[#F2850F] cart-badge"
+                        >0</span
+                    >
+                </div>
+                <button
+                    class="text-white hover:text-[#F2850F] close-cart transition-colors"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="h-8 w-8"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12"
+                        />
+                    </svg>
+                </button>
+            </div>
+            <div
+                id="discountBanner"
+                class="hidden bg-gradient-to-r from-[#111111] to-[#2B2B2B] text-white p-4 mx-4 my-3 rounded-2xl border-2 border-[#F2850F] text-center shadow-lg"
+            >
+                <p class="font-black text-lg mb-1">🎉 DESCUENTO ACTIVADO 🎉</p>
+                <p class="text-sm mb-2">
+                    Obtén
+                    <span
+                        id="discountPercentage"
+                        class="font-black text-[#F2850F]"
+                        >10%</span
+                    >
+                    de descuento
+                </p>
+                <p class="text-xs opacity-90">
+                    Cupón:
+                    <span id="discountCode" class="font-bold text-[#F2850F]"
+                        >BIENVENIDA10</span
+                    >
+                </p>
+            </div>
+            <div class="flex-1 overflow-y-auto p-4" id="cartItems">
+                <p
+                    class="text-center text-[#2B2B2B] mt-16 text-lg font-bold empty-msg"
+                >
+                    🛒 Tu carrito está vacío
+                </p>
+                <p class="text-center text-[#6B7280] text-sm">
+                    Selecciona productos para comenzar
+                </p>
+            </div>
+            <div
+                class="p-6 bg-white border-t-4 border-[#F2850F] sticky bottom-0"
+            >
+                <div
+                    id="discountDisplay"
+                    class="hidden mb-4 p-3 bg-[#FFF4D2] rounded-xl border-2 border-[#F2850F]"
+                >
+                    <p class="text-sm font-bold text-[#111111]">
+                        ✅ Descuento aplicado:
+                        <span class="text-[#E31E24]"
+                            >-$<span id="discountAmountBig">0.00</span></span
+                        >
+                    </p>
+                </div>
+                <div class="space-y-2 mb-4">
+                    <div
+                        class="flex justify-between items-center text-sm text-[#2B2B2B]"
+                    >
+                        <span>Subtotal:</span>
+                        <span id="cartSubtotal">$0.00</span>
+                    </div>
+                    <div
+                        id="discountRow"
+                        class="hidden flex justify-between items-center text-sm text-[#E31E24] font-bold"
+                    >
+                        <span>Descuento (10%):</span>
+                        <span
+                            >-$<span id="discountAmountSmall">0.00</span></span
+                        >
+                    </div>
+                    <div
+                        class="flex justify-between items-center text-2xl font-black text-[#111111] border-t-2 border-[#F2850F] pt-2"
+                    >
+                        <span>TOTAL:</span>
+                        <span id="cartTotal">$0.00</span>
+                    </div>
+                </div>
+                <div class="px-4 pb-3">
+                    <p
+                        class="text-xs font-black text-[#111111] uppercase tracking-tight mb-2"
+                    >
+                        📍 Sucursal
+                    </p>
+                    <div id="branchList" class="grid grid-cols-1 gap-1"></div>
+                    <p
+                        id="branchError"
+                        class="hidden text-xs text-[#E31E24] font-bold mt-1"
+                    >
+                        ⚠️ Selecciona una sucursal
+                    </p>
+                </div>
+                <button
+                    id="waCartBtn"
+                    class="w-full bg-[#E31E24] text-white text-xl py-4 rounded-full font-black flex items-center justify-center gap-3 hover:bg-[#C2181D] transition-all transform hover:scale-[1.02] shadow-xl border-2 border-[#F2850F]"
+                >
+                    <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
+                        <path
+                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                        />
+                    </svg>
+                    CONFIRMAR PEDIDO
+                </button>
+                <p class="text-center text-xs text-[#2B2B2B] font-bold">
+                    📦 Entregas en CDMX | Lun-Dom 5am-5pm
+                </p>
+            </div>
+        </div>
+        <div
+            id="cartOverlay"
+            class="fixed inset-0 bg-black/50 z-[85] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300"
+        ></div>
+        <div
+            id="toastContainer"
+            class="fixed top-24 right-6 flex flex-col gap-3"
+        ></div>
+        <a
+            id="whatsappFloat"
+            href="https://wa.me/525628328887"
+            target="_blank"
+            rel="noopener"
+            aria-label="Contactar por WhatsApp"
+        >
+            <span class="wa-pulse"></span>
+            <svg class="wa-icon" viewBox="0 0 24 24">
+                <path
+                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+                />
+            </svg>
+        </a>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+        <script src="script.js?v=1"></script>
+        <script>
+            function switchPanel(name, btn) {
+                document
+                    .querySelectorAll(".product-panel")
+                    .forEach((p) => p.classList.remove("active"));
+                document
+                    .querySelectorAll(".section-tab")
+                    .forEach((b) => b.classList.remove("active"));
+                document
+                    .getElementById("panel-" + name)
+                    .classList.add("active");
+                btn.classList.add("active");
+            }
+
+            /* ========================================================
+           FLIP CARDS — auto-wrap every .product-card so it flips
+           to reveal description + preparation methods on the back.
+
+           Description: read from data-description or auto-derived
+                        from the existing subtitle.
+           Prep methods: read from data-prep="freidora,horno,..."
+                        (CSV) or inferred by category/name.
+           ======================================================== */
+            (function () {
+                const PREP_LIBRARY = {
+                    freidora: { icon: "🍳", label: "Freidora" },
+                    "freidora-aire": { icon: "💨", label: "Freidora de aire" },
+                    horno: { icon: "🔥", label: "Horno" },
+                    sarten: { icon: "🍳", label: "Sartén" },
+                    parrilla: { icon: "🥩", label: "Parrilla" },
+                    olla: { icon: "🍲", label: "Olla" },
+                    vapor: { icon: "♨️", label: "Al vapor" },
+                    microondas: { icon: "⚡", label: "Microondas" },
+                    asador: { icon: "🔥", label: "Asador" },
+                };
+
+                const DEFAULT_PREP_BY_CATEGORY = {
+                    pechugas: ["sarten", "horno", "parrilla", "freidora-aire"],
+                    piernas: ["horno", "sarten", "parrilla", "freidora-aire"],
+                    entero: ["horno", "parrilla", "olla"],
+                    especial: ["sarten", "horno", "freidora"],
+                };
+
+                function inferPrepFromName(name) {
+                    const lc = (name || "").toLowerCase();
+                    if (lc.includes("huevo")) return ["sarten", "olla"];
+                    if (lc.includes("tilapia"))
+                        return ["sarten", "horno", "parrilla"];
+                    if (lc.includes("hamburgues"))
+                        return ["sarten", "parrilla", "freidora-aire"];
+                    if (lc.includes("alas") || lc.includes("alitas"))
+                        return [
+                            "freidora",
+                            "parrilla",
+                            "horno",
+                            "freidora-aire",
+                        ];
+                    if (lc.includes("molida"))
+                        return ["sarten", "parrilla", "horno"];
+                    if (lc.includes("higado") || lc.includes("hígado"))
+                        return ["sarten"];
+                    if (lc.includes("menudencia")) return ["olla"];
+                    if (lc.includes("entero") || lc.includes("limpio"))
+                        return ["horno", "parrilla", "olla"];
+                    if (lc.includes("congelad"))
+                        return ["horno", "sarten", "freidora-aire"];
+                    return ["sarten", "horno", "freidora-aire"];
+                }
+
+                function autoDescription(name, subtitle) {
+                    const lc = (name || "").toLowerCase();
+                    if (lc.includes("huevo"))
+                        return "Huevo fresco directo de granja. Cartón sellado y refrigerado para máxima frescura. Ideal para uso diario, restaurantes y comedores.";
+                    if (lc.includes("tilapia"))
+                        return "Filete sin espinas, congelado individualmente (IQF) para mantener su sabor y textura. Listo para freír, hornear o cocinar al vapor.";
+                    if (lc.includes("hamburgues"))
+                        return "Hamburguesas premium de arrachera y sirloin, paquete de 8 piezas. Listas para asar o sellar en sartén.";
+                    if (lc.includes("alas") || lc.includes("alitas"))
+                        return "Alas frescas, perfectas para botana, salsas BBQ, búfalo o asado. Tierna por dentro y crujiente por fuera.";
+                    if (lc.includes("molida"))
+                        return "Pollo molido magro y fresco. Excelente para albóndigas, hamburguesas caseras, picadillo y rellenos.";
+                    if (lc.includes("higado") || lc.includes("hígado"))
+                        return "Hígado de pollo fresco, alto en hierro y proteína. Ideal para encebollados o paté casero.";
+                    if (lc.includes("menudencia"))
+                        return "Menudencias frescas seleccionadas: corazón, hígado y molleja. Perfectas para caldos y guisos tradicionales.";
+                    if (lc.includes("pechuga") && lc.includes("hueso"))
+                        return lc.includes("sin")
+                            ? "Pechuga sin hueso ni piel, corte limpio y jugoso. Ideal para empanizar, asar o filetear en casa."
+                            : "Pechuga con hueso, corte tradicional. Conserva más jugo al cocinar y rinde para varias porciones.";
+                    if (lc.includes("filete"))
+                        return "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.";
+                    if (lc.includes("pierna") && lc.includes("muslo"))
+                        return "Combo de pierna y muslo, el corte más jugoso del pollo. Perfecto para horno, parrilla o guisos.";
+                    if (lc.includes("muslo"))
+                        return "Muslo de pollo tierno y jugoso, con piel para mayor sabor al cocinar.";
+                    if (lc.includes("pierna"))
+                        return "Pierna de pollo individual, ideal para porción por persona, horneada o asada.";
+                    if (lc.includes("entero") || lc.includes("limpio"))
+                        return "Pollo entero listo para cocinar. Rinde para toda la familia, ideal para hornear, rostizar o desmenuzar.";
+                    if (subtitle && subtitle.trim())
+                        return (
+                            subtitle.trim() +
+                            ". Producto fresco, seleccionado el mismo día y disponible para mayoreo, medio mayoreo y menudeo."
+                        );
+                    return "Producto fresco y seleccionado el mismo día. Disponible para mayoreo, medio mayoreo y menudeo.";
+                }
+
+                function buildPrepChips(methods) {
+                    return methods
+                        .filter((m) => PREP_LIBRARY[m])
+                        .map((m) => {
+                            const def = PREP_LIBRARY[m];
+                            return `
+                            <div class="tooltip-container">
+                              <a href="recetario.html" class="prep-chip">
+                                <span class="prep-chip-icon">${def.icon}</span>
+                                ${def.label}
+                            </a>
+                            <div role="tooltip" id="help-tooltip" class="tooltip">
+                               <i>💡</i><strong>Click!, Ver recetas</strong>
+                             </div>
+                            </div>
+                            `;
+                        })
+                        .join("");
+                }
+
+                function enhanceCard(card) {
+                    if (card.dataset.flipReady === "1") return;
+                    card.dataset.flipReady = "1";
+
+                    // Detect light-themed (white bg) cards before we strip classes
+                    const isLight = card.classList.contains("bg-white");
+
+                    // Extract product info from existing card content (BEFORE moving anything)
+                    const title = card.querySelector("h3");
+                    const subtitle = card.querySelector("p");
+                    const priceEl = card.querySelector(
+                        "span.text-xl, span.text-2xl",
+                    );
+                    const addBtn = card.querySelector(".add-to-cart");
+
+                    const name =
+                        (title && title.textContent.trim()) ||
+                        (addBtn && addBtn.dataset.name) ||
+                        "Producto";
+                    const subtitleTxt =
+                        (subtitle && subtitle.textContent.trim()) || "";
+                    const priceHTML = (priceEl && priceEl.outerHTML) || "";
+                    const dataDesc = card.dataset.description;
+                    const description =
+                        (dataDesc && dataDesc.trim()) ||
+                        autoDescription(name, subtitleTxt);
+
+                    // Determine prep methods
+                    let prep;
+                    if (card.dataset.prep) {
+                        prep = card.dataset.prep
+                            .split(",")
+                            .map((s) => s.trim())
+                            .filter(Boolean);
+                    } else if (
+                        card.dataset.category &&
+                        DEFAULT_PREP_BY_CATEGORY[card.dataset.category]
+                    ) {
+                        prep = DEFAULT_PREP_BY_CATEGORY[card.dataset.category];
+                    } else {
+                        prep = inferPrepFromName(name);
+                    }
+
+                    // Strip presentational classes (we'll re-apply them on .flip-front)
+                    const stripClasses = [
+                        "bg-brandDarkGray",
+                        "bg-white",
+                        "rounded-[35px]",
+                        "p-6",
+                        "p-8",
+                        "pt-24",
+                        "mt-20",
+                        "shadow-xl",
+                        "border",
+                        "border-white/5",
+                        "hover:border-brandGold/50",
+                        "text-center",
+                        "relative",
+                    ];
+                    stripClasses.forEach((c) => card.classList.remove(c));
+                    card.classList.add("flip-card");
+                    if (isLight) card.classList.add("flip-light");
+
+                    // CRITICAL: move existing children (with their event listeners attached by
+                    // script.js) into the new .flip-front element. Using DOM moves, not innerHTML,
+                    // preserves the Añadir button's click handler.
+                    const originalChildren = Array.from(card.childNodes);
+
+                    const flipInner = document.createElement("div");
+                    flipInner.className = "flip-inner";
+
+                    const flipFront = document.createElement("div");
+                    flipFront.className = "flip-front";
+                    if (isLight) flipFront.classList.add("bg-white");
+
+                    const flipBack = document.createElement("div");
+                    flipBack.className = "flip-back";
+
+                    // Move original children into the front face (preserves listeners)
+                    originalChildren.forEach((node) =>
+                        flipFront.appendChild(node),
+                    );
+
+                    // Add flip toggle button to front (top-left)
+                    const frontToggle = document.createElement("button");
+                    frontToggle.type = "button";
+                    frontToggle.className = "flip-toggle";
+                    frontToggle.setAttribute(
+                        "aria-label",
+                        "Ver detalles del producto",
+                    );
+                    frontToggle.innerHTML =
+                        '<span class="flip-icon-front">i</span><span class="flip-icon-back">←</span>';
+                    flipFront.appendChild(frontToggle);
+
+                    // Add hint below product content
+                    const hint = document.createElement("p");
+                    hint.className = "flip-hint";
+                    hint.textContent = "Toca para ver más ↻";
+                    flipFront.appendChild(hint);
+
+                    // Build back face
+                    flipBack.innerHTML = `
+                    <button type="button" class="flip-toggle" aria-label="Volver">
+                        <span class="flip-icon-front">i</span>
+                        <span class="flip-icon-back">←</span>
+                    </button>
+                    <div>
+                        <span class="flip-back-tag">${(card.dataset.category || "Producto Grupollo").toUpperCase()}</span>
+                        <h4 class="flip-back-title">${name}</h4>
+                        <p class="flip-back-desc">${description}</p>
+                        <p class="flip-back-prep-label">⚙️ Métodos de preparación</p>
+                        <div class="flip-prep-chips">${buildPrepChips(prep)}</div>
+                    </div>
+                    <div class="flip-back-footer">
+                        <span class="flip-back-price">${priceHTML}</span>
+                        ${addBtn ? `<button type="button" class="btn-primary text-sm px-4 py-2 flip-back-add">Añadir</button>` : ""}
+                    </div>
+                `;
+
+                    // Assemble and re-attach
+                    flipInner.appendChild(flipFront);
+                    flipInner.appendChild(flipBack);
+                    card.appendChild(flipInner);
+
+                    // Wire the back-face Añadir button to delegate to the front-face one
+                    // (whose click handler was already attached by script.js)
+                    const backAddBtn = flipBack.querySelector(".flip-back-add");
+                    if (backAddBtn && addBtn) {
+                        backAddBtn.addEventListener("click", (e) => {
+                            e.stopPropagation();
+                            // Trigger the original button's click — runs full cart pipeline
+                            addBtn.click();
+                        });
+                    }
+
+                    // Wire flip toggles
+                    flipInner
+                        .querySelectorAll(".flip-toggle")
+                        .forEach((btn) => {
+                            btn.addEventListener("click", (e) => {
+                                e.stopPropagation();
+                                card.classList.toggle("is-flipped");
+                            });
+                        });
+
+                    // Tapping the card flips it too, EXCEPT clicks on Añadir or its descendants
+                    card.addEventListener("click", (e) => {
+                        if (e.target.closest(".add-to-cart")) return;
+                        if (e.target.closest(".flip-back-add")) return;
+                        if (e.target.closest(".flip-toggle")) return;
+                        card.classList.toggle("is-flipped");
+                    });
+                }
+
+                function initFlipCards() {
+                    document
+                        .querySelectorAll(".product-card")
+                        .forEach(enhanceCard);
+                }
+
+                if (document.readyState === "loading") {
+                    document.addEventListener(
+                        "DOMContentLoaded",
+                        initFlipCards,
+                    );
+                } else {
+                    initFlipCards();
+                }
+            })();
+        </script>
+        <script src="shopingCart.js?v=2"></script>
+        <script src="script.js"></script>
+    </body>
+</html>
