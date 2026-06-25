@@ -2,8 +2,6 @@
 // 4. SHOPPING CART (INTEGRADO CON SISTEMA DE SELECCIÓN PREVIA)
 // ================================================================
 
-
-
 let cart = JSON.parse(localStorage.getItem("grupolloCart")) || [];
 
 const container = document.getElementById("toastContainer");
@@ -54,7 +52,6 @@ const branches = [
 
 let selectedBranchId = null;
 
-
 function showToast(message, type = "success") {
   if (!container) return;
   const toast = document.createElement("div");
@@ -68,7 +65,7 @@ function showToast(message, type = "success") {
   toast.innerHTML = `${icon}<span class="text-sm font-semibold">${message}</span>`;
 
   container.appendChild(toast);
-  console.log(toast, 'toast')
+  console.log(toast, "toast");
 
   // Auto remove
   setTimeout(() => {
@@ -174,12 +171,12 @@ function saveCart() {
   localStorage.setItem("grupolloCart", JSON.stringify(cart));
 }
 
-function addItemToCart(id, name, price) {
+function addItemToCart(id, name, price, quantity = 1) {
   const existing = cart.find((item) => item.id === id);
   if (existing) {
     existing.quantity += 1;
   } else {
-    cart.push({ id, name, price, quantity: 1 });
+    cart.push({ id, name, price, quantity: quantity });
   }
   saveCart();
   updateCartUI();
@@ -191,7 +188,7 @@ function removeItemFromCart(id) {
   updateCartUI();
 }
 
-function updateQuantity(id, delta) {
+function updateQuantity(id, delta, btn = null) {
   const item = cart.find((item) => item.id === id);
   if (item) {
     item.quantity += delta;
@@ -201,7 +198,13 @@ function updateQuantity(id, delta) {
       saveCart();
       updateCartUI();
     }
+    return;
   }
+  if (!btn) return;
+  const name = btn.dataset.name;
+  const price = parseFloat(btn.dataset.price);
+
+  addItemToCart(id, name, price, delta);
 }
 
 function updateCartUI() {
@@ -371,7 +374,6 @@ function sendCartViaWhatsApp() {
     return;
   }
 
-
   // const deliveryType = deliveryTypeEl.value;
   // const paymentMethod = paymentMethodEl.value;
   // const address = addressInput ? addressInput.value.trim() : "";
@@ -433,11 +435,36 @@ function sendCartViaWhatsApp() {
   message += `\n¡Quedo atento a la confirmación de mi pedido! 🍗✨`;
 
   const encodedMsg = encodeURIComponent(message);
-  const wn = branch.phone.trim().replaceAll(' ', '')
+  const wn = branch.phone.trim().replaceAll(" ", "");
 
   window.open(`https://wa.me/${wn}?text=${encodedMsg}`, "_blank");
 
   showToast("📲 ¡Pedido enviado a WhatsApp!", "success");
+}
+
+function soloNumeros(e) {
+  const tecla = e.key;
+  // Permite números y teclas de control como 'Backspace' o 'Tab'
+  if (
+    !/^[0-9]$/.test(tecla) &&
+    e.key !== "Backspace" &&
+    e.key !== "ArrowLeft" &&
+    e.key !== "ArrowRight" &&
+    e.key !== "Delete"
+  ) {
+    e.preventDefault();
+  }
+}
+
+function add(e, btn, add = true) {
+  let padre = btn.parentNode;
+  //mini carrito
+  let total = 1;
+  let cantidad = padre.querySelector("input");
+  if (cantidad) total = parseInt(cantidad.value);
+  // cantidad.value = total;
+  updateQuantity(btn.dataset.id, add ? total : total * -1, btn);
+  e.stopPropagation();
 }
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -445,4 +472,24 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCartUI();
 
   waCartBtn.addEventListener("click", sendCartViaWhatsApp);
+
+  document.querySelectorAll(".qty-minus").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      add(e, btn, false);
+    });
+  });
+
+  document.querySelectorAll(".qty-plus").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      add(e, btn);
+    });
+  });
+
+  document.querySelectorAll(".container-qty").forEach((div) => {
+    div.addEventListener("click", (e) => e.stopPropagation());
+  });
+
+  document.querySelectorAll("input").forEach((input) => {
+    input.addEventListener("keydown", (e) => soloNumeros(e));
+  });
 });

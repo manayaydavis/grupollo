@@ -1,1574 +1,1458 @@
 <!doctype html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Grupollo - Inicio</title>
-        <link rel="stylesheet" href="tailwind-build.css?v=1" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@400;600;700;800;900&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="style.css?v=1" />
-        <link rel="stylesheet" href="hero.css?v=1" />
-    </head>
-    <body
-        class="bg-brandBlack overflow-x-hidden flex flex-col min-h-screen text-white"
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grupollo - Inicio</title>
+    <link rel="stylesheet" href="tailwind-build.css?v=1" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=1" />
+    <link rel="stylesheet" href="hero.css?v=1" />
+  </head>
+  <body
+    class="bg-brandBlack overflow-x-hidden flex flex-col min-h-screen text-white"
+  >
+    <div id="pageLoader">
+      <img src="img/6.png" alt="Grupollo" class="loader-logo" />
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <p class="loader-tagline">Sabor & Calidad</p>
+    </div>
+
+    <div id="scrollProgress"></div>
+    <!-- <div id="seasonalBanner" class="hidden"></div> -->
+
+    <nav
+      class="fixed w-full z-50 flex flex-col transition-colors duration-300"
+      id="navbar"
     >
-        <div id="pageLoader">
-            <img src="img/6.png" alt="Grupollo" class="loader-logo" />
-            <div class="loader-bar-track">
-                <div class="loader-bar-fill"></div>
-            </div>
-            <p class="loader-tagline">Sabor & Calidad</p>
-        </div>
-
-        <div id="scrollProgress"></div>
-        <!-- <div id="seasonalBanner" class="hidden"></div> -->
-
-        <nav
-            class="fixed w-full z-50 flex flex-col transition-colors duration-300"
-            id="navbar"
-        >
-            <!-- ROW 1: logo + (wordmark sobre tagline) | atención | hacer pedido | trofeo -->
-            <div class="nav-top-bar">
-                <a
-                    href="index.html"
-                    class="gp-brand logo-anim"
-                    aria-label="Grupollo"
-                >
-                    <span class="gp-brand-text-stack">
-                        <img
-                            src="img/logos/grupollo-logo-blanco.png"
-                            alt="Grupollo"
-                            class="gp-brand-word"
-                        />
-                        <span class="gp-brand-tagline" s
-                            >Calidad y frescura para ti</span
-                        >
-                    </span>
-                </a>
-
-                <div class="gp-customer-care hidden md:flex">
-                    <span class="gp-customer-care-label"
-                        >Atención al cliente:</span
-                    >
-                    <span class="gp-customer-care-number">56 31 00 28 99</span>
-                </div>
-
-                <div class="gp-actions">
-                    <button
-                        id="cartBtn"
-                        class="gp-order-btn"
-                        type="button"
-                        aria-label="Hacer Pedido"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="gp-order-icon"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                            />
-                        </svg>
-                        Hacer Pedido
-                        <span class="cart-count hidden">0</span>
-                    </button>
-                    <button
-                        type="button"
-                        id="mobileMenuBtn"
-                        class="gp-mobile-menu-btn md:hidden"
-                        aria-label="Menú"
-                        aria-controls="mobileMenu"
-                        aria-expanded="false"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-7 w-7"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
-                        </svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Línea horizontal dorada -->
-            <div class="gp-nav-divider" aria-hidden="true"></div>
-
-            <!-- ROW 2: nav links (der) + rayas diagonales (extremo der) -->
-            <div class="nav-bottom-bar">
-                <div class="nav-bottom-links">
-                    <a href="index.html" class="nav-current">Inicio</a>
-                    <a href="producto.html">Productos</a>
-                    <a href="contacto.html">Contacto</a>
-                    <a href="recetario.html">Recetas</a>
-                </div>
-                <span class="gp-stripe-end" aria-hidden="true"></span>
-            </div>
-        </nav>
-
-        <div
-            id="mobileMenu"
-            class="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center"
-        >
-            <button
-                type="button"
-                id="closeMobileMenu"
-                class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors cursor-pointer"
-                aria-label="Cerrar menú"
-            >
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    stroke-width="2"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                    />
-                </svg>
-            </button>
+      <!-- ROW 1: logo + (wordmark sobre tagline) | atención | hacer pedido | trofeo -->
+      <div class="nav-top-bar">
+        <a href="index.html" class="gp-brand logo-anim" aria-label="Grupollo">
+          <span class="gp-brand-text-stack">
             <img
-                src="img/PNG sin fondo.png"
-                alt="Grupollo"
-                class="mobile-menu-logo h-16 w-auto brightness-200"
+              src="img/logos/grupollo-logo-blanco.png"
+              alt="Grupollo"
+              class="gp-brand-word"
             />
-            <a href="index.html" class="mobile-nav-link mobile-current"
-                >INICIO</a
-            >
-            <a href="producto.html" class="mobile-nav-link">PRODUCTOS</a>
-            <a href="contacto.html" class="mobile-nav-link">CONTACTO</a>
-            <a href="recetario.html" class="mobile-nav-link">RECETARIO</a>
-            <a href="contacto.html" class="btn-pedido text-lg mt-6"
-                >Hacer Pedido</a
-            >
-            <p class="mobile-menu-phone">Tel: <span>56 31 00 28 99</span></p>
-        </div>
-
-        <main class="flex-grow hero-offset">
-            <!-- ===== HERO STADIUM + SINGLE FLOATING PRODUCT (ROTATING) ===== -->
-            <section
-                class="hero-stadium relative overflow-hidden"
-                style="padding-top: 30px"
-            >
-                <!-- Stadium / field background -->
-                <div class="hero-stadium-bg">
-                    <img
-                        src="img/13.png"
-                        alt=""
-                        class="hero-stadium-img"
-                        onerror="this.style.display = 'none'"
-                    />
-                    <div class="hero-stadium-overlay"></div>
-                    <div class="hero-stadium-lines"></div>
-                </div>
-                <!-- Floating stage: ONE product visible at a time, rotating -->
-                <div class="hero-stage" id="heroStage">
-                    <!-- Slide 1: Pechuga Aplanada (TOP SELLER) -->
-                    <div
-                        class="float-slide active"
-                        data-id="hp1"
-                        data-name="Pechuga de Pollo Aplanada"
-                        data-price="135"
-                        data-eyebrow="⭐ Top de temporada"
-                        data-desc="Lista para asar, empanizar o rellenar. La favorita de la familia en Mundial 2026."
-                    >
-                        <div class="float-product-wrap">
-                            <img
-                                src="img/slides/Filete_de_Pechuga.png"
-                                alt="Pechuga Aplanada"
-                                class="float-product float-anim-1"
-                                onerror="this.style.display = 'none'"
-                            />
-                            <div class="float-slide-overlay">
-                                <label class="float-slide-title">
-                                    Pechuga Aplanada
-                                </label>
-                            </div>
-                            <div
-                                class="price-card price-card-gold price-pos-tl"
-                            >
-                                <span class="pc-price"
-                                    >$135<small>/kg</small></span
-                                >
-                                <span class="pc-desc">Lista para cocinar</span>
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp1"
-                                    data-name="Pechuga de Pollo Aplanada"
-                                    data-price="135"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div
-                        class="float-slide"
-                        data-id="hp2"
-                        data-name="Boneless Pollo"
-                        data-price="98"
-                        data-eyebrow="🔥 Súper versátil"
-                        data-desc="Boneless"
-                    >
-                        <div class="float-product-wrap">
-                            <img
-                                src="img/slides/Boneless.png"
-                                alt="Boneless Pollo"
-                                class="float-product float-anim-2"
-                                onerror="this.style.display = 'none'"
-                            />
-                            <div class="float-slide-overlay">
-                                <label class="float-slide-title">
-                                    Boneless Pollo
-                                </label>
-                            </div>
-                            <div class="price-card price-card-red price-pos-tl">
-                                <span class="pc-price"
-                                    >$98<small>/kg</small></span
-                                >
-                                <span class="pc-desc">100% magra</span>
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp2"
-                                    data-name="Molida de Pollo"
-                                    data-price="98"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 2: Molida de Pollo -->
-                    <div
-                        class="float-slide"
-                        data-id="hp2"
-                        data-name="Molida de Pollo"
-                        data-price="98"
-                        data-eyebrow="🔥 Súper versátil"
-                        data-desc="Para albóndigas, hamburguesas, picadillo o relleno. Magra y siempre fresca."
-                    >
-                        <div class="float-product-wrap">
-                            <img
-                                src="img/slides/Molida_de_Pollo.png"
-                                alt="Molida de Pollo"
-                                class="float-product float-anim-2"
-                                onerror="this.style.display = 'none'"
-                            />
-                            <div class="float-slide-overlay">
-                                <label class="float-slide-title">
-                                    Molida de Pollo
-                                </label>
-                            </div>
-                            <div class="price-card price-card-red price-pos-tl">
-                                <span class="pc-price"
-                                    >$98<small>/kg</small></span
-                                >
-                                <span class="pc-desc">100% magra</span>
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp2"
-                                    data-name="Molida de Pollo"
-                                    data-price="98"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Slide 4: Alitas -->
-                    <div
-                        class="float-slide"
-                        data-id="hp4"
-                        data-name="Alitas de Pollo"
-                        data-price="65"
-                        data-eyebrow="🍗 Imperdible"
-                        data-desc="Las consentidas de la parrilla. Frescas, jugosas y perfectas para cualquier salsa."
-                    >
-                        <div class="float-product-wrap">
-                            <img
-                                src="img/slides/alitas.png"
-                                alt="Alitas"
-                                class="float-product float-anim-4"
-                                onerror="
-                                    this.src = 'img/Productos/Alas_de_Pollo.png'
-                                "
-                            />
-                            <div class="float-slide-overlay">
-                                <label class="float-slide-title">
-                                    Alitas de Pollo
-                                </label>
-                            </div>
-                            <div class="price-card price-card-red price-pos-tl">
-                                <span class="pc-price"
-                                    >$65<small>/kg</small></span
-                                >
-                                <span class="pc-desc">Botana ideal</span>
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp4"
-                                    data-name="Alitas de Pollo"
-                                    data-price="65"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 5: Papas (4 cortes) -->
-                    <div
-                        class="float-slide"
-                        data-id="hp5"
-                        data-name="Papas Congeladas (mix)"
-                        data-price="85"
-                        data-eyebrow="🍟 4 cortes en uno"
-                        data-desc="Delgada, curly, gajo y aros de cebolla. Para acompañar todos tus antojos."
-                    >
-                        <div class="float-product-wrap">
-                            <img
-                                src="img/slides/papas.png"
-                                alt="Papas Congeladas (mix)"
-                                class="float-product float-anim-4"
-                                onerror="
-                                    this.src = 'img/Productos/Alas_de_Pollo.png'
-                                "
-                            />
-                            <div class="float-slide-overlay">
-                                <label class="float-slide-title">
-                                    Papas Congeladas (mix)
-                                </label>
-                            </div>
-                            <div
-                                class="price-card price-card-gold price-pos-bl"
-                            >
-                                <span class="pc-price"
-                                    >$85<small>/kg</small></span
-                                >
-                                <span class="pc-desc"
-                                    >Delgada · Curly · Gajo · Aros</span
-                                >
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp5"
-                                    data-name="Papas Congeladas (mix)"
-                                    data-price="85"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                            <div
-                                class="price-card price-card-gold price-pos-bl"
-                                style="top: 15px; translate: 15px 171px"
-                            >
-                                <span class="pc-price"
-                                    >$85<small>/kg</small></span
-                                >
-                                <span class="pc-desc"
-                                    >Delgada · Curly · Gajo · Aros</span
-                                >
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp5"
-                                    data-name="Papas Congeladas (mix)"
-                                    data-price="85"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                            <div
-                                class="price-card price-card-gold price-pos-bl"
-                                style="top: 135px; translate: 15px 185px"
-                            >
-                                <span class="pc-price"
-                                    >$85<small>/kg</small></span
-                                >
-                                <span class="pc-desc"
-                                    >Delgada · Curly · Gajo · Aros</span
-                                >
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp5"
-                                    data-name="Papas Congeladas (mix)"
-                                    data-price="85"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 6: Nuggets -->
-                    <div
-                        class="float-slide"
-                        data-id="hp6"
-                        data-name="Nuggets de Pollo"
-                        data-price="95"
-                        data-eyebrow="👶 Favorito de los chicos"
-                        data-desc="Empanizados y dorados, sólo calentar y servir. Los preferidos de la cocina rápida."
-                    >
-                        <div class="float-product-wrap">
-                            <img
-                                src="img/slides/Nuggets.png"
-                                alt="Nuggets"
-                                class="float-product float-anim-1"
-                                onerror="
-                                    this.src =
-                                        'img/Productos/Hamburguesa_Sirloin.png'
-                                "
-                            />
-                            <div class="float-slide-overlay">
-                                <label class="float-slide-title">
-                                    Nuggets de Pollo
-                                </label>
-                            </div>
-                            <div class="price-card price-card-red price-pos-tl">
-                                <span class="pc-price"
-                                    >$95<small>/kg</small></span
-                                >
-                                <span class="pc-desc">Listos en 5 min</span>
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp6"
-                                    data-name="Nuggets de Pollo"
-                                    data-price="95"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 7: Huevo -->
-                    <div
-                        class="float-slide"
-                        data-id="hp7"
-                        data-name="Huevo Blanco (30 pzas)"
-                        data-price="85"
-                        data-eyebrow="🥚 Fresco de granja"
-                        data-desc="Cartón de 30 piezas, directo de granja, mismo día. Calidad superior garantizada."
-                    >
-                        <div class="float-product-wrap">
-                            <img
-                                src="img/slides/Huevo_Blanco.png"
-                                alt="Huevo"
-                                class="float-product float-anim-2"
-                                onerror="this.style.display = 'none'"
-                            />
-                            <div class="float-slide-overlay">
-                                <label class="float-slide-title">
-                                    Huevo Blanco (30 pzas)
-                                </label>
-                            </div>
-                            <div
-                                class="price-card price-card-gold price-pos-tl"
-                            >
-                                <span class="pc-price"
-                                    >$85<small>/cartón</small></span
-                                >
-                                <span class="pc-desc">30 piezas frescas</span>
-                                <button
-                                    type="button"
-                                    class="pc-add add-to-cart"
-                                    data-id="hp7"
-                                    data-name="Huevo Blanco (30 pzas)"
-                                    data-price="85"
-                                >
-                                    Añadir
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Subtle dots indicator -->
-                    <div class="hero-dots-indicator" id="heroDots">
-                        <button
-                            class="hd active"
-                            data-i="0"
-                            aria-label="1"
-                        ></button>
-                        <button class="hd" data-i="1" aria-label="2"></button>
-                        <button class="hd" data-i="2" aria-label="3"></button>
-                        <button class="hd" data-i="3" aria-label="4"></button>
-                        <button class="hd" data-i="4" aria-label="5"></button>
-                        <button class="hd" data-i="5" aria-label="6"></button>
-                        <button class="hd" data-i="6" aria-label="7"></button>
-                    </div>
-                </div>
-                <!-- CARD FLOTANTE — independiente del slider -->
-                <div class="floating-cta">
-                    <!-- Decoración: línea — estrella — línea -->
-                    <div class="cta-star-row">
-                        <span class="cta-line cta-line-left"></span>
-                        <span class="cta-star"> 🌟 </span>
-                        <span class="cta-line cta-line-right"></span>
-                    </div>
-
-                    <!-- Título bicolor -->
-                    <h2 class="cta-title">
-                        <span class="white">NUESTRAS</span>
-                        <span class="gold">CATEGORIAS</span>
-                    </h2>
-
-                    <!-- Subtítulo -->
-                    <p class="cta-subtitle">
-                        Descubre la mejor calidad<br />para tu negocio
-                    </p>
-                    <!-- Botón de acción -->
-
-                    <svg
-                        width="0"
-                        height="0"
-                        style="position: absolute"
-                        aria-hidden="true"
-                    >
-                        <defs>
-                            <symbol id="gp-pollo" viewBox="0 0 209 196">
-                                <path
-                                    d="M133.5 190.0 108.5 190.0 92.5 184.0 81.0 173.5 73.5 162.0 58.5 156.0 42.5 144.0 30.0 126.5 26.0 112.5 26.0 97.5 32.0 70.5 26.5 68.0 22.0 62.5 24.0 48.5 18.5 46.0 8.5 46.0 6.0 43.5 10.5 38.0 19.0 35.5 16.0 26.5 20.0 16.5 24.5 14.0 27.5 17.0 30.0 10.5 33.5 7.0 39.0 10.5 41.5 16.0 45.5 8.0 49.5 6.0 53.0 7.5 54.0 10.5 52.0 14.5 58.5 15.0 61.0 17.5 61.0 23.5 51.0 31.5 67.0 45.5 86.0 77.5 102.5 86.0 116.5 89.0 133.5 89.0 141.5 87.0 153.5 80.0 166.0 62.5 182.5 46.0 189.5 43.0 194.0 47.5 200.0 59.5 203.0 72.5 202.0 93.5 196.0 110.5 190.0 122.5 182.0 131.5 181.0 137.5 175.0 149.5 160.5 165.0 140.5 175.0 133.5 190.0Z"
-                                    fill-rule="evenodd"
-                                />
-                            </symbol>
-                            <symbol id="gp-pez" viewBox="0 0 232 95">
-                                <path
-                                    d="M222.5 89.0 202.5 82.0 185.5 69.0 180.5 63.0 170.5 63.0 146.5 79.0 118.5 88.0 87.5 89.0 64.5 86.0 39.5 77.0 16.5 64.0 7.0 54.5 6.0 48.5 16.5 36.0 33.5 24.0 52.5 15.0 79.5 7.0 112.5 6.0 125.5 8.0 140.5 13.0 161.5 24.0 171.5 33.0 177.5 34.0 206.5 12.0 214.5 8.0 224.5 6.0 226.0 7.5 218.0 28.5 207.0 49.5 211.0 54.5 221.0 76.5 224.0 85.5 222.5 89.0Z"
-                                    fill-rule="evenodd"
-                                />
-                            </symbol>
-                            <symbol id="gp-res" viewBox="0 0 272 165">
-                                <path
-                                    d="M235.5 159.0 215.5 159.0 212.0 142.5 205.5 130.0 107.5 130.0 98.5 159.0 76.5 159.0 75.0 156.5 76.0 150.5 57.0 86.5 51.5 82.0 39.5 78.0 33.5 69.0 19.5 73.0 11.5 69.0 6.0 62.5 6.0 54.5 17.0 42.5 18.0 31.5 25.0 22.5 24.5 20.0 17.5 19.0 12.0 12.5 16.5 9.0 32.5 9.0 45.5 6.0 55.5 10.0 59.0 13.5 58.0 17.5 60.5 19.0 69.5 16.0 76.5 11.0 77.0 21.5 73.0 27.5 79.5 28.0 98.5 35.0 230.5 35.0 239.5 38.0 247.0 44.5 256.0 58.5 258.0 93.5 266.0 103.5 266.0 120.5 259.5 117.0 250.0 105.5 252.0 101.5 252.0 73.5 249.5 69.0 247.0 82.5 248.0 89.5 243.0 113.5 242.0 133.5 238.0 155.5 235.5 159.0Z"
-                                    fill-rule="evenodd"
-                                />
-                            </symbol>
-                            <symbol id="gp-cerdo" viewBox="0 0 258 130">
-                                <path
-                                    d="M203.5 124.0 187.5 124.0 185.0 121.5 185.0 112.5 180.5 104.0 162.5 108.0 121.5 108.0 117.5 106.0 105.5 105.0 96.5 124.0 79.5 124.0 77.0 121.5 77.0 116.5 70.5 100.0 43.5 94.0 18.5 81.0 12.5 80.0 10.0 77.5 6.0 56.5 8.5 54.0 10.5 56.0 19.5 56.0 42.0 33.5 31.0 23.5 38.5 20.0 45.0 20.5 43.5 6.0 59.5 11.0 69.5 23.0 99.5 12.0 131.5 6.0 171.5 6.0 198.5 13.0 209.5 19.0 218.0 27.5 225.0 39.5 228.5 52.0 237.0 50.5 234.0 45.5 234.0 35.5 237.5 31.0 244.5 30.0 249.0 35.5 249.0 43.5 246.0 51.5 252.0 53.5 250.5 57.0 245.5 57.0 240.5 54.0 232.5 57.0 228.0 56.5 229.0 62.5 225.0 78.5 219.0 87.5 208.0 118.5 203.5 124.0Z M241.0 47.5 244.0 43.5 243.5 35.0 240.5 35.0 238.0 39.5 241.0 47.5Z"
-                                    fill-rule="evenodd"
-                                />
-                            </symbol>
-                            <symbol id="gp-pavo" viewBox="0 0 208 168">
-                                <path
-                                    d="M182.5 162.0 41.5 162.0 29.5 156.0 21.0 147.5 14.0 134.5 12.0 126.5 12.0 108.5 20.0 83.5 35.0 55.5 36.0 45.5 31.5 41.0 25.0 41.5 28.0 61.5 21.5 68.0 15.0 62.5 15.0 54.5 19.0 40.5 6.0 42.5 9.0 35.5 17.0 29.5 17.0 23.5 20.0 16.5 26.5 10.0 38.5 7.0 49.5 12.0 54.0 17.5 57.0 26.5 56.0 39.5 40.0 72.5 50.5 77.0 58.5 77.0 73.5 69.0 94.5 52.0 97.0 49.5 97.0 44.5 103.0 29.5 108.0 22.5 118.5 13.0 128.5 8.0 137.5 6.0 152.5 8.0 163.0 14.5 165.0 17.5 163.5 24.0 171.5 23.0 178.5 27.0 183.0 34.5 182.0 40.5 188.5 43.0 192.0 48.5 192.0 55.5 190.0 58.5 196.5 62.0 200.0 66.5 201.0 77.5 199.0 80.5 202.0 85.5 201.0 95.5 197.0 99.5 202.0 111.5 202.0 118.5 200.0 123.5 196.0 126.5 197.0 132.5 194.0 139.5 185.5 144.0 180.0 143.5 186.0 151.5 186.0 156.5 182.5 162.0Z"
-                                    fill-rule="evenodd"
-                                />
-                            </symbol>
-                            <symbol id="gp-huevo" viewBox="0 0 116 149">
-                                <path
-                                    d="M69.5 143.0 46.5 143.0 37.5 140.0 26.5 133.0 12.0 115.5 8.0 106.5 6.0 94.5 6.0 77.5 8.0 66.5 19.0 38.5 30.0 21.5 38.5 13.0 50.5 6.0 66.5 7.0 86.0 20.5 94.0 30.5 101.0 43.5 106.0 56.5 110.0 76.5 110.0 95.5 105.0 113.5 97.0 125.5 88.5 134.0 69.5 143.0Z"
-                                    fill-rule="evenodd"
-                                />
-                            </symbol>
-                        </defs>
-                    </svg>
-                    <div class="vb">
-                        <div class="row">
-                            <span class="it"
-                                ><svg class="ico"><use href="#gp-pavo" /></svg
-                            ></span>
-                            <span class="it"
-                                ><svg class="ico"><use href="#gp-res" /></svg
-                            ></span>
-                            <span class="it"
-                                ><svg class="ico"><use href="#gp-pollo" /></svg
-                            ></span>
-                            <span class="it"
-                                ><svg class="ico"><use href="#gp-cerdo" /></svg
-                            ></span>
-                            <span class="it"
-                                ><svg class="ico"><use href="#gp-huevo" /></svg
-                            ></span>
-                            <span class="it"
-                                ><svg class="ico"><use href="#gp-pez" /></svg
-                            ></span>
-                        </div>
-                        <a href="producto.html" class="pc-add w-full">
-                            <span class="btn-text">
-                                <span class="btn-text-track">
-                                    <span>Categorías</span>
-                                    <span>Pollo</span>
-                                    <span>Res</span>
-                                    <span>Cerdo</span>
-                                    <span>Pescado</span>
-                                    <span>Pavo</span>
-                                </span>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-title-overlay">
-                    <img
-                        src="img/mascota_mundial.png"
-                        alt=""
-                        class="hero-mascot float-anim-mascot"
-                        onerror="this.style.display = 'none'"
-                    />
-                    <div class="hero-text-stack">
-                        <p class="hero-eyebrow">
-                            ⚽ Especial Mundial 2026 · Sabor &amp; Calidad
-                        </p>
-                        <h1 class="hero-title">
-                            Pollo <span>Fresco</span> y
-                            <span class="alt">Delicioso</span>
-                        </h1>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== ¡CONÓCENOS! (Rediseño visual) ===== -->
-            <section
-                class="conocenos-section py-20 px-6 md:px-8 bg-white relative overflow-hidden"
-            >
-                <!-- Decorative background accent -->
-                <div class="conocenos-bg-accent" aria-hidden="true"></div>
-
-                <div class="container mx-auto relative z-10 space-y-4">
-                    <!-- Header bar -->
-                    <div class="conocenos-header">
-                        <div class="conocenos-header-text">
-                            <p class="conocenos-kicker">— ¿Quiénes somos?</p>
-                            <h2 class="conocenos-title">
-                                ¡Descubre nuestros productos!
-                            </h2>
-                            <p class="conocenos-subtitle">
-                                Pollo fresco, congelados y huevo de la mejor
-                                calidad, directo a tu mesa.
-                            </p>
-                        </div>
-                        <div class="conocenos-welcome">
-                            <h3 class="conocenos-welcome-title">
-                                ¡Bienvenido a Grupollo!
-                            </h3>
-                            <p>
-                                Servicio personalizado, mejores precios y
-                                entregas puntuales en CDMX y Área Metropolitana.
-                            </p>
-                            <p class="conocenos-welcome-strong">
-                                Comercio al por mayor, medio mayoreo y menudeo.
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Product peek strip (animated, draws the eye to the actual products) -->
-                    <div class="conocenos-peek">
-                        <p class="conocenos-peek-label">
-                            Algunos de nuestros productos
-                        </p>
-                        <div class="conocenos-peek-track">
-                            <a href="producto.html" class="peek-chip"
-                                ><img
-                                    src="img/Productos/Pollo_Limpio.png"
-                                    alt="Pollo"
-                                    onerror="this.style.display = 'none'"
-                                /><span>Pollo Fresco</span></a
-                            >
-                            <a href="producto.html" class="peek-chip"
-                                ><img
-                                    src="img/Productos/Pechuga_sin_hueso.png"
-                                    alt="Pechuga"
-                                    onerror="this.style.display = 'none'"
-                                /><span>Pechuga</span></a
-                            >
-                            <a href="producto.html" class="peek-chip"
-                                ><img
-                                    src="img/Productos/Pierna_y_Muslo.png"
-                                    alt="Pierna"
-                                    onerror="this.style.display = 'none'"
-                                /><span>Pierna y Muslo</span></a
-                            >
-                            <a href="producto.html" class="peek-chip"
-                                ><img
-                                    src="img/Productos/Alas_de_Pollo.png"
-                                    alt="Alitas"
-                                    onerror="this.style.display = 'none'"
-                                /><span>Alitas</span></a
-                            >
-                            <a href="producto.html" class="peek-chip"
-                                ><img
-                                    src="img/Productos/Molida_de_Pollo.png"
-                                    alt="Molida"
-                                    onerror="this.style.display = 'none'"
-                                /><span>Molida</span></a
-                            >
-                            <a href="producto.html" class="peek-chip"
-                                ><img
-                                    src="img/Productos/Filete_de_Pechuga.png"
-                                    alt="Filete"
-                                    onerror="this.style.display = 'none'"
-                                /><span>Filete</span></a
-                            >
-                            <a href="producto.html" class="peek-chip"
-                                ><img
-                                    src="img/Productos/Pollo_Entero.png"
-                                    alt="Entero"
-                                    onerror="this.style.display = 'none'"
-                                /><span>Pollo Entero</span></a
-                            >
-                            <a href="producto.html" class="peek-chip"
-                                ><img
-                                    src="img/Productos/Huevo_Blanco.png"
-                                    alt="Huevo"
-                                    onerror="this.style.display = 'none'"
-                                /><span>Huevo</span></a
-                            >
-                        </div>
-                    </div>
-
-                    <!-- Two big interactive tiles -->
-                    <div class="conocenos-tiles">
-                        <a
-                            href="nosotros.html"
-                            class="conocenos-tile conocenos-tile-history"
-                        >
-                            <div class="ct-icon-wrap">
-                                <span class="ct-icon">📖</span>
-                            </div>
-                            <div class="ct-content">
-                                <span class="ct-label">Quiénes somos</span>
-                                <h4 class="ct-title">Nuestra Historia</h4>
-                                <p class="ct-desc">
-                                    Más de una década llevando calidad y
-                                    frescura a cada hogar mexicano.
-                                </p>
-                            </div>
-                            <span class="ct-arrow">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <line x1="5" y1="12" x2="19" y2="12" />
-                                    <polyline points="12 5 19 12 12 19" />
-                                </svg>
-                            </span>
-                        </a>
-                        <a
-                            href="producto.html"
-                            class="conocenos-tile conocenos-tile-products"
-                        >
-                            <div class="ct-icon-wrap">
-                                <span class="ct-icon">🍗</span>
-                            </div>
-                            <div class="ct-content">
-                                <span class="ct-label">Qué ofrecemos</span>
-                                <h4 class="ct-title">Nuestros Productos</h4>
-                                <p class="ct-desc">
-                                    Pollo fresco, congelados y huevo
-                                    seleccionado todos los días.
-                                </p>
-                            </div>
-                            <span class="ct-arrow">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                >
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline
-                                        points="12 5 19 12 12 19"
-                                    ></polyline>
-                                </svg>
-                            </span>
-                        </a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== UBICACIONES ===== -->
-            <section class="py-20 px-6 md:px-8 bg-[#f5f5f5] relative">
-                <div class="container mx-auto">
-                    <div class="text-center mb-6">
-                        <h2
-                            class="text-4xl md:text-5xl font-fredoka text-[#111111] mb-4"
-                        >
-                            Ubicaciones
-                        </h2>
-                        <p class="text-[#555] text-lg max-w-2xl mx-auto">
-                            Visítanos en cualquiera de nuestras sucursales en
-                            Ciudad de México y Área Metropolitana
-                        </p>
-                    </div>
-                    <a href="recetario.html" class="footer-recipes-corner">
-                        <span class="title">Nuestras recetas</span>
-                        <div class="shhh-wrap">
-                            <span class="shhh-pill">Shhh!</span>
-                            <span class="emoji">🤭</span>
-                        </div>
-                    </a>
-                    <div
-                        class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-10"
-                    >
-                        <!-- San Bernabé -->
-                        <div
-                            class="location-card g-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
-                            data-id="san-bernabe"
-                            data-name="San Bernabé"
-                            data-whatsapp="525511111111"
-                        >
-                            <h4 class="text-[#E31E24] font-bold text-lg mb-2">
-                                San Bernabé
-                            </h4>
-                            <p class="text-[#555] text-sm mb-3 leading-relaxed">
-                                Av. Guerrero 40, San Bernabé Ocotepec, La
-                                Magdalena Contreras, 10300 CDMX
-                            </p>
-                            <p class="text-[#888] text-sm font-bold mb-4">
-                                Lun-Dom: 5:00 - 17:00
-                            </p>
-                            <a
-                                href="https://maps.google.com/?q=San+Bernabe+Ocotepec+CDMX"
-                                target="_blank"
-                                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
-                                >Ver ubicación</a
-                            >
-                        </div>
-                        <!-- Cuajimalpa -->
-                        <div
-                            class="location-card bg-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
-                            data-id="cuajimalpa"
-                            data-name="Cuajimalpa"
-                            data-whatsapp="525511111111"
-                        >
-                            <h4 class="text-[#E31E24] font-bold text-lg mb-2">
-                                Cuajimalpa
-                            </h4>
-                            <p class="text-[#555] text-sm mb-3 leading-relaxed">
-                                Av. Jesús del Monte 100, Adolfo López Mateos,
-                                Cuajimalpa de Morelos, 05260, CDMX
-                            </p>
-                            <p class="text-[#888] text-sm font-bold mb-4">
-                                Lun-Dom: 5:00 - 17:00
-                            </p>
-                            <a
-                                href="https://maps.google.com/?q=Cuajimalpa+de+Morelos+CDMX"
-                                target="_blank"
-                                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
-                                >Ver ubicación</a
-                            >
-                        </div>
-                        <!-- Tacubaya -->
-                        <div
-                            class="location-card bg-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
-                            data-id="tacubaya"
-                            data-name="Tacubaya"
-                            data-whatsapp="525511111111"
-                        >
-                            <h4 class="text-[#E31E24] font-bold text-lg mb-2">
-                                Tacubaya
-                            </h4>
-                            <p class="text-[#555] text-sm mb-3 leading-relaxed">
-                                Heroes de 1810, Tacubaya, Miguel Hidalgo, 11870
-                                Ciudad de México, CDMX
-                            </p>
-                            <p class="text-[#888] text-sm font-bold mb-4">
-                                Lun-Dom: 5:00 - 17:00
-                            </p>
-                            <a
-                                href="https://maps.google.com/?q=Tacubaya+Miguel+Hidalgo+CDMX"
-                                target="_blank"
-                                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
-                                >Ver ubicación</a
-                            >
-                        </div>
-                        <!-- Pedregal -->
-                        <div
-                            class="location-card bg-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
-                            data-id="pedregal"
-                            data-name="Pedregal"
-                            data-whatsapp="525511111111"
-                        >
-                            <h4 class="text-[#E31E24] font-bold text-lg mb-2">
-                                Pedregal
-                            </h4>
-                            <p class="text-[#555] text-sm mb-3 leading-relaxed">
-                                Carretera federal a cuernavaca #5857 bis San
-                                Andrés Totoltepec Tlalpan CDMX C.P 14400
-                            </p>
-                            <p class="text-[#888] text-sm font-bold mb-4">
-                                Lun-Dom: 5:00 - 17:00
-                            </p>
-                            <a
-                                href="Carr. Federal A Cuernavaca 5857, San Pedro Mártir, Tlalpan, 14659 Ciudad de México, CDMX, México"
-                                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
-                                >Ver ubicación</a
-                            >
-                        </div>
-                        <!-- San Pedro Martir -->
-                        <div
-                            class="location-card bg-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
-                            data-id="san-pedro-martir"
-                            data-name="San Pedro Martir"
-                            data-whatsapp="525511111111"
-                        >
-                            <h4 class="text-[#E31E24] font-bold text-lg mb-2">
-                                San Pedro Martir
-                            </h4>
-                            <p class="text-[#555] text-sm mb-3 leading-relaxed">
-                                Carr. Federal A Cuernavaca 5857, San Pedro
-                                Mártir, Tlalpan, 14659 Ciudad de México, CDMX
-                            </p>
-                            <p class="text-[#888] text-sm font-bold mb-4">
-                                Lun-Dom: 5:00 - 17:00
-                            </p>
-                            <a
-                                href="Carr. Federal A Cuernavaca 5857, San Pedro Mártir, Tlalpan, 14659 Ciudad de México, CDMX"
-                                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
-                                >Ver ubicación</a
-                            >
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== ¿CÓMO HACER TU PEDIDO? ===== -->
-            <section class="py-20 px-6 bg-white relative">
-                <div class="container mx-auto">
-                    <div class="text-center mb-4">
-                        <h2
-                            class="text-4xl md:text-5xl font-fredoka text-[#111111]"
-                        >
-                            ¿Cómo hacer tu pedido?
-                        </h2>
-                        <div
-                            class="w-full max-w-lg mx-auto border-b-2 border-gray-300 mt-4 mb-2"
-                        ></div>
-                        <p class="text-[#555] text-base mt-4">
-                            Es muy fácil. Sigue estos 3 pasos y un asesor te
-                            contactará para confirmar.
-                        </p>
-                    </div>
-                    <div class="max-w-2xl mx-auto mt-12 space-y-6">
-                        <div class="flex items-center gap-6">
-                            <div class="flex items-center gap-3 flex-shrink-0">
-                                <div
-                                    class="w-14 h-14 bg-[#E31E24] text-white rounded-full flex items-center justify-center text-2xl font-black shadow-md"
-                                >
-                                    1
-                                </div>
-                            </div>
-                            <div
-                                class="bg-[#282B28] text-white rounded-2xl p-5 flex-1"
-                            >
-                                <h3
-                                    class="text-lg font-bold text-[#F2850F] mb-1"
-                                >
-                                    Elige tus productos
-                                </h3>
-                                <p class="text-gray-300 text-sm">
-                                    Navega por nuestro catálogo y agrega los
-                                    productos que necesitas a tu pedido.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6">
-                            <div class="flex items-center gap-3 flex-shrink-0">
-                                <div
-                                    class="w-14 h-14 bg-[#E31E24] text-white rounded-full flex items-center justify-center text-2xl font-black shadow-md"
-                                >
-                                    2
-                                </div>
-                            </div>
-                            <div
-                                class="bg-[#282B28] text-white rounded-2xl p-5 flex-1"
-                            >
-                                <h3
-                                    class="text-lg font-bold text-[#F2850F] mb-1"
-                                >
-                                    Elige tus productos
-                                </h3>
-                                <p class="text-gray-300 text-sm">
-                                    Navega por nuestro catálogo y agrega los
-                                    productos que necesitas a tu pedido.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6">
-                            <div class="flex items-center gap-3 flex-shrink-0">
-                                <div
-                                    class="w-14 h-14 bg-[#E31E24] text-white rounded-full flex items-center justify-center text-2xl font-black shadow-md"
-                                >
-                                    3
-                                </div>
-                            </div>
-                            <div
-                                class="bg-[#282B28] text-white rounded-2xl p-5 flex-1"
-                            >
-                                <h3
-                                    class="text-lg font-bold text-[#F2850F] mb-1"
-                                >
-                                    Selecciona tu ubicación
-                                </h3>
-                                <p class="text-gray-300 text-sm">
-                                    Escoje una ubicación y envia tu pedido.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="flex items-center gap-6">
-                            <div class="flex items-center gap-3 flex-shrink-0">
-                                <div
-                                    class="w-14 h-14 bg-[#E31E24] text-white rounded-full flex items-center justify-center text-2xl font-black shadow-md"
-                                >
-                                    4
-                                </div>
-                            </div>
-                            <div
-                                class="bg-[#282B28] text-white rounded-2xl p-5 flex-1"
-                            >
-                                <h3
-                                    class="text-lg font-bold text-[#F2850F] mb-1"
-                                >
-                                    Confirma con un asesor
-                                </h3>
-                                <p class="text-gray-300 text-sm">
-                                    Verifica las cantidades en tu carrito y
-                                    envía tu solicitud de pedido o cotización.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- ===== ¿LISTO PARA ORDENAR? ===== -->
-            <section class="py-20 px-6 bg-white relative">
-                <div class="container mx-auto text-center">
-                    <h2
-                        class="text-4xl md:text-5xl font-fredoka text-[#111111] mb-8"
-                    >
-                        ¿Listo para ordenar?
-                    </h2>
-                    <a
-                        href="producto.html"
-                        class="btn-pedido text-lg px-8 py-4 inline-flex"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-5 w-5"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                            />
-                        </svg>
-                        Hacer Pedido
-                    </a>
-                    <p class="text-[#555] mt-4">
-                        Cotiza sin compromiso.<br />Estamos aqui para ayudarte
-                        :)
-                    </p>
-                </div>
-            </section>
-        </main>
-
-        <footer
-            class="bg-brandBlack text-white pt-20 pb-10 px-6 md:px-8 border-t-4 border-brandGold"
-        >
-            <div class="container mx-auto">
-                <div class="grid md:grid-cols-4 gap-12 mb-16">
-                    <div>
-                        <img
-                            src="img/PNG sin fondo.png"
-                            alt="Grupollo"
-                            class="h-20 w-auto mb-6"
-                        />
-                        <p class="text-gray-400 leading-relaxed text-lg">
-                            Proveedor confiable de proteína de calidad con
-                            entregas puntuales y servicio personalizado.
-                        </p>
-                        <p class="text-brandGold font-bold mt-4">
-                            Calidad y frescura para ti
-                        </p>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
-                        >
-                            Navegación
-                        </h4>
-                        <ul class="space-y-3">
-                            <li>
-                                <a
-                                    href="index.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Inicio</a
-                                >
-                            </li>
-
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Productos</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="contacto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Contacto</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
-                        >
-                            Productos
-                        </h4>
-                        <ul class="space-y-3">
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Pollo Fresco</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Congelados</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Huevo de Granja</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Mayoreo</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
-                        >
-                            Contacto
-                        </h4>
-                        <ul class="space-y-4">
-                            <li class="flex items-center gap-3 text-gray-300">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-brandRed"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                                    />
-                                </svg>
-                                56 31 00 28 99 / 55 36 14 33 07
-                            </li>
-                            <li class="flex items-center gap-3 text-gray-300">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-brandRed"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                                CDMX y Área Metropolitana
-                            </li>
-                            <li class="flex items-center gap-3 text-gray-300">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-brandRed"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                                Lun - Dom: 5:00 am - 5:00 pm
-                            </li>
-                            <li class="flex items-center gap-3 text-gray-300">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-brandRed"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                                    />
-                                    <path
-                                        d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                                    />
-                                </svg>
-                                ventas@grupollo.com
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div
-                    class="border-t border-white/10 pt-8 text-center text-gray-500"
-                >
-                    <p>© 2026 Grupollo. Calidad y frescura para ti.</p>
-                </div>
-            </div>
-            <a href="recetario.html" class="footer-recipes-corner">
-                <span class="title">Nuestras recetas</span>
-                <div class="shhh-wrap">
-                    <span class="shhh-pill">Shhh!</span>
-                    <span class="emoji">🤭</span>
-                </div>
-            </a>
-        </footer>
-
-        <div
-            id="loginModal"
-            class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center backdrop-blur-sm opacity-0 transition-opacity duration-300"
-        >
-            <div
-                class="bg-[#FFF4D2] p-8 md:p-12 rounded-[40px] shadow-2xl w-11/12 max-w-md transform scale-95 transition-all duration-300 modal-content relative"
-            >
-                <button
-                    class="absolute top-6 right-6 text-[#4A2C10] hover:text-[#D15E1D] close-login transition-colors"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-8 w-8"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12"
-                        />
-                    </svg>
-                </button>
-                <div class="flex justify-center gap-8 mb-8">
-                    <button
-                        class="tab-btn active font-bold text-xl text-[#4A2C10] pb-2"
-                        data-tab="login"
-                    >
-                        Iniciar Sesión
-                    </button>
-                    <button
-                        class="tab-btn font-bold text-xl text-[#8B5A2B] pb-2"
-                        data-tab="register"
-                    >
-                        Registrarse
-                    </button>
-                </div>
-                <form id="loginForm" class="space-y-5">
-                    <div>
-                        <input
-                            type="email"
-                            placeholder="Correo electrónico"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            placeholder="Contraseña"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        class="w-full btn-primary text-xl py-4"
-                    >
-                        Entrar
-                    </button>
-                </form>
-                <form id="registerForm" class="space-y-5 hidden">
-                    <div
-                        class="bg-gradient-to-r from-[#111111] to-[#2B2B2B] p-4 rounded-2xl mb-4 text-center border-2 border-[#F2850F]"
-                    >
-                        <p class="font-black text-[#F2850F] text-lg">
-                            🎁 ¡DESCUENTO ESPECIAL! 🎁
-                        </p>
-                        <p class="text-sm font-bold text-white">
-                            Obtén
-                            <span class="text-2xl text-[#E31E24]"
-                                >10% de descuento</span
-                            >
-                            al registrarte
-                        </p>
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Nombre completo"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="email"
-                            placeholder="Correo electrónico"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="tel"
-                            placeholder="Teléfono"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            placeholder="Contraseña"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            placeholder="Confirmar contraseña"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        class="w-full btn-primary text-xl py-4 font-black"
-                    >
-                        Crear Cuenta y Activar Descuento
-                    </button>
-                </form>
-            </div>
-        </div>
-
-        <div
-            id="cartModal"
-            class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-gradient-to-b from-[#FFF4D2] to-[#FFFFFF] z-[90] shadow-2xl transform translate-x-full transition-transform duration-400 flex flex-col border-l-4 border-[#F2850F]"
-        >
-            <div
-                class="p-6 bg-gradient-to-r from-[#111111] to-[#2B2B2B] flex justify-between items-center border-b-4 border-[#F2850F] sticky top-0 z-10 rounded-bl-2xl"
-            >
-                <div class="flex items-center gap-3">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-8 w-8 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                    </svg>
-                    <h2 class="text-2xl font-fredoka text-white">Tu Pedido</h2>
-                    <span
-                        class="bg-[#E31E24] text-white text-xs font-black px-3 py-1 rounded-full border border-[#F2850F] cart-badge"
-                        >0</span
-                    >
-                </div>
-                <button
-                    class="text-white hover:text-[#F2850F] close-cart transition-colors"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-8 w-8"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12"
-                        />
-                    </svg>
-                </button>
-            </div>
-            <div
-                id="discountBanner"
-                class="hidden bg-gradient-to-r from-[#111111] to-[#2B2B2B] text-white p-4 mx-4 my-3 rounded-2xl border-2 border-[#F2850F] text-center shadow-lg"
-            >
-                <p class="font-black text-lg mb-1">🎉 DESCUENTO ACTIVADO 🎉</p>
-                <p class="text-sm mb-2">
-                    Obtén
-                    <span
-                        id="discountPercentage"
-                        class="font-black text-[#F2850F]"
-                        >10%</span
-                    >
-                    de descuento
-                </p>
-                <p class="text-xs opacity-90">
-                    Cupón:
-                    <span id="discountCode" class="font-bold text-[#F2850F]"
-                        >BIENVENIDA10</span
-                    >
-                </p>
-            </div>
-            <div class="flex-1 overflow-y-auto p-4" id="cartItems">
-                <p
-                    class="text-center text-[#2B2B2B] mt-16 text-lg font-bold empty-msg"
-                >
-                    🛒 Tu carrito está vacío
-                </p>
-                <p class="text-center text-[#6B7280] text-sm">
-                    Selecciona productos para comenzar
-                </p>
-            </div>
-            <div
-                class="p-6 bg-white border-t-4 border-[#F2850F] sticky bottom-0"
-            >
-                <div
-                    id="discountDisplay"
-                    class="hidden mb-4 p-3 bg-[#FFF4D2] rounded-xl border-2 border-[#F2850F]"
-                >
-                    <p class="text-sm font-bold text-[#111111]">
-                        ✅ Descuento aplicado:
-                        <span class="text-[#E31E24]"
-                            >-$<span id="discountAmountBig">0.00</span></span
-                        >
-                    </p>
-                </div>
-                <div class="space-y-2 mb-4">
-                    <div
-                        class="flex justify-between items-center text-sm text-[#2B2B2B]"
-                    >
-                        <span>Subtotal:</span>
-                        <span id="cartSubtotal">$0.00</span>
-                    </div>
-                    <div
-                        id="discountRow"
-                        class="hidden flex justify-between items-center text-sm text-[#E31E24] font-bold"
-                    >
-                        <span>Descuento (10%):</span>
-                        <span
-                            >-$<span id="discountAmountSmall">0.00</span></span
-                        >
-                    </div>
-                    <div
-                        class="flex justify-between items-center text-2xl font-black text-[#111111] border-t-2 border-[#F2850F] pt-2"
-                    >
-                        <span>TOTAL:</span>
-                        <span id="cartTotal">$0.00</span>
-                    </div>
-                </div>
-                <div class="px-4 pb-3">
-                    <p
-                        class="text-xs font-black text-[#111111] uppercase tracking-tight mb-2"
-                    >
-                        📍 Sucursal
-                    </p>
-                    <div id="branchList" class="grid grid-cols-1 gap-1"></div>
-                    <p
-                        id="branchError"
-                        class="hidden text-xs text-[#E31E24] font-bold mt-1"
-                    >
-                        ⚠️ Selecciona una sucursal
-                    </p>
-                </div>
-                <button
-                    id="waCartBtn"
-                    class="w-full bg-[#E31E24] text-white text-xl py-4 rounded-full font-black flex items-center justify-center gap-3 hover:bg-[#C2181D] transition-all transform hover:scale-[1.02] shadow-xl border-2 border-[#F2850F]"
-                >
-                    <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                        />
-                    </svg>
-                    CONFIRMAR PEDIDO
-                </button>
-                <p class="text-center text-xs text-[#2B2B2B] font-bold">
-                    📦 Entregas en CDMX | Lun-Dom 5am-5pm
-                </p>
-            </div>
-        </div>
-
-        <div
-            id="cartOverlay"
-            class="fixed inset-0 bg-black/50 z-[85] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300"
-        ></div>
-        <div
-            id="toastContainer"
-            class="fixed top-24 right-6 flex flex-col gap-3"
-        ></div>
-        <a
-            id="whatsappFloat"
-            href="https://wa.me/525628328887"
-            target="_blank"
-            rel="noopener"
-            aria-label="Contactar por WhatsApp"
-        >
-            <span class="wa-pulse"></span>
-            <svg class="wa-icon" viewBox="0 0 24 24">
-                <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                />
-            </svg>
+            <span class="gp-brand-tagline" s>Calidad y frescura para ti</span>
+          </span>
         </a>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-        <script src="script.js?v=2"></script>
-        <script src="shopingCart.js?v=2"></script>
-    </body>
+        <div class="gp-customer-care hidden md:flex">
+          <span class="gp-customer-care-label">Atención al cliente:</span>
+          <span class="gp-customer-care-number">56 31 00 28 99</span>
+        </div>
+
+        <div class="gp-actions">
+          <button
+            id="cartBtn"
+            class="gp-order-btn"
+            type="button"
+            aria-label="Hacer Pedido"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="gp-order-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            Hacer Pedido
+            <span class="cart-count hidden">0</span>
+          </button>
+          <button
+            type="button"
+            id="mobileMenuBtn"
+            class="gp-mobile-menu-btn md:hidden"
+            aria-label="Menú"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Línea horizontal dorada -->
+      <div class="gp-nav-divider" aria-hidden="true"></div>
+
+      <!-- ROW 2: nav links (der) + rayas diagonales (extremo der) -->
+      <div class="nav-bottom-bar">
+        <div class="nav-bottom-links">
+          <a href="index.html" class="nav-current">Inicio</a>
+          <a href="producto.html">Productos</a>
+          <a href="contacto.html">Contacto</a>
+          <a href="recetario.html">Recetas</a>
+        </div>
+        <span class="gp-stripe-end" aria-hidden="true"></span>
+      </div>
+    </nav>
+
+    <div
+      id="mobileMenu"
+      class="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center"
+    >
+      <button
+        type="button"
+        id="closeMobileMenu"
+        class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors cursor-pointer"
+        aria-label="Cerrar menú"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+      <img
+        src="img/PNG sin fondo.png"
+        alt="Grupollo"
+        class="mobile-menu-logo h-16 w-auto brightness-200"
+      />
+      <a href="index.html" class="mobile-nav-link mobile-current">INICIO</a>
+      <a href="producto.html" class="mobile-nav-link">PRODUCTOS</a>
+      <a href="contacto.html" class="mobile-nav-link">CONTACTO</a>
+      <a href="recetario.html" class="mobile-nav-link">RECETARIO</a>
+      <a href="contacto.html" class="btn-pedido text-lg mt-6">Hacer Pedido</a>
+      <p class="mobile-menu-phone">Tel: <span>56 31 00 28 99</span></p>
+    </div>
+
+    <main class="flex-grow hero-offset">
+      <!-- ===== HERO STADIUM + SINGLE FLOATING PRODUCT (ROTATING) ===== -->
+      <section
+        class="hero-stadium relative overflow-hidden"
+        style="padding-top: 30px"
+      >
+        <!-- Stadium / field background -->
+        <div class="hero-stadium-bg">
+          <img
+            src="img/13.png"
+            alt=""
+            class="hero-stadium-img"
+            onerror="this.style.display = 'none'"
+          />
+          <div class="hero-stadium-overlay"></div>
+          <div class="hero-stadium-lines"></div>
+        </div>
+        <!-- Floating stage: ONE product visible at a time, rotating -->
+        <div class="hero-stage" id="heroStage">
+          <!-- Slide 1: Pechuga Aplanada (TOP SELLER) -->
+          <div
+            class="float-slide active"
+            data-id="hp1"
+            data-name="Pechuga de Pollo Aplanada"
+            data-price="135"
+            data-eyebrow="⭐ Top de temporada"
+            data-desc="Lista para asar, empanizar o rellenar. La favorita de la familia en Mundial 2026."
+          >
+            <div class="float-product-wrap">
+              <img
+                src="img/slides/Filete_de_Pechuga.png"
+                alt="Pechuga Aplanada"
+                class="float-product float-anim-1"
+                onerror="this.style.display = 'none'"
+              />
+              <div class="float-slide-overlay">
+                <label class="float-slide-title"> Pechuga Aplanada </label>
+              </div>
+              <div class="price-card price-card-gold price-pos-tr">
+                <span class="pc-price">$135<small>/kg</small></span>
+                <span class="pc-desc">Lista para cocinar</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp1"
+                  data-name="Pechuga de Pollo Aplanada"
+                  data-price="135"
+                >
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="float-slide"
+            data-id="hp2"
+            data-name="Boneless Pollo"
+            data-price="98"
+            data-eyebrow="🔥 Súper versátil"
+            data-desc="Boneless"
+          >
+            <div class="float-product-wrap">
+              <img
+                src="img/slides/Boneless.png"
+                alt="Boneless Pollo"
+                class="float-product float-anim-2"
+                onerror="this.style.display = 'none'"
+              />
+              <div class="float-slide-overlay">
+                <label class="float-slide-title"> Boneless Pollo </label>
+              </div>
+              <div class="price-card price-card-red price-pos-tr">
+                <span class="pc-price">$98<small>/kg</small></span>
+                <span class="pc-desc">100% magra</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp2"
+                  data-name="Molida de Pollo"
+                  data-price="98"
+                >
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2: Molida de Pollo -->
+          <div
+            class="float-slide"
+            data-id="hp2"
+            data-name="Molida de Pollo"
+            data-price="98"
+            data-eyebrow="🔥 Súper versátil"
+            data-desc="Para albóndigas, hamburguesas, picadillo o relleno. Magra y siempre fresca."
+          >
+            <div class="float-product-wrap">
+              <img
+                src="img/slides/Molida_de_Pollo.png"
+                alt="Molida de Pollo"
+                class="float-product float-anim-2"
+                onerror="this.style.display = 'none'"
+              />
+              <div class="float-slide-overlay">
+                <label class="float-slide-title"> Molida de Pollo </label>
+              </div>
+              <div class="price-card price-card-red price-pos-tr">
+                <span class="pc-price">$98<small>/kg</small></span>
+                <span class="pc-desc">100% magra</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp2"
+                  data-name="Molida de Pollo"
+                  data-price="98"
+                >
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 4: Alitas -->
+          <div
+            class="float-slide"
+            data-id="hp4"
+            data-name="Alitas de Pollo"
+            data-price="65"
+            data-eyebrow="🍗 Imperdible"
+            data-desc="Las consentidas de la parrilla. Frescas, jugosas y perfectas para cualquier salsa."
+          >
+            <div class="float-product-wrap">
+              <img
+                src="img/slides/alitas.png"
+                alt="Alitas"
+                class="float-product float-anim-4"
+                onerror="this.src = 'img/Productos/Alas_de_Pollo.png'"
+              />
+              <div class="float-slide-overlay">
+                <label class="float-slide-title"> Alitas de Pollo </label>
+              </div>
+              <div class="price-card price-card-red price-pos-tr">
+                <span class="pc-price">$65<small>/kg</small></span>
+                <span class="pc-desc">Botana ideal</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp4"
+                  data-name="Alitas de Pollo"
+                  data-price="65"
+                >
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 5: Papas (4 cortes) -->
+          <div
+            class="float-slide"
+            data-id="hp5"
+            data-name="Papas Congeladas (mix)"
+            data-price="85"
+            data-eyebrow="🍟 4 cortes en uno"
+            data-desc="Delgada, curly, gajo y aros de cebolla. Para acompañar todos tus antojos."
+          >
+            <div class="float-product-wrap">
+              <img
+                src="img/slides/papas.png"
+                alt="Papas Congeladas (mix)"
+                class="float-product float-anim-4"
+                onerror="this.src = 'img/Productos/Alas_de_Pollo.png'"
+              />
+              <div class="float-slide-overlay">
+                <label class="float-slide-title">
+                  Papas Congeladas (mix)
+                </label>
+              </div>
+              <!-- <div class="price-card price-card-gold price-pos-bl"> -->
+              <div class="price-card price-card-gold">
+                <span class="pc-price">$85<small>/kg</small></span>
+                <span class="pc-desc">Delgada · Curly · Gajo · Aros</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp5"
+                  data-name="Papas Congeladas (mix)"
+                  data-price="85"
+                >
+                  Añadir
+                </button>
+              </div>
+              <!-- <div class="price-card price-card-gold price-pos-bl" -->
+              <div
+                class="price-card price-card-gold"
+                style="top: 15px; translate: 15px 171px"
+              >
+                <span class="pc-price">$85<small>/kg</small></span>
+                <span class="pc-desc">Delgada · Curly · Gajo · Aros</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp5"
+                  data-name="Papas Congeladas (mix)"
+                  data-price="85"
+                >
+                  Añadir
+                </button>
+              </div>
+              <!-- <div class="price-card price-card-gold price-pos-bl" -->
+              <div
+                class="price-card price-card-gold"
+                style="top: 135px; translate: 15px 185px"
+              >
+                <span class="pc-price">$85<small>/kg</small></span>
+                <span class="pc-desc">Delgada · Curly · Gajo · Aros</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp5"
+                  data-name="Papas Congeladas (mix)"
+                  data-price="85"
+                >
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 6: Nuggets -->
+          <div
+            class="float-slide"
+            data-id="hp6"
+            data-name="Nuggets de Pollo"
+            data-price="95"
+            data-eyebrow="👶 Favorito de los chicos"
+            data-desc="Empanizados y dorados, sólo calentar y servir. Los preferidos de la cocina rápida."
+          >
+            <div class="float-product-wrap">
+              <img
+                src="img/slides/Nuggets.png"
+                alt="Nuggets"
+                class="float-product float-anim-1"
+                onerror="this.src = 'img/Productos/Hamburguesa_Sirloin.png'"
+              />
+              <div class="float-slide-overlay">
+                <label class="float-slide-title"> Nuggets de Pollo </label>
+              </div>
+              <div class="price-card price-card-red price-pos-tr">
+                <span class="pc-price">$95<small>/kg</small></span>
+                <span class="pc-desc">Listos en 5 min</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp6"
+                  data-name="Nuggets de Pollo"
+                  data-price="95"
+                >
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 7: Huevo -->
+          <div
+            class="float-slide"
+            data-id="hp7"
+            data-name="Huevo Blanco (30 pzas)"
+            data-price="85"
+            data-eyebrow="🥚 Fresco de granja"
+            data-desc="Cartón de 30 piezas, directo de granja, mismo día. Calidad superior garantizada."
+          >
+            <div class="float-product-wrap">
+              <img
+                src="img/slides/Huevo_Blanco.png"
+                alt="Huevo"
+                class="float-product float-anim-2"
+                onerror="this.style.display = 'none'"
+              />
+              <div class="float-slide-overlay">
+                <label class="float-slide-title">
+                  Huevo Blanco (30 pzas)
+                </label>
+              </div>
+              <div class="price-card price-card-gold price-pos-tr">
+                <span class="pc-price">$85<small>/cartón</small></span>
+                <span class="pc-desc">30 piezas frescas</span>
+                <button
+                  type="button"
+                  class="pc-add add-to-cart"
+                  data-id="hp7"
+                  data-name="Huevo Blanco (30 pzas)"
+                  data-price="85"
+                >
+                  Añadir
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Subtle dots indicator -->
+          <div class="hero-dots-indicator" id="heroDots">
+            <button class="hd active" data-i="0" aria-label="1"></button>
+            <button class="hd" data-i="1" aria-label="2"></button>
+            <button class="hd" data-i="2" aria-label="3"></button>
+            <button class="hd" data-i="3" aria-label="4"></button>
+            <button class="hd" data-i="4" aria-label="5"></button>
+            <button class="hd" data-i="5" aria-label="6"></button>
+            <button class="hd" data-i="6" aria-label="7"></button>
+          </div>
+        </div>
+        <!-- CARD FLOTANTE — independiente del slider -->
+        <div class="floating-cta">
+          <!-- Decoración: línea — estrella — línea -->
+          <div class="cta-star-row">
+            <span class="cta-line cta-line-left"></span>
+            <span class="cta-star"> 🌟 </span>
+            <span class="cta-line cta-line-right"></span>
+          </div>
+
+          <!-- Título bicolor -->
+          <h2 class="cta-title">
+            <span class="white">NUESTRAS</span>
+            <span class="gold">CATEGORIAS</span>
+          </h2>
+
+          <!-- Subtítulo -->
+          <p class="cta-subtitle">
+            Descubre la mejor calidad<br />para tu negocio
+          </p>
+          <!-- Botón de acción -->
+
+          <svg
+            width="0"
+            height="0"
+            style="position: absolute"
+            aria-hidden="true"
+          >
+            <defs>
+              <symbol id="gp-pollo" viewBox="0 0 209 196">
+                <path
+                  d="M133.5 190.0 108.5 190.0 92.5 184.0 81.0 173.5 73.5 162.0 58.5 156.0 42.5 144.0 30.0 126.5 26.0 112.5 26.0 97.5 32.0 70.5 26.5 68.0 22.0 62.5 24.0 48.5 18.5 46.0 8.5 46.0 6.0 43.5 10.5 38.0 19.0 35.5 16.0 26.5 20.0 16.5 24.5 14.0 27.5 17.0 30.0 10.5 33.5 7.0 39.0 10.5 41.5 16.0 45.5 8.0 49.5 6.0 53.0 7.5 54.0 10.5 52.0 14.5 58.5 15.0 61.0 17.5 61.0 23.5 51.0 31.5 67.0 45.5 86.0 77.5 102.5 86.0 116.5 89.0 133.5 89.0 141.5 87.0 153.5 80.0 166.0 62.5 182.5 46.0 189.5 43.0 194.0 47.5 200.0 59.5 203.0 72.5 202.0 93.5 196.0 110.5 190.0 122.5 182.0 131.5 181.0 137.5 175.0 149.5 160.5 165.0 140.5 175.0 133.5 190.0Z"
+                  fill-rule="evenodd"
+                />
+              </symbol>
+              <symbol id="gp-pez" viewBox="0 0 232 95">
+                <path
+                  d="M222.5 89.0 202.5 82.0 185.5 69.0 180.5 63.0 170.5 63.0 146.5 79.0 118.5 88.0 87.5 89.0 64.5 86.0 39.5 77.0 16.5 64.0 7.0 54.5 6.0 48.5 16.5 36.0 33.5 24.0 52.5 15.0 79.5 7.0 112.5 6.0 125.5 8.0 140.5 13.0 161.5 24.0 171.5 33.0 177.5 34.0 206.5 12.0 214.5 8.0 224.5 6.0 226.0 7.5 218.0 28.5 207.0 49.5 211.0 54.5 221.0 76.5 224.0 85.5 222.5 89.0Z"
+                  fill-rule="evenodd"
+                />
+              </symbol>
+              <symbol id="gp-res" viewBox="0 0 272 165">
+                <path
+                  d="M235.5 159.0 215.5 159.0 212.0 142.5 205.5 130.0 107.5 130.0 98.5 159.0 76.5 159.0 75.0 156.5 76.0 150.5 57.0 86.5 51.5 82.0 39.5 78.0 33.5 69.0 19.5 73.0 11.5 69.0 6.0 62.5 6.0 54.5 17.0 42.5 18.0 31.5 25.0 22.5 24.5 20.0 17.5 19.0 12.0 12.5 16.5 9.0 32.5 9.0 45.5 6.0 55.5 10.0 59.0 13.5 58.0 17.5 60.5 19.0 69.5 16.0 76.5 11.0 77.0 21.5 73.0 27.5 79.5 28.0 98.5 35.0 230.5 35.0 239.5 38.0 247.0 44.5 256.0 58.5 258.0 93.5 266.0 103.5 266.0 120.5 259.5 117.0 250.0 105.5 252.0 101.5 252.0 73.5 249.5 69.0 247.0 82.5 248.0 89.5 243.0 113.5 242.0 133.5 238.0 155.5 235.5 159.0Z"
+                  fill-rule="evenodd"
+                />
+              </symbol>
+              <symbol id="gp-cerdo" viewBox="0 0 258 130">
+                <path
+                  d="M203.5 124.0 187.5 124.0 185.0 121.5 185.0 112.5 180.5 104.0 162.5 108.0 121.5 108.0 117.5 106.0 105.5 105.0 96.5 124.0 79.5 124.0 77.0 121.5 77.0 116.5 70.5 100.0 43.5 94.0 18.5 81.0 12.5 80.0 10.0 77.5 6.0 56.5 8.5 54.0 10.5 56.0 19.5 56.0 42.0 33.5 31.0 23.5 38.5 20.0 45.0 20.5 43.5 6.0 59.5 11.0 69.5 23.0 99.5 12.0 131.5 6.0 171.5 6.0 198.5 13.0 209.5 19.0 218.0 27.5 225.0 39.5 228.5 52.0 237.0 50.5 234.0 45.5 234.0 35.5 237.5 31.0 244.5 30.0 249.0 35.5 249.0 43.5 246.0 51.5 252.0 53.5 250.5 57.0 245.5 57.0 240.5 54.0 232.5 57.0 228.0 56.5 229.0 62.5 225.0 78.5 219.0 87.5 208.0 118.5 203.5 124.0Z M241.0 47.5 244.0 43.5 243.5 35.0 240.5 35.0 238.0 39.5 241.0 47.5Z"
+                  fill-rule="evenodd"
+                />
+              </symbol>
+              <symbol id="gp-pavo" viewBox="0 0 208 168">
+                <path
+                  d="M182.5 162.0 41.5 162.0 29.5 156.0 21.0 147.5 14.0 134.5 12.0 126.5 12.0 108.5 20.0 83.5 35.0 55.5 36.0 45.5 31.5 41.0 25.0 41.5 28.0 61.5 21.5 68.0 15.0 62.5 15.0 54.5 19.0 40.5 6.0 42.5 9.0 35.5 17.0 29.5 17.0 23.5 20.0 16.5 26.5 10.0 38.5 7.0 49.5 12.0 54.0 17.5 57.0 26.5 56.0 39.5 40.0 72.5 50.5 77.0 58.5 77.0 73.5 69.0 94.5 52.0 97.0 49.5 97.0 44.5 103.0 29.5 108.0 22.5 118.5 13.0 128.5 8.0 137.5 6.0 152.5 8.0 163.0 14.5 165.0 17.5 163.5 24.0 171.5 23.0 178.5 27.0 183.0 34.5 182.0 40.5 188.5 43.0 192.0 48.5 192.0 55.5 190.0 58.5 196.5 62.0 200.0 66.5 201.0 77.5 199.0 80.5 202.0 85.5 201.0 95.5 197.0 99.5 202.0 111.5 202.0 118.5 200.0 123.5 196.0 126.5 197.0 132.5 194.0 139.5 185.5 144.0 180.0 143.5 186.0 151.5 186.0 156.5 182.5 162.0Z"
+                  fill-rule="evenodd"
+                />
+              </symbol>
+              <symbol id="gp-huevo" viewBox="0 0 116 149">
+                <path
+                  d="M69.5 143.0 46.5 143.0 37.5 140.0 26.5 133.0 12.0 115.5 8.0 106.5 6.0 94.5 6.0 77.5 8.0 66.5 19.0 38.5 30.0 21.5 38.5 13.0 50.5 6.0 66.5 7.0 86.0 20.5 94.0 30.5 101.0 43.5 106.0 56.5 110.0 76.5 110.0 95.5 105.0 113.5 97.0 125.5 88.5 134.0 69.5 143.0Z"
+                  fill-rule="evenodd"
+                />
+              </symbol>
+            </defs>
+          </svg>
+          <div class="vb">
+            <div class="row">
+              <span class="it"
+                ><svg class="ico"><use href="#gp-pavo" /></svg
+              ></span>
+              <span class="it"
+                ><svg class="ico"><use href="#gp-res" /></svg
+              ></span>
+              <span class="it"
+                ><svg class="ico"><use href="#gp-pollo" /></svg
+              ></span>
+              <span class="it"
+                ><svg class="ico"><use href="#gp-cerdo" /></svg
+              ></span>
+              <span class="it"
+                ><svg class="ico"><use href="#gp-huevo" /></svg
+              ></span>
+              <span class="it"
+                ><svg class="ico"><use href="#gp-pez" /></svg
+              ></span>
+            </div>
+            <a href="producto.html" class="pc-add w-full">
+              <span class="btn-text">
+                <span class="btn-text-track">
+                  <span>Categorías</span>
+                  <span>Pollo</span>
+                  <span>Res</span>
+                  <span>Cerdo</span>
+                  <span>Pescado</span>
+                  <span>Pavo</span>
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="hero-title-overlay">
+          <img
+            src="img/mascota_mundial.png"
+            alt=""
+            class="hero-mascot float-anim-mascot"
+            onerror="this.style.display = 'none'"
+          />
+          <div class="hero-text-stack">
+            <p class="hero-eyebrow">
+              ⚽ Especial Mundial 2026 · Sabor &amp; Calidad
+            </p>
+            <h1 class="hero-title">
+              Pollo <span>Fresco</span> y
+              <span class="alt">Delicioso</span>
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ¡CONÓCENOS! (Rediseño visual) ===== -->
+      <section
+        class="conocenos-section py-20 px-6 md:px-8 bg-white relative overflow-hidden"
+      >
+        <!-- Decorative background accent -->
+        <div class="conocenos-bg-accent" aria-hidden="true"></div>
+
+        <div class="container mx-auto relative z-10 space-y-4">
+          <!-- Header bar -->
+          <div class="conocenos-header">
+            <div class="conocenos-header-text">
+              <p class="conocenos-kicker">— ¿Quiénes somos?</p>
+              <h2 class="conocenos-title">¡Descubre nuestros productos!</h2>
+              <p class="conocenos-subtitle">
+                Pollo fresco, congelados y huevo de la mejor calidad, directo a
+                tu mesa.
+              </p>
+            </div>
+            <div class="conocenos-welcome">
+              <h3 class="conocenos-welcome-title">¡Bienvenido a Grupollo!</h3>
+              <p>
+                Servicio personalizado, mejores precios y entregas puntuales en
+                CDMX y Área Metropolitana.
+              </p>
+              <p class="conocenos-welcome-strong">
+                Comercio al por mayor, medio mayoreo y menudeo.
+              </p>
+            </div>
+          </div>
+          <!-- Product peek strip (animated, draws the eye to the actual products) -->
+          <div class="conocenos-peek">
+            <p class="conocenos-peek-label">Algunos de nuestros productos</p>
+            <div class="conocenos-peek-track">
+              <a href="producto.html" class="peek-chip"
+                ><img
+                  src="img/Productos/Pollo_Limpio.png"
+                  alt="Pollo"
+                  onerror="this.style.display = 'none'"
+                /><span>Pollo Fresco</span></a
+              >
+              <a href="producto.html" class="peek-chip"
+                ><img
+                  src="img/Productos/Pechuga_sin_hueso.png"
+                  alt="Pechuga"
+                  onerror="this.style.display = 'none'"
+                /><span>Pechuga</span></a
+              >
+              <a href="producto.html" class="peek-chip"
+                ><img
+                  src="img/Productos/Pierna_y_Muslo.png"
+                  alt="Pierna"
+                  onerror="this.style.display = 'none'"
+                /><span>Pierna y Muslo</span></a
+              >
+              <a href="producto.html" class="peek-chip"
+                ><img
+                  src="img/Productos/Alas_de_Pollo.png"
+                  alt="Alitas"
+                  onerror="this.style.display = 'none'"
+                /><span>Alitas</span></a
+              >
+              <a href="producto.html" class="peek-chip"
+                ><img
+                  src="img/Productos/Molida_de_Pollo.png"
+                  alt="Molida"
+                  onerror="this.style.display = 'none'"
+                /><span>Molida</span></a
+              >
+              <a href="producto.html" class="peek-chip"
+                ><img
+                  src="img/Productos/Filete_de_Pechuga.png"
+                  alt="Filete"
+                  onerror="this.style.display = 'none'"
+                /><span>Filete</span></a
+              >
+              <a href="producto.html" class="peek-chip"
+                ><img
+                  src="img/Productos/Pollo_Entero.png"
+                  alt="Entero"
+                  onerror="this.style.display = 'none'"
+                /><span>Pollo Entero</span></a
+              >
+              <a href="producto.html" class="peek-chip"
+                ><img
+                  src="img/Productos/Huevo_Blanco.png"
+                  alt="Huevo"
+                  onerror="this.style.display = 'none'"
+                /><span>Huevo</span></a
+              >
+            </div>
+          </div>
+
+          <!-- Two big interactive tiles -->
+          <div class="conocenos-tiles">
+            <a
+              href="nosotros.html"
+              class="conocenos-tile conocenos-tile-history"
+            >
+              <div class="ct-icon-wrap">
+                <span class="ct-icon">📖</span>
+              </div>
+              <div class="ct-content">
+                <span class="ct-label">Quiénes somos</span>
+                <h4 class="ct-title">Nuestra Historia</h4>
+                <p class="ct-desc">
+                  Más de una década llevando calidad y frescura a cada hogar
+                  mexicano.
+                </p>
+              </div>
+              <span class="ct-arrow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </span>
+            </a>
+            <a
+              href="producto.html"
+              class="conocenos-tile conocenos-tile-products"
+            >
+              <div class="ct-icon-wrap">
+                <span class="ct-icon">🍗</span>
+              </div>
+              <div class="ct-content">
+                <span class="ct-label">Qué ofrecemos</span>
+                <h4 class="ct-title">Nuestros Productos</h4>
+                <p class="ct-desc">
+                  Pollo fresco, congelados y huevo seleccionado todos los días.
+                </p>
+              </div>
+              <span class="ct-arrow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== UBICACIONES ===== -->
+      <section class="py-20 px-6 md:px-8 bg-[#f5f5f5] relative">
+        <div class="container mx-auto">
+          <div class="text-center mb-6">
+            <h2 class="text-4xl md:text-5xl font-fredoka text-[#111111] mb-4">
+              Ubicaciones
+            </h2>
+            <p class="text-[#555] text-lg max-w-2xl mx-auto">
+              Visítanos en cualquiera de nuestras sucursales en Ciudad de México
+              y Área Metropolitana
+            </p>
+          </div>
+          <a href="recetario.html" class="footer-recipes-corner">
+            <span class="title">Nuestras recetas</span>
+            <div class="shhh-wrap">
+              <span class="shhh-pill">Shhh!</span>
+              <span class="emoji">🤭</span>
+            </div>
+          </a>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-10"
+          >
+            <!-- San Bernabé -->
+            <div
+              class="location-card g-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
+              data-id="san-bernabe"
+              data-name="San Bernabé"
+              data-whatsapp="525511111111"
+            >
+              <h4 class="text-[#E31E24] font-bold text-lg mb-2">San Bernabé</h4>
+              <p class="text-[#555] text-sm mb-3 leading-relaxed">
+                Av. Guerrero 40, San Bernabé Ocotepec, La Magdalena Contreras,
+                10300 CDMX
+              </p>
+              <p class="text-[#888] text-sm font-bold mb-4">
+                Lun-Dom: 5:00 - 17:00
+              </p>
+              <a
+                href="https://maps.google.com/?q=San+Bernabe+Ocotepec+CDMX"
+                target="_blank"
+                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
+                >Ver ubicación</a
+              >
+            </div>
+            <!-- Cuajimalpa -->
+            <div
+              class="location-card bg-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
+              data-id="cuajimalpa"
+              data-name="Cuajimalpa"
+              data-whatsapp="525511111111"
+            >
+              <h4 class="text-[#E31E24] font-bold text-lg mb-2">Cuajimalpa</h4>
+              <p class="text-[#555] text-sm mb-3 leading-relaxed">
+                Av. Jesús del Monte 100, Adolfo López Mateos, Cuajimalpa de
+                Morelos, 05260, CDMX
+              </p>
+              <p class="text-[#888] text-sm font-bold mb-4">
+                Lun-Dom: 5:00 - 17:00
+              </p>
+              <a
+                href="https://maps.google.com/?q=Cuajimalpa+de+Morelos+CDMX"
+                target="_blank"
+                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
+                >Ver ubicación</a
+              >
+            </div>
+            <!-- Tacubaya -->
+            <div
+              class="location-card bg-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
+              data-id="tacubaya"
+              data-name="Tacubaya"
+              data-whatsapp="525511111111"
+            >
+              <h4 class="text-[#E31E24] font-bold text-lg mb-2">Tacubaya</h4>
+              <p class="text-[#555] text-sm mb-3 leading-relaxed">
+                Heroes de 1810, Tacubaya, Miguel Hidalgo, 11870 Ciudad de
+                México, CDMX
+              </p>
+              <p class="text-[#888] text-sm font-bold mb-4">
+                Lun-Dom: 5:00 - 17:00
+              </p>
+              <a
+                href="https://maps.google.com/?q=Tacubaya+Miguel+Hidalgo+CDMX"
+                target="_blank"
+                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
+                >Ver ubicación</a
+              >
+            </div>
+            <!-- Pedregal -->
+            <div
+              class="location-card bg-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
+              data-id="pedregal"
+              data-name="Pedregal"
+              data-whatsapp="525511111111"
+            >
+              <h4 class="text-[#E31E24] font-bold text-lg mb-2">Pedregal</h4>
+              <p class="text-[#555] text-sm mb-3 leading-relaxed">
+                Carretera federal a cuernavaca #5857 bis San Andrés Totoltepec
+                Tlalpan CDMX C.P 14400
+              </p>
+              <p class="text-[#888] text-sm font-bold mb-4">
+                Lun-Dom: 5:00 - 17:00
+              </p>
+              <a
+                href="Carr. Federal A Cuernavaca 5857, San Pedro Mártir, Tlalpan, 14659 Ciudad de México, CDMX, México"
+                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
+                >Ver ubicación</a
+              >
+            </div>
+            <!-- San Pedro Martir -->
+            <div
+              class="location-card bg-white rounded-2xl p-6 border-2 border-gray-200 hover:border-[#E31E24] transition-colors shadow-sm"
+              data-id="san-pedro-martir"
+              data-name="San Pedro Martir"
+              data-whatsapp="525511111111"
+            >
+              <h4 class="text-[#E31E24] font-bold text-lg mb-2">
+                San Pedro Martir
+              </h4>
+              <p class="text-[#555] text-sm mb-3 leading-relaxed">
+                Carr. Federal A Cuernavaca 5857, San Pedro Mártir, Tlalpan,
+                14659 Ciudad de México, CDMX
+              </p>
+              <p class="text-[#888] text-sm font-bold mb-4">
+                Lun-Dom: 5:00 - 17:00
+              </p>
+              <a
+                href="Carr. Federal A Cuernavaca 5857, San Pedro Mártir, Tlalpan, 14659 Ciudad de México, CDMX"
+                class="inline-block bg-[#E31E24] text-white text-sm font-bold px-5 py-2 rounded-lg hover:bg-[#c2181d] transition-colors"
+                >Ver ubicación</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ¿CÓMO HACER TU PEDIDO? ===== -->
+      <section class="py-20 px-6 bg-white relative">
+        <div class="container mx-auto">
+          <div class="text-center mb-4">
+            <h2 class="text-4xl md:text-5xl font-fredoka text-[#111111]">
+              ¿Cómo hacer tu pedido?
+            </h2>
+            <div
+              class="w-full max-w-lg mx-auto border-b-2 border-gray-300 mt-4 mb-2"
+            ></div>
+            <p class="text-[#555] text-base mt-4">
+              Es muy fácil. Sigue estos 3 pasos y un asesor te contactará para
+              confirmar.
+            </p>
+          </div>
+          <div class="max-w-2xl mx-auto mt-12 space-y-6">
+            <div class="flex items-center gap-6">
+              <div class="flex items-center gap-3 flex-shrink-0">
+                <div
+                  class="w-14 h-14 bg-[#E31E24] text-white rounded-full flex items-center justify-center text-2xl font-black shadow-md"
+                >
+                  1
+                </div>
+              </div>
+              <div class="bg-[#282B28] text-white rounded-2xl p-5 flex-1">
+                <h3 class="text-lg font-bold text-[#F2850F] mb-1">
+                  Elige tus productos
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Navega por nuestro catálogo y agrega los productos que
+                  necesitas a tu pedido.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-6">
+              <div class="flex items-center gap-3 flex-shrink-0">
+                <div
+                  class="w-14 h-14 bg-[#E31E24] text-white rounded-full flex items-center justify-center text-2xl font-black shadow-md"
+                >
+                  2
+                </div>
+              </div>
+              <div class="bg-[#282B28] text-white rounded-2xl p-5 flex-1">
+                <h3 class="text-lg font-bold text-[#F2850F] mb-1">
+                  Elige tus productos
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Navega por nuestro catálogo y agrega los productos que
+                  necesitas a tu pedido.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-6">
+              <div class="flex items-center gap-3 flex-shrink-0">
+                <div
+                  class="w-14 h-14 bg-[#E31E24] text-white rounded-full flex items-center justify-center text-2xl font-black shadow-md"
+                >
+                  3
+                </div>
+              </div>
+              <div class="bg-[#282B28] text-white rounded-2xl p-5 flex-1">
+                <h3 class="text-lg font-bold text-[#F2850F] mb-1">
+                  Selecciona tu ubicación
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Escoje una ubicación y envia tu pedido.
+                </p>
+              </div>
+            </div>
+            <div class="flex items-center gap-6">
+              <div class="flex items-center gap-3 flex-shrink-0">
+                <div
+                  class="w-14 h-14 bg-[#E31E24] text-white rounded-full flex items-center justify-center text-2xl font-black shadow-md"
+                >
+                  4
+                </div>
+              </div>
+              <div class="bg-[#282B28] text-white rounded-2xl p-5 flex-1">
+                <h3 class="text-lg font-bold text-[#F2850F] mb-1">
+                  Confirma con un asesor
+                </h3>
+                <p class="text-gray-300 text-sm">
+                  Verifica las cantidades en tu carrito y envía tu solicitud de
+                  pedido o cotización.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== ¿LISTO PARA ORDENAR? ===== -->
+      <section class="py-20 px-6 bg-white relative">
+        <div class="container mx-auto text-center">
+          <h2 class="text-4xl md:text-5xl font-fredoka text-[#111111] mb-8">
+            ¿Listo para ordenar?
+          </h2>
+          <a
+            href="producto.html"
+            class="btn-pedido text-lg px-8 py-4 inline-flex"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            Hacer Pedido
+          </a>
+          <p class="text-[#555] mt-4">
+            Cotiza sin compromiso.<br />Estamos aqui para ayudarte :)
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer
+      class="bg-brandBlack text-white pt-20 pb-10 px-6 md:px-8 border-t-4 border-brandGold"
+    >
+      <div class="container mx-auto">
+        <div class="grid md:grid-cols-4 gap-12 mb-16">
+          <div>
+            <img
+              src="img/PNG sin fondo.png"
+              alt="Grupollo"
+              class="h-20 w-auto mb-6"
+            />
+            <p class="text-gray-400 leading-relaxed text-lg">
+              Proveedor confiable de proteína de calidad con entregas puntuales
+              y servicio personalizado.
+            </p>
+            <p class="text-brandGold font-bold mt-4">
+              Calidad y frescura para ti
+            </p>
+          </div>
+          <div>
+            <h4
+              class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+            >
+              Navegación
+            </h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="index.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Inicio</a
+                >
+              </li>
+
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Productos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contacto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Contacto</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+            >
+              Productos
+            </h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Pollo Fresco</a
+                >
+              </li>
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Congelados</a
+                >
+              </li>
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Huevo de Granja</a
+                >
+              </li>
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Mayoreo</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+            >
+              Contacto
+            </h4>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-brandRed"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                  />
+                </svg>
+                56 31 00 28 99 / 55 36 14 33 07
+              </li>
+              <li class="flex items-center gap-3 text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-brandRed"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                CDMX y Área Metropolitana
+              </li>
+              <li class="flex items-center gap-3 text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-brandRed"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Lun - Dom: 5:00 am - 5:00 pm
+              </li>
+              <li class="flex items-center gap-3 text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-brandRed"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                  />
+                  <path
+                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                  />
+                </svg>
+                ventas@grupollo.com
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="border-t border-white/10 pt-8 text-center text-gray-500">
+          <p>© 2026 Grupollo. Calidad y frescura para ti.</p>
+        </div>
+      </div>
+      <a href="recetario.html" class="footer-recipes-corner-img">
+        <!-- <span class="title">Nuestras recetas</span>
+        <div class="shhh-wrap">
+          <span class="shhh-pill">Shhh!</span>
+          <span class="emoji">🤭</span>
+        </div> -->
+        <img src="img/necesitas_a_pollo.webp" />
+      </a>
+    </footer>
+
+    <div
+      id="loginModal"
+      class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center backdrop-blur-sm opacity-0 transition-opacity duration-300"
+    >
+      <div
+        class="bg-[#FFF4D2] p-8 md:p-12 rounded-[40px] shadow-2xl w-11/12 max-w-md transform scale-95 transition-all duration-300 modal-content relative"
+      >
+        <button
+          class="absolute top-6 right-6 text-[#4A2C10] hover:text-[#D15E1D] close-login transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div class="flex justify-center gap-8 mb-8">
+          <button
+            class="tab-btn active font-bold text-xl text-[#4A2C10] pb-2"
+            data-tab="login"
+          >
+            Iniciar Sesión
+          </button>
+          <button
+            class="tab-btn font-bold text-xl text-[#8B5A2B] pb-2"
+            data-tab="register"
+          >
+            Registrarse
+          </button>
+        </div>
+        <form id="loginForm" class="space-y-5">
+          <div>
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <button type="submit" class="w-full btn-primary text-xl py-4">
+            Entrar
+          </button>
+        </form>
+        <form id="registerForm" class="space-y-5 hidden">
+          <div
+            class="bg-gradient-to-r from-[#111111] to-[#2B2B2B] p-4 rounded-2xl mb-4 text-center border-2 border-[#F2850F]"
+          >
+            <p class="font-black text-[#F2850F] text-lg">
+              🎁 ¡DESCUENTO ESPECIAL! 🎁
+            </p>
+            <p class="text-sm font-bold text-white">
+              Obtén
+              <span class="text-2xl text-[#E31E24]">10% de descuento</span>
+              al registrarte
+            </p>
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Nombre completo"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="tel"
+              placeholder="Teléfono"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Confirmar contraseña"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full btn-primary text-xl py-4 font-black"
+          >
+            Crear Cuenta y Activar Descuento
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div
+      id="cartModal"
+      class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-gradient-to-b from-[#FFF4D2] to-[#FFFFFF] z-[90] shadow-2xl transform translate-x-full transition-transform duration-400 flex flex-col border-l-4 border-[#F2850F]"
+    >
+      <div
+        class="p-6 bg-gradient-to-r from-[#111111] to-[#2B2B2B] flex justify-between items-center border-b-4 border-[#F2850F] sticky top-0 z-10 rounded-bl-2xl"
+      >
+        <div class="flex items-center gap-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+          <h2 class="text-2xl font-fredoka text-white">Tu Pedido</h2>
+          <span
+            class="bg-[#E31E24] text-white text-xs font-black px-3 py-1 rounded-full border border-[#F2850F] cart-badge"
+            >0</span
+          >
+        </div>
+        <button
+          class="text-white hover:text-[#F2850F] close-cart transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        id="discountBanner"
+        class="hidden bg-gradient-to-r from-[#111111] to-[#2B2B2B] text-white p-4 mx-4 my-3 rounded-2xl border-2 border-[#F2850F] text-center shadow-lg"
+      >
+        <p class="font-black text-lg mb-1">🎉 DESCUENTO ACTIVADO 🎉</p>
+        <p class="text-sm mb-2">
+          Obtén
+          <span id="discountPercentage" class="font-black text-[#F2850F]"
+            >10%</span
+          >
+          de descuento
+        </p>
+        <p class="text-xs opacity-90">
+          Cupón:
+          <span id="discountCode" class="font-bold text-[#F2850F]"
+            >BIENVENIDA10</span
+          >
+        </p>
+      </div>
+      <div class="flex-1 overflow-y-auto p-4" id="cartItems">
+        <p class="text-center text-[#2B2B2B] mt-16 text-lg font-bold empty-msg">
+          🛒 Tu carrito está vacío
+        </p>
+        <p class="text-center text-[#6B7280] text-sm">
+          Selecciona productos para comenzar
+        </p>
+      </div>
+      <div class="p-6 bg-white border-t-4 border-[#F2850F] sticky bottom-0">
+        <div
+          id="discountDisplay"
+          class="hidden mb-4 p-3 bg-[#FFF4D2] rounded-xl border-2 border-[#F2850F]"
+        >
+          <p class="text-sm font-bold text-[#111111]">
+            ✅ Descuento aplicado:
+            <span class="text-[#E31E24]"
+              >-$<span id="discountAmountBig">0.00</span></span
+            >
+          </p>
+        </div>
+        <div class="space-y-2 mb-4">
+          <div class="flex justify-between items-center text-sm text-[#2B2B2B]">
+            <span>Subtotal:</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div
+            id="discountRow"
+            class="hidden flex justify-between items-center text-sm text-[#E31E24] font-bold"
+          >
+            <span>Descuento (10%):</span>
+            <span>-$<span id="discountAmountSmall">0.00</span></span>
+          </div>
+          <div
+            class="flex justify-between items-center text-2xl font-black text-[#111111] border-t-2 border-[#F2850F] pt-2"
+          >
+            <span>TOTAL:</span>
+            <span id="cartTotal">$0.00</span>
+          </div>
+        </div>
+        <div class="px-4 pb-3">
+          <p
+            class="text-xs font-black text-[#111111] uppercase tracking-tight mb-2"
+          >
+            📍 Sucursal
+          </p>
+          <div id="branchList" class="grid grid-cols-1 gap-1"></div>
+          <p
+            id="branchError"
+            class="hidden text-xs text-[#E31E24] font-bold mt-1"
+          >
+            ⚠️ Selecciona una sucursal
+          </p>
+        </div>
+        <button
+          id="waCartBtn"
+          class="w-full bg-[#E31E24] text-white text-xl py-4 rounded-full font-black flex items-center justify-center gap-3 hover:bg-[#C2181D] transition-all transform hover:scale-[1.02] shadow-xl border-2 border-[#F2850F]"
+        >
+          <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+            />
+          </svg>
+          CONFIRMAR PEDIDO
+        </button>
+        <p class="text-center text-xs text-[#2B2B2B] font-bold">
+          📦 Entregas en CDMX | Lun-Dom 5am-5pm
+        </p>
+      </div>
+    </div>
+
+    <div
+      id="cartOverlay"
+      class="fixed inset-0 bg-black/50 z-[85] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300"
+    ></div>
+    <div
+      id="toastContainer"
+      class="fixed top-24 right-6 flex flex-col gap-3"
+    ></div>
+    <a
+      id="whatsappFloat"
+      href="https://wa.me/525628328887"
+      target="_blank"
+      rel="noopener"
+      aria-label="Contactar por WhatsApp"
+    >
+      <span class="wa-pulse"></span>
+      <svg class="wa-icon" viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+        />
+      </svg>
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=2"></script>
+    <script src="shopingCart.js?v=2"></script>
+  </body>
 </html>

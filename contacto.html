@@ -1,1166 +1,1071 @@
 <!doctype html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Grupollo - Contacto</title>
-        <link rel="stylesheet" href="tailwind-build.css" />
-        <link
-            href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@400;600;700;800;900&display=swap"
-            rel="stylesheet"
-        />
-        <link rel="stylesheet" href="style.css?v=1" />
-    </head>
-    <body
-        class="bg-brandBlack font-montserrat overflow-x-hidden flex flex-col min-h-screen text-white"
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grupollo - Contacto</title>
+    <link rel="stylesheet" href="tailwind-build.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css?v=1" />
+  </head>
+  <body
+    class="bg-brandBlack font-montserrat overflow-x-hidden flex flex-col min-h-screen text-white"
+  >
+    <div id="pageLoader">
+      <img src="img/6.png" alt="Grupollo" class="loader-logo" />
+      <div class="loader-bar-track">
+        <div class="loader-bar-fill"></div>
+      </div>
+      <p class="loader-tagline">Sabor & Calidad</p>
+    </div>
+
+    <div id="scrollProgress"></div>
+    <!-- <div id="seasonalBanner" class="hidden"></div> -->
+    <nav
+      class="fixed w-full z-50 flex flex-col transition-colors duration-300"
+      id="navbar"
     >
-        <div id="pageLoader">
-            <img src="img/6.png" alt="Grupollo" class="loader-logo" />
-            <div class="loader-bar-track">
-                <div class="loader-bar-fill"></div>
-            </div>
-            <p class="loader-tagline">Sabor & Calidad</p>
+      <!-- ROW 1: logo + (wordmark sobre tagline) | atención | hacer pedido | trofeo -->
+      <div class="nav-top-bar">
+        <a href="index.html" class="gp-brand logo-anim" aria-label="Grupollo">
+          <span class="gp-brand-text-stack">
+            <img
+              src="img/logos/grupollo-logo-blanco.png"
+              alt="Grupollo"
+              class="gp-brand-word"
+            />
+            <span class="gp-brand-tagline" s>Calidad y frescura para ti</span>
+          </span>
+        </a>
+
+        <div class="gp-customer-care hidden md:flex">
+          <span class="gp-customer-care-label">Atención al cliente:</span>
+          <span class="gp-customer-care-number">56 31 00 28 99</span>
         </div>
 
-        <div id="scrollProgress"></div>
-        <!-- <div id="seasonalBanner" class="hidden"></div> -->
-        <nav
-            class="fixed w-full z-50 flex flex-col transition-colors duration-300"
-            id="navbar"
+        <div class="gp-actions">
+          <button
+            id="cartBtn"
+            class="gp-order-btn"
+            type="button"
+            aria-label="Hacer Pedido"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="gp-order-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+              />
+            </svg>
+            Hacer Pedido
+            <span class="cart-count hidden">0</span>
+          </button>
+          <button
+            type="button"
+            id="mobileMenuBtn"
+            class="gp-mobile-menu-btn md:hidden"
+            aria-label="Menú"
+            aria-controls="mobileMenu"
+            aria-expanded="false"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-7 w-7"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Línea horizontal dorada -->
+      <div class="gp-nav-divider" aria-hidden="true"></div>
+
+      <!-- ROW 2: nav links (der) + rayas diagonales (extremo der) -->
+      <div class="nav-bottom-bar">
+        <div class="nav-bottom-links">
+          <a href="index.html">Inicio</a>
+          <a href="producto.html">Productos</a>
+          <a href="contacto.html" class="nav-current">Contacto</a>
+          <a href="recetario.html">Recetas</a>
+        </div>
+        <span class="gp-stripe-end" aria-hidden="true"></span>
+      </div>
+    </nav>
+
+    <div
+      id="mobileMenu"
+      class="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center"
+    >
+      <button
+        type="button"
+        id="closeMobileMenu"
+        class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors cursor-pointer"
+        aria-label="Cerrar menú"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
         >
-            <!-- ROW 1: logo + (wordmark sobre tagline) | atención | hacer pedido | trofeo -->
-            <div class="nav-top-bar">
-                <a
-                    href="index.html"
-                    class="gp-brand logo-anim"
-                    aria-label="Grupollo"
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+      <img
+        src="img/PNG sin fondo.png"
+        alt="Grupollo"
+        class="mobile-menu-logo h-16 w-auto brightness-200"
+      />
+      <a href="index.html" class="mobile-nav-link">INICIO</a>
+      <a href="producto.html" class="mobile-nav-link">PRODUCTOS</a>
+      <a href="contacto.html" class="mobile-nav-link mobile-current"
+        >CONTACTO</a
+      >
+      <a href="recetario.html" class="mobile-nav-link">RECETARIO</a>
+
+      <a href="contacto.html" class="btn-pedido text-lg mt-6">Hacer Pedido</a>
+      <p class="mobile-menu-phone">Tel: <span>56 31 00 28 99</span></p>
+    </div>
+
+    <main class="flex-grow hero-offset">
+      <section class="p-10 relative overflow-hidden bg-mundial-geometric">
+        <div class="container mx-auto mb-4">
+          <section class="mision-section">
+            <div class="mision-inner">
+              <p class="mision-eyebrow">
+                <span class="mision-eyebrow-line"></span>
+                Quiénes somos
+              </p>
+
+              <h2 class="mision-heading">
+                Nuestra
+                <span class="mision-heading-accent">esencia</span>
+              </h2>
+              <div class="mision-underline"></div>
+
+              <!-- Misión + Visión -->
+              <div class="mision-mv-grid">
+                <div
+                  class="mision-card mision-card--red slide-left about-value-card"
                 >
-                    <span class="gp-brand-text-stack">
-                        <img
-                            src="img/logos/grupollo-logo-blanco.png"
-                            alt="Grupollo"
-                            class="gp-brand-word"
-                        />
-                        <span class="gp-brand-tagline" s
-                            >Calidad y frescura para ti</span
-                        >
-                    </span>
+                  <div class="mision-card-bar mision-card-bar--red"></div>
+                  <div class="mision-card-wm">M</div>
+                  <p class="mision-card-label">— Misión</p>
+                  <p class="mision-card-text text-left">
+                    Proveer pollo fresco, congelados y huevo de la
+                    <strong class="mision-card-strong">mejor calidad</strong>,
+                    con entregas puntuales en CDMX y Área Metropolitana.
+                  </p>
+                </div>
+
+                <div
+                  class="mision-card mision-card--gold slide-right about-value-card"
+                >
+                  <div class="mision-card-bar mision-card-bar--gold"></div>
+                  <div class="mision-card-wm">V</div>
+                  <p class="mision-card-label text-right">Visión —</p>
+                  <p class="mision-card-text text-right">
+                    Ser la empresa líder en distribución de productos avícolas
+                    en la Ciudad de México, reconocida por nuestra frescura,
+                    consistencia y el compromiso absoluto con el éxito de cada
+                    cliente.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mision-hr"></div>
+
+              <p class="mision-pilares-label">Nuestros pilares</p>
+
+              <div class="mision-pilares fade-in">
+                <div class="mision-pilar about-value-card">
+                  <div class="mision-pilar-wm">01</div>
+                  <div class="mision-pilar-ico mision-pilar-ico--gold">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="mision-pilar-title">Calidad</h3>
+                  <div
+                    class="mision-pilar-stripe mision-pilar-stripe--gold"
+                  ></div>
+                  <p class="mision-pilar-desc">
+                    Productos seleccionados bajo los más estrictos estándares,
+                    desde la granja hasta tu mesa.
+                  </p>
+                </div>
+
+                <div class="mision-pilar about-value-card">
+                  <div class="mision-pilar-wm">02</div>
+                  <div class="mision-pilar-ico mision-pilar-ico--red">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="mision-pilar-title">Compromiso</h3>
+                  <div
+                    class="mision-pilar-stripe mision-pilar-stripe--red"
+                  ></div>
+                  <p class="mision-pilar-desc">
+                    Atención personalizada y logística eficiente para que tu
+                    negocio nunca se detenga.
+                  </p>
+                </div>
+
+                <div class="mision-pilar about-value-card">
+                  <div class="mision-pilar-wm">03</div>
+                  <div class="mision-pilar-ico mision-pilar-ico--yellow">
+                    <img
+                      width="22"
+                      height="22"
+                      src="icons/frescura.svg"
+                      alt="Facebook"
+                    />
+                  </div>
+                  <h3 class="mision-pilar-title">Frescura</h3>
+                  <div
+                    class="mision-pilar-stripe mision-pilar-stripe--yellow"
+                  ></div>
+                  <p class="mision-pilar-desc">
+                    Garantía total en la cadena de frío para mantener intactas
+                    todas las propiedades.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </section>
+      <section
+        class="min-h-[50vh] pb-12 px-6 md:px-8 relative overflow-hidden flex items-center bg-brandDarkGray"
+      >
+        <div class="container mx-auto text-center relative z-10">
+          <p
+            class="text-brandGold font-extrabold text-lg tracking-wider uppercase mb-4"
+          >
+            Estamos para ti
+          </p>
+          <h1 class="text-5xl md:text-7xl font-fredoka text-white mb-6">
+            Contác<span class="text-brandGold">tanos</span>
+          </h1>
+          <p class="text-gray-300 text-xl max-w-2xl mx-auto leading-relaxed">
+            ¿Tienes dudas, quieres hacer un pedido especial o cotizar al
+            mayoreo? Estamos aquí para ayudarte.
+          </p>
+        </div>
+      </section>
+
+      <section
+        class="py-12 px-6 md:px-8 bg-brandBlack section-wave relative"
+        id="contacto"
+      >
+        <div class="container py-18 mx-auto">
+          <section class="job-board">
+            <div class="container">
+              <h2 class="title">Bolsa de Trabajo</h2>
+
+              <div class="social-links">
+                <!-- Facebook -->
+                <a
+                  href="https://www.facebook.com/profile.php?id=61589611384438&sk=photos"
+                  target="_blank"
+                  class="social-card"
+                >
+                  <div class="icon bg-none border-none">
+                    <img src="icons/facebook.svg" alt="Facebook" />
+                  </div>
+                  <div class="content">
+                    <h3>Facebook</h3>
+                    <p>Grupo LLO Oficial</p>
+                  </div>
                 </a>
 
-                <div class="gp-customer-care hidden md:flex">
-                    <span class="gp-customer-care-label"
-                        >Atención al cliente:</span
-                    >
-                    <span class="gp-customer-care-number">56 31 00 28 99</span>
-                </div>
-
-                <div class="gp-actions">
-                    <button
-                        id="cartBtn"
-                        class="gp-order-btn"
-                        type="button"
-                        aria-label="Hacer Pedido"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="gp-order-icon"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                            />
-                        </svg>
-                        Hacer Pedido
-                        <span class="cart-count hidden">0</span>
-                    </button>
-                    <button
-                        type="button"
-                        id="mobileMenuBtn"
-                        class="gp-mobile-menu-btn md:hidden"
-                        aria-label="Menú"
-                        aria-controls="mobileMenu"
-                        aria-expanded="false"
-                    >
-                        <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            class="h-7 w-7"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                            stroke-width="2"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                d="M4 6h16M4 12h16M4 18h16"
-                            />
-                        </svg>
-                    </button>
-                </div>
+                <!-- Instagram -->
+                <a
+                  href="https://www.instagram.com/grupollo_oficial?igsh=YWZpaDFpOHRuZnFz&utm_source=qr"
+                  target="_blank"
+                  class="social-card"
+                >
+                  <div class="icon bg-none border-none">
+                    <img src="icons/instagram.svg" alt="Instagram" />
+                  </div>
+                  <div class="content">
+                    <h3>Instagram</h3>
+                    <p>@grupollo_oficial</p>
+                  </div>
+                </a>
+                <a
+                  href="https://www.instagram.com/grupollo_oficial?igsh=YWZpaDFpOHRuZnFz&utm_source=qr"
+                  target="_blank"
+                  class="social-card"
+                >
+                  <div class="icon bg-none border-none">
+                    <img src="icons/linkedin.svg" alt="Instagram" />
+                  </div>
+                  <div class="content">
+                    <h3>Linkedin</h3>
+                    <p>@grupollo_oficial</p>
+                  </div>
+                </a>
+                <a
+                  href="https://www.instagram.com/grupollo_oficial?igsh=YWZpaDFpOHRuZnFz&utm_source=qr"
+                  target="_blank"
+                  class="social-card"
+                >
+                  <div class="icon bg-none border-none">
+                    <img src="icons/ocss.svg" alt="Instagram" />
+                  </div>
+                  <div class="content">
+                    <h3>OCC</h3>
+                    <p>@grupollo_oficial</p>
+                  </div>
+                </a>
+              </div>
             </div>
-
-            <!-- Línea horizontal dorada -->
-            <div class="gp-nav-divider" aria-hidden="true"></div>
-
-            <!-- ROW 2: nav links (der) + rayas diagonales (extremo der) -->
-            <div class="nav-bottom-bar">
-                <div class="nav-bottom-links">
-                    <a href="index.html">Inicio</a>
-                    <a href="producto.html">Productos</a>
-                    <a href="contacto.html" class="nav-current">Contacto</a>
-                    <a href="recetario.html">Recetas</a>
-                </div>
-                <span class="gp-stripe-end" aria-hidden="true"></span>
-            </div>
-        </nav>
-
-        <div
-            id="mobileMenu"
-            class="mobile-menu fixed inset-0 z-40 flex flex-col items-center justify-center"
-        >
-            <button
-                type="button"
-                id="closeMobileMenu"
-                class="absolute top-6 right-6 text-white/60 hover:text-white transition-colors cursor-pointer"
-                aria-label="Cerrar menú"
+          </section>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+          >
+            <div
+              class="contact-card bg-brandDarkGray border border-white/5 rounded-3xl p-8 text-center shadow-lg hover:border-brandGold/30 transition-all"
             >
+              <div
+                class="w-16 h-16 bg-brandRed rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brandRed/20"
+              >
                 <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-8 w-8"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                     stroke-width="2"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M6 18L18 6M6 6l12 12"
-                    />
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                  />
                 </svg>
-            </button>
+              </div>
+              <h3 class="text-xl font-fredoka text-white mb-2">Teléfono</h3>
+              <p class="text-brandGold text-2xl font-extrabold">
+                56 31 00 28 99
+              </p>
+            </div>
+            <div
+              class="contact-card bg-brandDarkGray border border-white/5 rounded-3xl p-8 text-center shadow-lg hover:border-brandGold/30 transition-all"
+            >
+              <div
+                class="w-16 h-16 bg-brandGold rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brandGold/20"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8 text-black"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-fredoka text-white mb-2">Dirección</h3>
+              <p class="text-gray-300 font-bold text-lg">Av. Principal 123</p>
+            </div>
+            <div
+              class="contact-card bg-brandDarkGray border border-white/5 rounded-3xl p-8 text-center shadow-lg hover:border-brandGold/30 transition-all"
+            >
+              <div
+                class="w-16 h-16 bg-brandBlack rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg border border-white/10"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8 text-white"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+              </div>
+              <h3 class="text-xl font-fredoka text-white mb-2">Horario</h3>
+              <p class="text-gray-300 font-bold">Lunes a Domingo</p>
+              <p class="text-brandGold font-extrabold text-lg">
+                5:00 AM - 5:00 PM
+              </p>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-10 items-start">
+            <div
+              class="bg-brandDarkGray border border-white/5 rounded-[40px] p-8 md:p-12 shadow-xl contact-form"
+            >
+              <h2 class="text-3xl font-fredoka text-white mb-2">
+                Envíanos un mensaje
+              </h2>
+              <p class="text-brandGold mb-8">
+                Te responderemos lo antes posible.
+              </p>
+              <form id="contactForm" class="space-y-5">
+                <div class="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <input
+                      type="text"
+                      placeholder="Tu Nombre"
+                      class="w-full px-6 py-4 rounded-full bg-brandBlack border-2 border-transparent focus:border-brandGold text-white outline-none"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <input
+                      type="tel"
+                      placeholder="Teléfono"
+                      class="w-full px-6 py-4 rounded-full bg-brandBlack border-2 border-transparent focus:border-brandGold text-white outline-none"
+                    />
+                  </div>
+                </div>
+                <div>
+                  <input
+                    type="email"
+                    placeholder="Tu Correo Electrónico"
+                    class="w-full px-6 py-4 rounded-full bg-brandBlack border-2 border-transparent focus:border-brandGold text-white outline-none"
+                    required
+                  />
+                </div>
+                <div>
+                  <select
+                    class="w-full px-6 py-4 rounded-full bg-brandBlack border-2 border-transparent focus:border-brandGold text-gray-400 outline-none"
+                  >
+                    <option value="">Motivo del mensaje</option>
+                    <option value="pedido">Realizar un pedido</option>
+                    <option value="mayoreo">Cotización mayoreo</option>
+                  </select>
+                </div>
+                <div>
+                  <textarea
+                    placeholder="Tu Mensaje"
+                    rows="5"
+                    class="w-full px-6 py-4 rounded-3xl bg-brandBlack border-2 border-transparent focus:border-brandGold text-white outline-none resize-none"
+                    required
+                  ></textarea>
+                </div>
+                <button type="submit" class="w-full btn-primary text-xl py-4">
+                  Enviar Mensaje
+                </button>
+              </form>
+            </div>
+            <div class="space-y-6">
+              <div
+                class="bg-brandDarkGray border border-white/5 rounded-[40px] overflow-hidden shadow-xl"
+              >
+                <img
+                  src="img/Frente Expendio (2).png"
+                  class="w-full h-64 object-cover"
+                  alt="Nuestro Expendio"
+                  onerror="this.src = 'img/Frente Expendio.png'"
+                />
+                <div class="p-6">
+                  <h3 class="text-2xl font-fredoka text-white mb-2">
+                    Expendio Grupollo
+                  </h3>
+                  <p class="text-gray-300">
+                    Visita nuestro expendio y lleva el pollo más fresco de la
+                    ciudad. Te atendemos con gusto y te ayudamos a elegir los
+                    mejores cortes.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        class="py-20 px-6 md:px-8 bg-brandDarkGray relative overflow-hidden"
+      >
+        <div class="container mx-auto max-w-3xl">
+          <div class="text-center mb-16">
+            <p class="text-brandGold font-bold text-lg mb-2">
+              Dudas Frecuentes
+            </p>
+            <h2 class="text-4xl md:text-5xl font-fredoka text-white">
+              Preguntas Frecuentes
+            </h2>
+          </div>
+          <div class="space-y-4" id="faqContainer">
+            <div
+              class="faq-item bg-brandBlack border border-white/5 rounded-2xl shadow-lg overflow-hidden"
+            >
+              <button
+                class="faq-question w-full flex justify-between items-center p-6 text-left font-bold text-lg text-white hover:text-brandGold transition-colors"
+              >
+                <span>¿Hacen entregas a domicilio?</span
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 faq-icon transition-transform text-brandGold"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div
+                class="faq-answer max-h-0 overflow-hidden transition-all duration-300"
+              >
+                <p class="px-6 pb-6 text-gray-300">
+                  Sí, realizamos envíos en el Área Metropolitana.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer
+      class="bg-brandBlack text-white pt-20 pb-10 px-6 md:px-8 border-t-4 border-brandGold"
+    >
+      <div class="container mx-auto">
+        <div class="grid md:grid-cols-4 gap-12 mb-16">
+          <div>
             <img
-                src="img/PNG sin fondo.png"
-                alt="Grupollo"
-                class="mobile-menu-logo h-16 w-auto brightness-200"
+              src="img/PNG sin fondo.png"
+              alt="Grupollo"
+              class="h-20 w-auto mb-6"
             />
-            <a href="index.html" class="mobile-nav-link">INICIO</a>
-            <a href="producto.html" class="mobile-nav-link">PRODUCTOS</a>
-            <a href="contacto.html" class="mobile-nav-link mobile-current"
-                >CONTACTO</a
+            <p class="text-gray-400 leading-relaxed text-lg">
+              Proveedor confiable de proteína de calidad con entregas puntuales
+              y servicio personalizado.
+            </p>
+            <p class="text-brandGold font-bold mt-4">
+              Calidad y frescura en cada entrega
+            </p>
+          </div>
+          <div>
+            <h4
+              class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
             >
-            <a href="recetario.html" class="mobile-nav-link">RECETARIO</a>
+              Navegación
+            </h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="index.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Inicio</a
+                >
+              </li>
 
-            <a href="contacto.html" class="btn-pedido text-lg mt-6"
-                >Hacer Pedido</a
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Productos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="contacto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Contacto</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
             >
-            <p class="mobile-menu-phone">Tel: <span>56 31 00 28 99</span></p>
+              Productos
+            </h4>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Pollo Fresco</a
+                >
+              </li>
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Congelados</a
+                >
+              </li>
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Huevo de Granja</a
+                >
+              </li>
+              <li>
+                <a
+                  href="producto.html"
+                  class="footer-link text-gray-300 hover:text-brandGold transition-colors"
+                  >Mayoreo</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4
+              class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
+            >
+              Contacto
+            </h4>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3 text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-brandRed"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                  />
+                </svg>
+                56 31 00 28 99 / 55 36 14 33 07
+              </li>
+              <li class="flex items-center gap-3 text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-brandRed"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                CDMX y Área Metropolitana
+              </li>
+              <li class="flex items-center gap-3 text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-brandRed"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Lun - Dom: 5:00 am - 5:00 pm
+              </li>
+              <li class="flex items-center gap-3 text-gray-300">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6 text-brandRed"
+                  viewBox="0 0 20 20"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
+                  />
+                  <path
+                    d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
+                  />
+                </svg>
+                ventas@grupollo.com
+              </li>
+            </ul>
+          </div>
         </div>
-
-        <main class="flex-grow hero-offset">
-            <section class="p-10 relative overflow-hidden bg-mundial-geometric">
-                <div class="container mx-auto mb-4">
-                    <section class="mision-section">
-                        <div class="mision-inner">
-                            <p class="mision-eyebrow">
-                                <span class="mision-eyebrow-line"></span>
-                                Quiénes somos
-                            </p>
-
-                            <h2 class="mision-heading">
-                                Nuestra
-                                <span class="mision-heading-accent"
-                                    >esencia</span
-                                >
-                            </h2>
-                            <div class="mision-underline"></div>
-
-                            <!-- Misión + Visión -->
-                            <div class="mision-mv-grid">
-                                <div
-                                    class="mision-card mision-card--red slide-left about-value-card"
-                                >
-                                    <div
-                                        class="mision-card-bar mision-card-bar--red"
-                                    ></div>
-                                    <div class="mision-card-wm">M</div>
-                                    <p class="mision-card-label">— Misión</p>
-                                    <p class="mision-card-text text-left">
-                                        Proveer pollo fresco, congelados y huevo
-                                        de la
-                                        <strong class="mision-card-strong"
-                                            >mejor calidad</strong
-                                        >, con entregas puntuales en CDMX y Área
-                                        Metropolitana.
-                                    </p>
-                                </div>
-
-                                <div
-                                    class="mision-card mision-card--gold slide-right about-value-card"
-                                >
-                                    <div
-                                        class="mision-card-bar mision-card-bar--gold"
-                                    ></div>
-                                    <div class="mision-card-wm">V</div>
-                                    <p class="mision-card-label text-right">
-                                        Visión —
-                                    </p>
-                                    <p class="mision-card-text text-right">
-                                        Ser la empresa líder en distribución de
-                                        productos avícolas en la Ciudad de
-                                        México, reconocida por nuestra frescura,
-                                        consistencia y el compromiso absoluto
-                                        con el éxito de cada cliente.
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="mision-hr"></div>
-
-                            <p class="mision-pilares-label">Nuestros pilares</p>
-
-                            <div class="mision-pilares fade-in">
-                                <div class="mision-pilar about-value-card">
-                                    <div class="mision-pilar-wm">01</div>
-                                    <div
-                                        class="mision-pilar-ico mision-pilar-ico--gold"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="22"
-                                            height="22"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <h3 class="mision-pilar-title">Calidad</h3>
-                                    <div
-                                        class="mision-pilar-stripe mision-pilar-stripe--gold"
-                                    ></div>
-                                    <p class="mision-pilar-desc">
-                                        Productos seleccionados bajo los más
-                                        estrictos estándares, desde la granja
-                                        hasta tu mesa.
-                                    </p>
-                                </div>
-
-                                <div class="mision-pilar about-value-card">
-                                    <div class="mision-pilar-wm">02</div>
-                                    <div
-                                        class="mision-pilar-ico mision-pilar-ico--red"
-                                    >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            width="22"
-                                            height="22"
-                                            viewBox="0 0 24 24"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            stroke-width="2"
-                                            stroke-linecap="round"
-                                            stroke-linejoin="round"
-                                            aria-hidden="true"
-                                        >
-                                            <path
-                                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"
-                                            />
-                                        </svg>
-                                    </div>
-                                    <h3 class="mision-pilar-title">
-                                        Compromiso
-                                    </h3>
-                                    <div
-                                        class="mision-pilar-stripe mision-pilar-stripe--red"
-                                    ></div>
-                                    <p class="mision-pilar-desc">
-                                        Atención personalizada y logística
-                                        eficiente para que tu negocio nunca se
-                                        detenga.
-                                    </p>
-                                </div>
-
-                                <div class="mision-pilar about-value-card">
-                                    <div class="mision-pilar-wm">03</div>
-                                    <div
-                                        class="mision-pilar-ico mision-pilar-ico--yellow"
-                                    >
-                                        <img
-                                            width="22"
-                                            height="22"
-                                            src="icons/frescura.svg"
-                                            alt="Facebook"
-                                        />
-                                    </div>
-                                    <h3 class="mision-pilar-title">Frescura</h3>
-                                    <div
-                                        class="mision-pilar-stripe mision-pilar-stripe--yellow"
-                                    ></div>
-                                    <p class="mision-pilar-desc">
-                                        Garantía total en la cadena de frío para
-                                        mantener intactas todas las propiedades.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </section>
-                </div>
-            </section>
-            <section
-                class="min-h-[50vh] pb-12 px-6 md:px-8 relative overflow-hidden flex items-center bg-brandDarkGray"
-            >
-                <div class="container mx-auto text-center relative z-10">
-                    <p
-                        class="text-brandGold font-extrabold text-lg tracking-wider uppercase mb-4"
-                    >
-                        Estamos para ti
-                    </p>
-                    <h1
-                        class="text-5xl md:text-7xl font-fredoka text-white mb-6"
-                    >
-                        Contác<span class="text-brandGold">tanos</span>
-                    </h1>
-                    <p
-                        class="text-gray-300 text-xl max-w-2xl mx-auto leading-relaxed"
-                    >
-                        ¿Tienes dudas, quieres hacer un pedido especial o
-                        cotizar al mayoreo? Estamos aquí para ayudarte.
-                    </p>
-                </div>
-            </section>
-
-            <section
-                class="py-12 px-6 md:px-8 bg-brandBlack section-wave relative"
-                id="contacto"
-            >
-                <div class="container py-18 mx-auto">
-                    <section class="job-board">
-                        <div class="container">
-                            <h2 class="title">Bolsa de Trabajo</h2>
-
-                            <div class="social-links">
-                                <!-- Facebook -->
-                                <a
-                                    href="https://www.facebook.com/profile.php?id=61589611384438&sk=photos"
-                                    target="_blank"
-                                    class="social-card"
-                                >
-                                    <div class="icon bg-none border-none">
-                                        <img
-                                            src="icons/facebook.svg"
-                                            alt="Facebook"
-                                        />
-                                    </div>
-                                    <div class="content">
-                                        <h3>Facebook</h3>
-                                        <p>Grupo LLO Oficial</p>
-                                    </div>
-                                </a>
-
-                                <!-- Instagram -->
-                                <a
-                                    href="https://www.instagram.com/grupollo_oficial?igsh=YWZpaDFpOHRuZnFz&utm_source=qr"
-                                    target="_blank"
-                                    class="social-card"
-                                >
-                                    <div class="icon bg-none border-none">
-                                        <img
-                                            src="icons/instagram.svg"
-                                            alt="Instagram"
-                                        />
-                                    </div>
-                                    <div class="content">
-                                        <h3>Instagram</h3>
-                                        <p>@grupollo_oficial</p>
-                                    </div>
-                                </a>
-                                <a
-                                    href="https://www.instagram.com/grupollo_oficial?igsh=YWZpaDFpOHRuZnFz&utm_source=qr"
-                                    target="_blank"
-                                    class="social-card"
-                                >
-                                    <div class="icon bg-none border-none">
-                                        <img
-                                            src="icons/linkedin.svg"
-                                            alt="Instagram"
-                                        />
-                                    </div>
-                                    <div class="content">
-                                        <h3>Linkedin</h3>
-                                        <p>@grupollo_oficial</p>
-                                    </div>
-                                </a>
-                                <a
-                                    href="https://www.instagram.com/grupollo_oficial?igsh=YWZpaDFpOHRuZnFz&utm_source=qr"
-                                    target="_blank"
-                                    class="social-card"
-                                >
-                                    <div class="icon bg-none border-none">
-                                        <img
-                                            src="icons/ocss.svg"
-                                            alt="Instagram"
-                                        />
-                                    </div>
-                                    <div class="content">
-                                        <h3>OCC</h3>
-                                        <p>@grupollo_oficial</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </section>
-                    <div
-                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
-                    >
-                        <div
-                            class="contact-card bg-brandDarkGray border border-white/5 rounded-3xl p-8 text-center shadow-lg hover:border-brandGold/30 transition-all"
-                        >
-                            <div
-                                class="w-16 h-16 bg-brandRed rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brandRed/20"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-8 w-8 text-white"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                                    />
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-fredoka text-white mb-2">
-                                Teléfono
-                            </h3>
-                            <p class="text-brandGold text-2xl font-extrabold">
-                                56 31 00 28 99
-                            </p>
-                        </div>
-                        <div
-                            class="contact-card bg-brandDarkGray border border-white/5 rounded-3xl p-8 text-center shadow-lg hover:border-brandGold/30 transition-all"
-                        >
-                            <div
-                                class="w-16 h-16 bg-brandGold rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg shadow-brandGold/20"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-8 w-8 text-black"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                                    />
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                                    />
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-fredoka text-white mb-2">
-                                Dirección
-                            </h3>
-                            <p class="text-gray-300 font-bold text-lg">
-                                Av. Principal 123
-                            </p>
-                        </div>
-                        <div
-                            class="contact-card bg-brandDarkGray border border-white/5 rounded-3xl p-8 text-center shadow-lg hover:border-brandGold/30 transition-all"
-                        >
-                            <div
-                                class="w-16 h-16 bg-brandBlack rounded-2xl flex items-center justify-center mx-auto mb-5 shadow-lg border border-white/10"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-8 w-8 text-white"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                                    />
-                                </svg>
-                            </div>
-                            <h3 class="text-xl font-fredoka text-white mb-2">
-                                Horario
-                            </h3>
-                            <p class="text-gray-300 font-bold">
-                                Lunes a Domingo
-                            </p>
-                            <p class="text-brandGold font-extrabold text-lg">
-                                5:00 AM - 5:00 PM
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="grid md:grid-cols-2 gap-10 items-start">
-                        <div
-                            class="bg-brandDarkGray border border-white/5 rounded-[40px] p-8 md:p-12 shadow-xl contact-form"
-                        >
-                            <h2 class="text-3xl font-fredoka text-white mb-2">
-                                Envíanos un mensaje
-                            </h2>
-                            <p class="text-brandGold mb-8">
-                                Te responderemos lo antes posible.
-                            </p>
-                            <form id="contactForm" class="space-y-5">
-                                <div class="grid md:grid-cols-2 gap-4">
-                                    <div>
-                                        <input
-                                            type="text"
-                                            placeholder="Tu Nombre"
-                                            class="w-full px-6 py-4 rounded-full bg-brandBlack border-2 border-transparent focus:border-brandGold text-white outline-none"
-                                            required
-                                        />
-                                    </div>
-                                    <div>
-                                        <input
-                                            type="tel"
-                                            placeholder="Teléfono"
-                                            class="w-full px-6 py-4 rounded-full bg-brandBlack border-2 border-transparent focus:border-brandGold text-white outline-none"
-                                        />
-                                    </div>
-                                </div>
-                                <div>
-                                    <input
-                                        type="email"
-                                        placeholder="Tu Correo Electrónico"
-                                        class="w-full px-6 py-4 rounded-full bg-brandBlack border-2 border-transparent focus:border-brandGold text-white outline-none"
-                                        required
-                                    />
-                                </div>
-                                <div>
-                                    <select
-                                        class="w-full px-6 py-4 rounded-full bg-brandBlack border-2 border-transparent focus:border-brandGold text-gray-400 outline-none"
-                                    >
-                                        <option value="">
-                                            Motivo del mensaje
-                                        </option>
-                                        <option value="pedido">
-                                            Realizar un pedido
-                                        </option>
-                                        <option value="mayoreo">
-                                            Cotización mayoreo
-                                        </option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <textarea
-                                        placeholder="Tu Mensaje"
-                                        rows="5"
-                                        class="w-full px-6 py-4 rounded-3xl bg-brandBlack border-2 border-transparent focus:border-brandGold text-white outline-none resize-none"
-                                        required
-                                    ></textarea>
-                                </div>
-                                <button
-                                    type="submit"
-                                    class="w-full btn-primary text-xl py-4"
-                                >
-                                    Enviar Mensaje
-                                </button>
-                            </form>
-                        </div>
-                        <div class="space-y-6">
-                            <div
-                                class="bg-brandDarkGray border border-white/5 rounded-[40px] overflow-hidden shadow-xl"
-                            >
-                                <img
-                                    src="img/Frente Expendio (2).png"
-                                    class="w-full h-64 object-cover"
-                                    alt="Nuestro Expendio"
-                                    onerror="
-                                        this.src = 'img/Frente Expendio.png'
-                                    "
-                                />
-                                <div class="p-6">
-                                    <h3
-                                        class="text-2xl font-fredoka text-white mb-2"
-                                    >
-                                        Expendio Grupollo
-                                    </h3>
-                                    <p class="text-gray-300">
-                                        Visita nuestro expendio y lleva el pollo
-                                        más fresco de la ciudad. Te atendemos
-                                        con gusto y te ayudamos a elegir los
-                                        mejores cortes.
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section
-                class="py-20 px-6 md:px-8 bg-brandDarkGray relative overflow-hidden"
-            >
-                <div class="container mx-auto max-w-3xl">
-                    <div class="text-center mb-16">
-                        <p class="text-brandGold font-bold text-lg mb-2">
-                            Dudas Frecuentes
-                        </p>
-                        <h2
-                            class="text-4xl md:text-5xl font-fredoka text-white"
-                        >
-                            Preguntas Frecuentes
-                        </h2>
-                    </div>
-                    <div class="space-y-4" id="faqContainer">
-                        <div
-                            class="faq-item bg-brandBlack border border-white/5 rounded-2xl shadow-lg overflow-hidden"
-                        >
-                            <button
-                                class="faq-question w-full flex justify-between items-center p-6 text-left font-bold text-lg text-white hover:text-brandGold transition-colors"
-                            >
-                                <span>¿Hacen entregas a domicilio?</span
-                                ><svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 faq-icon transition-transform text-brandGold"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2"
-                                        d="M19 9l-7 7-7-7"
-                                    />
-                                </svg>
-                            </button>
-                            <div
-                                class="faq-answer max-h-0 overflow-hidden transition-all duration-300"
-                            >
-                                <p class="px-6 pb-6 text-gray-300">
-                                    Sí, realizamos envíos en el Área
-                                    Metropolitana.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-
-        <!-- ===== FOOTER ===== -->
-        <footer
-            class="bg-brandBlack text-white pt-20 pb-10 px-6 md:px-8 border-t-4 border-brandGold"
-        >
-            <div class="container mx-auto">
-                <div class="grid md:grid-cols-4 gap-12 mb-16">
-                    <div>
-                        <img
-                            src="img/PNG sin fondo.png"
-                            alt="Grupollo"
-                            class="h-20 w-auto mb-6"
-                        />
-                        <p class="text-gray-400 leading-relaxed text-lg">
-                            Proveedor confiable de proteína de calidad con
-                            entregas puntuales y servicio personalizado.
-                        </p>
-                        <p class="text-brandGold font-bold mt-4">
-                            Calidad y frescura en cada entrega
-                        </p>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
-                        >
-                            Navegación
-                        </h4>
-                        <ul class="space-y-3">
-                            <li>
-                                <a
-                                    href="index.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Inicio</a
-                                >
-                            </li>
-
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Productos</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="contacto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Contacto</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
-                        >
-                            Productos
-                        </h4>
-                        <ul class="space-y-3">
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Pollo Fresco</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Congelados</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Huevo de Granja</a
-                                >
-                            </li>
-                            <li>
-                                <a
-                                    href="producto.html"
-                                    class="footer-link text-gray-300 hover:text-brandGold transition-colors"
-                                    >Mayoreo</a
-                                >
-                            </li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h4
-                            class="font-black text-xl mb-6 text-brandGold uppercase tracking-wider"
-                        >
-                            Contacto
-                        </h4>
-                        <ul class="space-y-4">
-                            <li class="flex items-center gap-3 text-gray-300">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-brandRed"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
-                                    />
-                                </svg>
-                                56 31 00 28 99 / 55 36 14 33 07
-                            </li>
-                            <li class="flex items-center gap-3 text-gray-300">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-brandRed"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                                CDMX y Área Metropolitana
-                            </li>
-                            <li class="flex items-center gap-3 text-gray-300">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-brandRed"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                                        clip-rule="evenodd"
-                                    />
-                                </svg>
-                                Lun - Dom: 5:00 am - 5:00 pm
-                            </li>
-                            <li class="flex items-center gap-3 text-gray-300">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="h-6 w-6 text-brandRed"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                >
-                                    <path
-                                        d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"
-                                    />
-                                    <path
-                                        d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"
-                                    />
-                                </svg>
-                                ventas@grupollo.com
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div
-                    class="border-t border-white/10 pt-8 text-center text-gray-500"
-                >
-                    <p>
-                        &copy; 2026 Grupollo. Calidad y frescura en cada
-                        entrega.
-                    </p>
-                </div>
-            </div>
-            <a href="recetario.html" class="footer-recipes-corner">
-                <span class="title">Nuestras recetas</span>
-                <div class="shhh-wrap">
-                    <span class="shhh-pill">Shhh!</span>
-                    <span class="emoji">🤭</span>
-                </div>
-            </a>
-        </footer>
-
-        <div
-            id="loginModal"
-            class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center backdrop-blur-sm opacity-0 transition-opacity duration-300"
-        >
-            <div
-                class="bg-[#FFF4D2] p-8 md:p-12 rounded-[40px] shadow-2xl w-11/12 max-w-md transform scale-95 transition-all duration-300 modal-content relative"
-            >
-                <button
-                    class="absolute top-6 right-6 text-[#4A2C10] hover:text-[#D15E1D] close-login transition-colors"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-8 w-8"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12"
-                        />
-                    </svg>
-                </button>
-                <div class="flex justify-center gap-8 mb-8">
-                    <button
-                        class="tab-btn active font-bold text-xl text-[#4A2C10] pb-2"
-                        data-tab="login"
-                    >
-                        Iniciar Sesión
-                    </button>
-                    <button
-                        class="tab-btn font-bold text-xl text-[#8B5A2B] pb-2"
-                        data-tab="register"
-                    >
-                        Registrarse
-                    </button>
-                </div>
-                <form id="loginForm" class="space-y-5">
-                    <div>
-                        <input
-                            type="email"
-                            placeholder="Correo electrónico"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            placeholder="Contraseña"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        class="w-full btn-primary text-xl py-4"
-                    >
-                        Entrar
-                    </button>
-                </form>
-                <form id="registerForm" class="space-y-5 hidden">
-                    <div
-                        class="bg-gradient-to-r from-[#111111] to-[#2B2B2B] p-4 rounded-2xl mb-4 text-center border-2 border-[#F2850F]"
-                    >
-                        <p class="font-black text-[#F2850F] text-lg">
-                            🎁 ¡DESCUENTO ESPECIAL! 🎁
-                        </p>
-                        <p class="text-sm font-bold text-white">
-                            Obtén
-                            <span class="text-2xl text-[#E31E24]"
-                                >10% de descuento</span
-                            >
-                            al registrarte
-                        </p>
-                    </div>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Nombre completo"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="email"
-                            placeholder="Correo electrónico"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="tel"
-                            placeholder="Teléfono"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            placeholder="Contraseña"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <div>
-                        <input
-                            type="password"
-                            placeholder="Confirmar contraseña"
-                            class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
-                            required
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        class="w-full btn-primary text-xl py-4 font-black"
-                    >
-                        Crear Cuenta y Activar Descuento
-                    </button>
-                </form>
-            </div>
+        <div class="border-t border-white/10 pt-8 text-center text-gray-500">
+          <p>&copy; 2026 Grupollo. Calidad y frescura en cada entrega.</p>
         </div>
-        <div
-            id="cartModal"
-            class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-gradient-to-b from-[#FFF4D2] to-[#FFFFFF] z-[90] shadow-2xl transform translate-x-full transition-transform duration-400 flex flex-col border-l-4 border-[#F2850F]"
-        >
-            <div
-                class="p-6 bg-gradient-to-r from-[#111111] to-[#2B2B2B] flex justify-between items-center border-b-4 border-[#F2850F] sticky top-0 z-10 rounded-bl-2xl"
-            >
-                <div class="flex items-center gap-3">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-8 w-8 text-white"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-                        />
-                    </svg>
-                    <h2 class="text-2xl font-fredoka text-white">Tu Pedido</h2>
-                    <span
-                        class="bg-[#E31E24] text-white text-xs font-black px-3 py-1 rounded-full border border-[#F2850F] cart-badge"
-                        >0</span
-                    >
-                </div>
-                <button
-                    class="text-white hover:text-[#F2850F] close-cart transition-colors"
-                >
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="h-8 w-8"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                    >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M6 18L18 6M6 6l12 12"
-                        />
-                    </svg>
-                </button>
-            </div>
-            <div
-                id="discountBanner"
-                class="hidden bg-gradient-to-r from-[#111111] to-[#2B2B2B] text-white p-4 mx-4 my-3 rounded-2xl border-2 border-[#F2850F] text-center shadow-lg"
-            >
-                <p class="font-black text-lg mb-1">🎉 DESCUENTO ACTIVADO 🎉</p>
-                <p class="text-sm mb-2">
-                    Obtén
-                    <span
-                        id="discountPercentage"
-                        class="font-black text-[#F2850F]"
-                        >10%</span
-                    >
-                    de descuento
-                </p>
-                <p class="text-xs opacity-90">
-                    Cupón:
-                    <span id="discountCode" class="font-bold text-[#F2850F]"
-                        >BIENVENIDA10</span
-                    >
-                </p>
-            </div>
-            <div class="flex-1 overflow-y-auto p-4" id="cartItems">
-                <p
-                    class="text-center text-[#2B2B2B] mt-16 text-lg font-bold empty-msg"
-                >
-                    🛒 Tu carrito está vacío
-                </p>
-                <p class="text-center text-[#6B7280] text-sm">
-                    Selecciona productos para comenzar
-                </p>
-            </div>
-            <div
-                class="p-6 bg-white border-t-4 border-[#F2850F] sticky bottom-0"
-            >
-                <div
-                    id="discountDisplay"
-                    class="hidden mb-4 p-3 bg-[#FFF4D2] rounded-xl border-2 border-[#F2850F]"
-                >
-                    <p class="text-sm font-bold text-[#111111]">
-                        ✅ Descuento aplicado:
-                        <span class="text-[#E31E24]"
-                            >-$<span id="discountAmountBig">0.00</span></span
-                        >
-                    </p>
-                </div>
-                <div class="space-y-2 mb-4">
-                    <div
-                        class="flex justify-between items-center text-sm text-[#2B2B2B]"
-                    >
-                        <span>Subtotal:</span>
-                        <span id="cartSubtotal">$0.00</span>
-                    </div>
-                    <div
-                        id="discountRow"
-                        class="hidden flex justify-between items-center text-sm text-[#E31E24] font-bold"
-                    >
-                        <span>Descuento (10%):</span>
-                        <span
-                            >-$<span id="discountAmountSmall">0.00</span></span
-                        >
-                    </div>
-                    <div
-                        class="flex justify-between items-center text-2xl font-black text-[#111111] border-t-2 border-[#F2850F] pt-2"
-                    >
-                        <span>TOTAL:</span>
-                        <span id="cartTotal">$0.00</span>
-                    </div>
-                </div>
-                <div class="px-4 pb-3">
-                    <p
-                        class="text-xs font-black text-[#111111] uppercase tracking-tight mb-2"
-                    >
-                        📍 Sucursal
-                    </p>
-                    <div id="branchList" class="grid grid-cols-1 gap-1"></div>
-                    <p
-                        id="branchError"
-                        class="hidden text-xs text-[#E31E24] font-bold mt-1"
-                    >
-                        ⚠️ Selecciona una sucursal
-                    </p>
-                </div>
-                <button
-                    id="waCartBtn"
-                    class="w-full bg-[#E31E24] text-white text-xl py-4 rounded-full font-black flex items-center justify-center gap-3 hover:bg-[#C2181D] transition-all transform hover:scale-[1.02] shadow-xl border-2 border-[#F2850F]"
-                >
-                    <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
-                        <path
-                            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                        />
-                    </svg>
-                    CONFIRMAR PEDIDO
-                </button>
-                <p class="text-center text-xs text-[#2B2B2B] font-bold">
-                    📦 Entregas en CDMX | Lun-Dom 5am-5pm
-                </p>
-            </div>
+      </div>
+      <a href="recetario.html" class="footer-recipes-corner">
+        <span class="title">Nuestras recetas</span>
+        <div class="shhh-wrap">
+          <span class="shhh-pill">Shhh!</span>
+          <span class="emoji">🤭</span>
         </div>
+      </a>
+    </footer>
+
+    <div
+      id="loginModal"
+      class="fixed inset-0 bg-black/50 z-[60] hidden flex items-center justify-center backdrop-blur-sm opacity-0 transition-opacity duration-300"
+    >
+      <div
+        class="bg-[#FFF4D2] p-8 md:p-12 rounded-[40px] shadow-2xl w-11/12 max-w-md transform scale-95 transition-all duration-300 modal-content relative"
+      >
+        <button
+          class="absolute top-6 right-6 text-[#4A2C10] hover:text-[#D15E1D] close-login transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        <div class="flex justify-center gap-8 mb-8">
+          <button
+            class="tab-btn active font-bold text-xl text-[#4A2C10] pb-2"
+            data-tab="login"
+          >
+            Iniciar Sesión
+          </button>
+          <button
+            class="tab-btn font-bold text-xl text-[#8B5A2B] pb-2"
+            data-tab="register"
+          >
+            Registrarse
+          </button>
+        </div>
+        <form id="loginForm" class="space-y-5">
+          <div>
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <button type="submit" class="w-full btn-primary text-xl py-4">
+            Entrar
+          </button>
+        </form>
+        <form id="registerForm" class="space-y-5 hidden">
+          <div
+            class="bg-gradient-to-r from-[#111111] to-[#2B2B2B] p-4 rounded-2xl mb-4 text-center border-2 border-[#F2850F]"
+          >
+            <p class="font-black text-[#F2850F] text-lg">
+              🎁 ¡DESCUENTO ESPECIAL! 🎁
+            </p>
+            <p class="text-sm font-bold text-white">
+              Obtén
+              <span class="text-2xl text-[#E31E24]">10% de descuento</span>
+              al registrarte
+            </p>
+          </div>
+          <div>
+            <input
+              type="text"
+              placeholder="Nombre completo"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="email"
+              placeholder="Correo electrónico"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="tel"
+              placeholder="Teléfono"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Contraseña"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="password"
+              placeholder="Confirmar contraseña"
+              class="w-full px-6 py-4 rounded-full bg-white border-2 border-transparent focus:border-[#D15E1D] outline-none transition-colors"
+              required
+            />
+          </div>
+          <button
+            type="submit"
+            class="w-full btn-primary text-xl py-4 font-black"
+          >
+            Crear Cuenta y Activar Descuento
+          </button>
+        </form>
+      </div>
+    </div>
+    <div
+      id="cartModal"
+      class="fixed inset-y-0 right-0 w-full md:w-[450px] bg-gradient-to-b from-[#FFF4D2] to-[#FFFFFF] z-[90] shadow-2xl transform translate-x-full transition-transform duration-400 flex flex-col border-l-4 border-[#F2850F]"
+    >
+      <div
+        class="p-6 bg-gradient-to-r from-[#111111] to-[#2B2B2B] flex justify-between items-center border-b-4 border-[#F2850F] sticky top-0 z-10 rounded-bl-2xl"
+      >
+        <div class="flex items-center gap-3">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+            />
+          </svg>
+          <h2 class="text-2xl font-fredoka text-white">Tu Pedido</h2>
+          <span
+            class="bg-[#E31E24] text-white text-xs font-black px-3 py-1 rounded-full border border-[#F2850F] cart-badge"
+            >0</span
+          >
+        </div>
+        <button
+          class="text-white hover:text-[#F2850F] close-cart transition-colors"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-8 w-8"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+      <div
+        id="discountBanner"
+        class="hidden bg-gradient-to-r from-[#111111] to-[#2B2B2B] text-white p-4 mx-4 my-3 rounded-2xl border-2 border-[#F2850F] text-center shadow-lg"
+      >
+        <p class="font-black text-lg mb-1">🎉 DESCUENTO ACTIVADO 🎉</p>
+        <p class="text-sm mb-2">
+          Obtén
+          <span id="discountPercentage" class="font-black text-[#F2850F]"
+            >10%</span
+          >
+          de descuento
+        </p>
+        <p class="text-xs opacity-90">
+          Cupón:
+          <span id="discountCode" class="font-bold text-[#F2850F]"
+            >BIENVENIDA10</span
+          >
+        </p>
+      </div>
+      <div class="flex-1 overflow-y-auto p-4" id="cartItems">
+        <p class="text-center text-[#2B2B2B] mt-16 text-lg font-bold empty-msg">
+          🛒 Tu carrito está vacío
+        </p>
+        <p class="text-center text-[#6B7280] text-sm">
+          Selecciona productos para comenzar
+        </p>
+      </div>
+      <div class="p-6 bg-white border-t-4 border-[#F2850F] sticky bottom-0">
         <div
-            id="cartOverlay"
-            class="fixed inset-0 bg-black/50 z-[85] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300"
-        ></div>
-        <div
-            id="toastContainer"
-            class="fixed top-24 right-6 flex flex-col gap-3"
-        ></div>
-        <a
-            id="whatsappFloat"
-            href="https://wa.me/525628328887"
-            target="_blank"
-            rel="noopener"
-            aria-label="Contactar por WhatsApp"
-            ><span class="wa-pulse"></span
-            ><svg class="wa-icon" viewBox="0 0 24 24">
-                <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
-                /></svg
-        ></a>
+          id="discountDisplay"
+          class="hidden mb-4 p-3 bg-[#FFF4D2] rounded-xl border-2 border-[#F2850F]"
+        >
+          <p class="text-sm font-bold text-[#111111]">
+            ✅ Descuento aplicado:
+            <span class="text-[#E31E24]"
+              >-$<span id="discountAmountBig">0.00</span></span
+            >
+          </p>
+        </div>
+        <div class="space-y-2 mb-4">
+          <div class="flex justify-between items-center text-sm text-[#2B2B2B]">
+            <span>Subtotal:</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div
+            id="discountRow"
+            class="hidden flex justify-between items-center text-sm text-[#E31E24] font-bold"
+          >
+            <span>Descuento (10%):</span>
+            <span>-$<span id="discountAmountSmall">0.00</span></span>
+          </div>
+          <div
+            class="flex justify-between items-center text-2xl font-black text-[#111111] border-t-2 border-[#F2850F] pt-2"
+          >
+            <span>TOTAL:</span>
+            <span id="cartTotal">$0.00</span>
+          </div>
+        </div>
+        <div class="px-4 pb-3">
+          <p
+            class="text-xs font-black text-[#111111] uppercase tracking-tight mb-2"
+          >
+            📍 Sucursal
+          </p>
+          <div id="branchList" class="grid grid-cols-1 gap-1"></div>
+          <p
+            id="branchError"
+            class="hidden text-xs text-[#E31E24] font-bold mt-1"
+          >
+            ⚠️ Selecciona una sucursal
+          </p>
+        </div>
+        <button
+          id="waCartBtn"
+          class="w-full bg-[#E31E24] text-white text-xl py-4 rounded-full font-black flex items-center justify-center gap-3 hover:bg-[#C2181D] transition-all transform hover:scale-[1.02] shadow-xl border-2 border-[#F2850F]"
+        >
+          <svg class="w-7 h-7 fill-white" viewBox="0 0 24 24">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+            />
+          </svg>
+          CONFIRMAR PEDIDO
+        </button>
+        <p class="text-center text-xs text-[#2B2B2B] font-bold">
+          📦 Entregas en CDMX | Lun-Dom 5am-5pm
+        </p>
+      </div>
+    </div>
+    <div
+      id="cartOverlay"
+      class="fixed inset-0 bg-black/50 z-[85] hidden backdrop-blur-sm opacity-0 transition-opacity duration-300"
+    ></div>
+    <div
+      id="toastContainer"
+      class="fixed top-24 right-6 flex flex-col gap-3"
+    ></div>
+    <a
+      id="whatsappFloat"
+      href="https://wa.me/525628328887"
+      target="_blank"
+      rel="noopener"
+      aria-label="Contactar por WhatsApp"
+      ><span class="wa-pulse"></span
+      ><svg class="wa-icon" viewBox="0 0 24 24">
+        <path
+          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+        /></svg
+    ></a>
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-        <script src="script.js?v=1"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const elements = document.querySelectorAll(
-                    ".fade-in, .slide-left, .slide-right",
-                );
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js?v=1"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const elements = document.querySelectorAll(
+          ".fade-in, .slide-left, .slide-right",
+        );
 
-                const observer = new IntersectionObserver(
-                    (entries) => {
-                        entries.forEach((entry) => {
-                            if (entry.isIntersecting) {
-                                entry.target.classList.add("show");
-                            }
-                        });
-                    },
-                    {
-                        threshold: 0.15,
-                    },
-                );
-
-                elements.forEach((el) => observer.observe(el));
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("show");
+              }
             });
-        </script>
-        <script src="shopingCart.js?v=2"></script>
-    </body>
+          },
+          {
+            threshold: 0.15,
+          },
+        );
+
+        elements.forEach((el) => observer.observe(el));
+      });
+    </script>
+    <script src="shopingCart.js?v=2"></script>
+  </body>
 </html>

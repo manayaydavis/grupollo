@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
         card.setAttribute("aria-expanded", willOpen ? "true" : "false");
       };
 
-      card.addEventListener("click", toggle);
+      card.addEventListener("º", toggle);
       card.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
           event.preventDefault();
@@ -1440,21 +1440,6 @@ window.switchPanel = function (panelId, btn) {
     gsap.from(targetPanel, { opacity: 0, y: 20, duration: 0.4 });
   }
 };
-// Filtro de marcas
-document.addEventListener("click", function (e) {
-  const btn = e.target.closest(".filter-btn-marca");
-  if (!btn) return;
-  document.querySelectorAll(".filter-btn-marca").forEach((b) => {
-    b.classList.remove("active", "bg-brandRed", "text-white");
-    b.classList.add("bg-brandDarkGray", "text-white");
-  });
-  btn.classList.add("active", "bg-brandRed");
-  const marca = btn.dataset.marca;
-  document.querySelectorAll("#marcasGrid .product-card").forEach((card) => {
-    card.style.display =
-      marca === "all" || card.dataset.marca === marca ? "" : "none";
-  });
-});
 
 // ================================================================
 // 7. AJUSTE DINÁMICO DEL NAVBAR CON EL TICKER
