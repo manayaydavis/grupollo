@@ -145,7 +145,12 @@ document.querySelectorAll(".add-to-cart").forEach((btn) => {
     // Button pop animation
     gsap.to(target, { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1 });
 
-    addItemToCart(id, name, price);
+    let padre = btn.parentNode;
+    let cantidadInput = padre.querySelector("input");
+    if (!cantidadInput) return;
+    let cantidad = parseInt(cantidadInput.value);
+
+    addItemToCart(id, name, price, cantidad);
 
     // Show toast
     showToast(`${name} agregado al pedido`, "success");
@@ -458,12 +463,18 @@ function soloNumeros(e) {
 
 function add(e, btn, add = true) {
   let padre = btn.parentNode;
-  //mini carrito
-  let total = 1;
   let cantidad = padre.querySelector("input");
-  if (cantidad) total = parseInt(cantidad.value);
-  // cantidad.value = total;
-  updateQuantity(btn.dataset.id, add ? total : total * -1, btn);
+  console.log(cantidad);
+  if (!cantidad) return;
+  let total = parseInt(cantidad.value);
+  if (add) {
+    cantidad.value = total + 1;
+    e.stopPropagation();
+    return;
+  }
+  if (total === 1) return;
+  cantidad.value = total - 1;
+  // updateQuantity(btn.dataset.id, add ? total : total * -1, btn);
   e.stopPropagation();
 }
 

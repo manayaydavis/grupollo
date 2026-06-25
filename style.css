@@ -3516,11 +3516,11 @@ footer {
 .footer-recipes-corner-img {
   display: flex !important;
   position: absolute;
-  top: -65px;
+  top: -85px;
   right: 30px;
   /* background: linear-gradient(160deg, #1a1a1a, #282b28); */
   /* padding: 12px 20px; */
-  border-radius: 150px;
+  /* border-radius: 150px; */
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   z-index: 90;
@@ -3530,12 +3530,12 @@ footer {
   gap: 4px;
   /* border: 2px solid var(--color-gold); */
   transform: rotate(5deg);
-  width: 150px;
+  width: 200px;
 }
 
 .footer-recipes-corner-img:hover {
   transform: translateY(-8px) rotate(-2deg) scale(1.1);
-  box-shadow: 0 15px 40px rgba(242, 133, 15, 0.4);
+  /* box-shadow: 0 15px 40px rgba(242, 133, 15, 0.4); */
   border-color: var(--color-red);
 }
 
