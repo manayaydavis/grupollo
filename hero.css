@@ -349,6 +349,7 @@
   align-items: center;
   justify-content: center;
   line-height: 1;
+  box-shadow: 0 14px 35px rgba(227, 30, 36, 0.35);
 }
 .pc-add:hover {
   transform: translateY(-2px) scale(1.03);
@@ -367,7 +368,8 @@
   grid-row: 1;
   align-self: center;
   z-index: 10;
-  background: var(--color-dark-gray);
+  /* background: var(--color-dark-gray); */
+  background: #181212;
   border: 1.5px solid rgba(242, 133, 15, 0.25);
   border-radius: 20px;
   padding: 38px 32px;

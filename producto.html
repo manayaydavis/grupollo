@@ -534,7 +534,7 @@
                 >Huevo</span
               >
             </button>
-            <button
+            <!-- <button
               class="section-tab flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
               data-panel="marcas"
               onclick="switchPanel('marcas', this)"
@@ -543,7 +543,7 @@
               <span class="font-black text-base uppercase tracking-wide"
                 >Marcas</span
               >
-            </button>
+            </button> -->
           </div>
 
           <div class="product-panel active" id="panel-frescos">
@@ -551,6 +551,21 @@
               class="flex flex-wrap justify-center gap-3 mb-10"
               id="filterContainer"
             >
+              <button
+                class="bg-white text-[#4A2C10] flex items-center px-6 py-3 rounded-full font-bold shadow-md"
+                data-panel="marcas"
+                onclick="switchPanel('marcas', this)"
+              >
+                <span class="text-5xl">🏷️</span>
+                Marcas
+              </button>
+              <button
+                class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black hidden"
+                data-type="marca"
+                data-filter="marcax"
+              >
+                Marca X
+              </button>
               <button
                 class="filter-btn active bg-brandRed text-white px-6 py-3 rounded-full font-bold shadow-md"
                 data-filter="all"
