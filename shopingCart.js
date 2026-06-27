@@ -135,42 +135,48 @@ closeCartBtns.forEach((btn) => btn.addEventListener("click", closeCart));
 if (cartOverlay) cartOverlay.addEventListener("click", closeCart);
 
 // Add to cart buttons
-document.querySelectorAll(".add-to-cart").forEach((btn) => {
-  btn.addEventListener("click", (e) => {
-    const target = e.currentTarget;
-    const id = target.dataset.id;
-    const name = target.dataset.name;
-    const price = parseFloat(target.dataset.price);
 
-    // Button pop animation
-    gsap.to(target, { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1 });
+function addCart(e, btn) {
+  const target = e.currentTarget;
+  const id = target.dataset.id;
+  const name = target.dataset.name;
+  const price = parseFloat(target.dataset.price);
 
-    let padre = btn.parentNode;
-    let cantidadInput = padre.querySelector("input");
-    if (!cantidadInput) return;
-    let cantidad = parseInt(cantidadInput.value);
+  // Button pop animation
+  gsap.to(target, { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1 });
 
-    addItemToCart(id, name, price, cantidad);
+  let padre = btn.parentNode;
+  let cantidadInput = padre.querySelector("input");
+  if (!cantidadInput) return;
+  let cantidad = parseInt(cantidadInput.value);
 
-    // Show toast
-    showToast(`${name} agregado al pedido`, "success");
+  addItemToCart(id, name, price, cantidad);
 
-    // Bounce cart icon
-    if (cartBtn) {
-      gsap.fromTo(
-        cartBtn,
-        { scale: 1 },
-        {
-          scale: 1.4,
-          duration: 0.2,
-          yoyo: true,
-          repeat: 1,
-          ease: "back.out(3)",
-        },
-      );
-    }
+  // Show toast
+  showToast(`${name} agregado al pedido`, "success");
+
+  // Bounce cart icon
+  if (cartBtn) {
+    gsap.fromTo(
+      cartBtn,
+      { scale: 1 },
+      {
+        scale: 1.4,
+        duration: 0.2,
+        yoyo: true,
+        repeat: 1,
+        ease: "back.out(3)",
+      },
+    );
+  }
+}
+function botonesAddToCart() {
+  document.querySelectorAll(".add-to-cart").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      addCart(e, btn);
+    });
   });
-});
+}
 
 function saveCart() {
   localStorage.setItem("grupolloCart", JSON.stringify(cart));
@@ -179,7 +185,7 @@ function saveCart() {
 function addItemToCart(id, name, price, quantity = 1) {
   const existing = cart.find((item) => item.id === id);
   if (existing) {
-    existing.quantity += 1;
+    existing.quantity += quantity;
   } else {
     cart.push({ id, name, price, quantity: quantity });
   }
@@ -464,7 +470,6 @@ function soloNumeros(e) {
 function add(e, btn, add = true) {
   let padre = btn.parentNode;
   let cantidad = padre.querySelector("input");
-  console.log(cantidad);
   if (!cantidad) return;
   let total = parseInt(cantidad.value);
   if (add) {
@@ -478,7 +483,12 @@ function add(e, btn, add = true) {
   e.stopPropagation();
 }
 
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", function () {
+function addEventStopPropagation(elem) {
+  if (!elem) return;
+  elem.addEventListener("click", (e) => e.stopPropagation());
+}
+function initShopingCart() {
   renderBranches();
   updateCartUI();
 
@@ -497,10 +507,12 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   document.querySelectorAll(".container-qty").forEach((div) => {
-    div.addEventListener("click", (e) => e.stopPropagation());
+    console.log(div);
+    addEventStopPropagation(div);
   });
 
   document.querySelectorAll("input").forEach((input) => {
     input.addEventListener("keydown", (e) => soloNumeros(e));
   });
-});
+}
+// });

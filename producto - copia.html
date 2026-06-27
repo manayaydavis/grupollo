@@ -303,7 +303,7 @@
         transform: translateY(-1px);
       }
       .flip-back-footer {
-        /* display: flex; */
+        display: flex;
         justify-content: space-between;
         align-items: center;
         margin-top: auto;
@@ -574,28 +574,878 @@
               </button>
               <button
                 class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
-                data-filter="pescado / camarones"
+                data-filter="entero"
               >
-                Pescado / Camarones
+                Pollo Entero
               </button>
               <button
                 class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
-                data-filter="cerdo y res"
+                data-filter="pechugas"
               >
-                Cerdo y Res
+                Pechugas
               </button>
               <button
                 class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
-                data-filter="pollo y nuggets"
+                data-filter="piernas"
               >
-                Pollo y Nuggets
+                Piernas
+              </button>
+              <button
+                class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
+                data-filter="pollo-rosticero"
+              >
+                Pollo Rosticero
+              </button>
+              <button
+                class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
+                data-filter="especial"
+              >
+                Especialidades
               </button>
             </div>
 
             <div
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"
-              id="productsGridFrescos"
-            ></div>
+              id="productsGrid"
+            >
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="pollo-rosticero"
+                data-marca="popular"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                >
+                  🔥 Popular
+                </div>
+                <img
+                  src="img/Productos/Pechuga_sin_hueso.png"
+                  alt="Pechuga sin hueso"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pollo Rosticero
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Pollo Rosticero
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$120<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="13"
+                    data-name="Pechuga sin Hueso"
+                    data-price="120"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="13"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="13"
+                      data-name="Pollo Rosticero"
+                      data-price="120"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="pechugas"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                >
+                  🔥 Popular
+                </div>
+                <img
+                  src="img/Productos/Pechuga_sin_hueso.png"
+                  alt="Pechuga sin hueso"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pechuga sin Hueso
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Fresca y jugosa
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$120<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="1"
+                    data-name="Pechuga sin Hueso"
+                    data-price="120"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="1"
+                      data-name="Pechuga sin Hueso"
+                      data-price="120"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="pechugas"
+              >
+                <img
+                  src="img/Productos/Pechuga_con_Hueso.png"
+                  alt="Pechuga con hueso"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pechuga con Hueso
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Corte tradicional
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$95<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="2"
+                    data-name="Pechuga con Hueso"
+                    data-price="95"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="2"
+                      data-name="Pechuga con Hueso"
+                      data-price="95"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="pechugas"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-[#E87A3E] text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-white whitespace-nowrap"
+                >
+                  ✨ Nuevo
+                </div>
+                <img
+                  src="img/Productos/Filete_de_Pechuga.png"
+                  alt="Filete de pechuga"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Filete de Pechuga
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Listo para cocinar
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$135<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="3"
+                    data-name="Filete de Pechuga"
+                    data-price="135"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="3"
+                      data-name="Filete de Pechuga"
+                      data-price="135"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="piernas"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                >
+                  🔥 Popular
+                </div>
+                <img
+                  src="img/Productos/Pierna_y_Muslo.png"
+                  alt="Pierna y Muslo"
+                  class="product-img-3d w-40 md:w-48 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pierna y Muslo
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  El mejor sabor
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$85<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="4"
+                    data-name="Pierna y Muslo"
+                    data-price="85"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="4"
+                      data-name="Pierna y Muslo"
+                      data-price="85"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="piernas"
+              >
+                <img
+                  src="img/Productos/Muslo_de_Pollo .png"
+                  alt="Muslo de Pollo"
+                  class="product-img-3d w-40 md:w-48 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Muslo de Pollo
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Jugoso y tierno
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$78<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="5"
+                    data-name="Muslo de Pollo"
+                    data-price="78"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="5"
+                      data-name="Muslo de Pollo"
+                      data-price="78"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="piernas"
+              >
+                <img
+                  src="img/Productos/Pierna_de_Pollo.png"
+                  alt="Pierna de Pollo"
+                  class="product-img-3d w-40 md:w-48 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pierna de Pollo
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Corte individual
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$72<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="6"
+                    data-name="Pierna de Pollo"
+                    data-price="72"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="6"
+                      data-name="Pierna de Pollo"
+                      data-price="72"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="entero"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandBlack text-brandGold px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-brandGold whitespace-nowrap"
+                >
+                  ⭐ Familiar
+                </div>
+                <img
+                  src="img/Productos/Pollo_Entero.png"
+                  alt="Pollo Entero"
+                  class="product-img-3d w-44 md:w-56 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pollo Entero
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Para toda la familia
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$180<span class="text-xs font-normal text-gray-400"
+                      >/pza</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="7"
+                    data-name="Pollo Entero"
+                    data-price="180"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="7"
+                      data-name="Pollo Entero"
+                      data-price="180"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="entero"
+              >
+                <img
+                  src="img/Productos/Pollo_Limpio.png"
+                  alt="Pollo Limpio"
+                  class="product-img-3d w-44 md:w-56 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pollo Limpio
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Listo para preparar
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$165<span class="text-xs font-normal text-gray-400"
+                      >/pza</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="8"
+                    data-name="Pollo Limpio"
+                    data-price="165"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="8"
+                      data-name="Pollo Limpio"
+                      data-price="165"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="especial"
+              >
+                <img
+                  src="img/Productos/Alas_de_Pollo.png"
+                  alt="Alas de Pollo"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Alas de Pollo
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Perfectas para botana
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$65<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="9"
+                    data-name="Alas de Pollo"
+                    data-price="65"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="9"
+                      data-name="Alas de Pollo"
+                      data-price="65"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="especial"
+              >
+                <img
+                  src="img/Productos/Menudencia.png"
+                  alt="Menudencia"
+                  class="product-img-3d w-40 md:w-48 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Menudencia
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Para caldos y sopas
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$45<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="10"
+                    data-name="Menudencia"
+                    data-price="45"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="10"
+                      data-name="Menudencia"
+                      data-price="45"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="especial"
+              >
+                <img
+                  src="img/Productos/Higado_de_Pollo.webp"
+                  alt="Hígado de Pollo"
+                  class="product-img-3d w-40 md:w-48 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Hígado de Pollo
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Fresco y nutritivo
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$55<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="11"
+                    data-name="Hígado de Pollo"
+                    data-price="55"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="11"
+                      data-name="Hígado de Pollo"
+                      data-price="55"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="especial"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandGold text-brandBlack px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                >
+                  ✨ Nuevo
+                </div>
+                <img
+                  src="img/Productos/Molida_de_Pollo.png"
+                  alt="Molida de Pollo"
+                  class="product-img-3d w-40 md:w-48 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Molida de Pollo
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Versátil y saludable
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$98<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="12"
+                    data-name="Molida de Pollo"
+                    data-price="98"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="12"
+                      data-name="Molida de Pollo"
+                      data-price="98"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="product-panel" id="panel-congelados">
@@ -615,8 +1465,405 @@
             </div>
             <div
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"
-              id="productsGridCongelados"
-            ></div>
+            >
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                >
+                  ❄️ Congelado
+                </div>
+                <img
+                  src="img/Productos/Filete_Tilapia.png"
+                  alt="Filete de Tilapia"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Filete de Tilapia
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Sin espinas · IQF
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$145<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="c5"
+                    data-name="Filete de Tilapia"
+                    data-price="145"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="c5"
+                      data-name="Filete de Tilapia"
+                      data-price="145"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-white whitespace-nowrap"
+                >
+                  SuKarne
+                </div>
+                <img
+                  src="img/Productos/Hamburguesa_Sirloin.png"
+                  alt="Hamburguesa Sirloin"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Hamburguesa Sirloin
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Arrachera/Sirloin · 8 pzas
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$160<span class="text-xs font-normal text-gray-400"
+                      >/paq</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="c6"
+                    data-name="Hamburguesa Sirloin"
+                    data-price="160"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="c6"
+                      data-name="Hamburguesa Sirloin"
+                      data-price="160"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                >
+                  ❄️ Congelado
+                </div>
+                <img
+                  src="img/Productos/Pechuga_Congelada.png"
+                  alt="Pechuga Congelada"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pechuga Congelada
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  IQF · Sin conservadores
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$110<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="c1"
+                    data-name="Pechuga Congelada"
+                    data-price="110"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="c1"
+                      data-name="Pechuga Congelada"
+                      data-price="110"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-white whitespace-nowrap"
+                >
+                  ❄️ Congelado
+                </div>
+                <img
+                  src="img/Productos/Pierna_Congelada.png"
+                  alt="Pierna Congelada"
+                  class="product-img-3d w-40 md:w-48 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pierna Congelada
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  IQF · 6 meses duración
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$75<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="c2"
+                    data-name="Pierna Congelada"
+                    data-price="75"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="c2"
+                      data-name="Pierna Congelada"
+                      data-price="75"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[6deg] border-2 border-white whitespace-nowrap"
+                >
+                  ❄️ Congelado
+                </div>
+                <img
+                  src="img/Productos/Pollo_Entero_Congelado.png"
+                  alt="Pollo Entero Congelado"
+                  class="product-img-3d w-44 md:w-56 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Pollo Entero Congelado
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Ideal para rosticería
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$165<span class="text-xs font-normal text-gray-400"
+                      >/pza</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="c3"
+                    data-name="Pollo Entero Congelado"
+                    data-price="165"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="c3"
+                      data-name="Pollo Entero Congelado"
+                      data-price="165"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+              >
+                <div
+                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-blue-600 text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[-6deg] border-2 border-white whitespace-nowrap"
+                >
+                  ❄️ Congelado
+                </div>
+                <img
+                  src="img/Productos/Alas_Congeladas.png"
+                  alt="Alas Congeladas"
+                  class="product-img-3d w-44 md:w-52 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                  Alas Congeladas
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Por kilo o al mayoreo
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$60<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="c4"
+                    data-name="Alas Congeladas"
+                    data-price="60"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                      data-id="1"
+                    >
+                      −
+                    </button>
+                    <!-- <span
+                      class="font-black text-brandBlack w-8 text-center text-lg"
+                      >1</span
+                    > -->
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                      data-id="c4"
+                      data-name="Alas Congeladas"
+                      data-price="60"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           <div class="product-panel" id="panel-huevo">
@@ -1360,7 +2607,7 @@
           </svg>
           <h2 class="text-2xl font-fredoka text-white">Tu Pedido</h2>
           <span
-            class="bg-[#E31E24] text-white text-xs font-black px-3 py-1 rounded-full border border-[#F2850F] cart-badge cart-count"
+            class="bg-[#E31E24] text-white text-xs font-black px-3 py-1 rounded-full border border-[#F2850F] cart-badge"
             >0</span
           >
         </div>
@@ -1510,14 +2757,14 @@
       }
 
       /* ========================================================
-                 FLIP CARDS — auto-wrap every .product-card so it flips
-                 to reveal description + preparation methods on the back.
+           FLIP CARDS — auto-wrap every .product-card so it flips
+           to reveal description + preparation methods on the back.
 
-                 Description: read from data-description or auto-derived
-                              from the existing subtitle.
-                 Prep methods: read from data-prep="freidora,horno,..."
-                              (CSV) or inferred by category/name.
-                 ======================================================== */
+           Description: read from data-description or auto-derived
+                        from the existing subtitle.
+           Prep methods: read from data-prep="freidora,horno,..."
+                        (CSV) or inferred by category/name.
+           ======================================================== */
       (function () {
         const PREP_LIBRARY = {
           freidora: { icon: "🍳", label: "Freidora" },
@@ -1600,16 +2847,16 @@
             .map((m) => {
               const def = PREP_LIBRARY[m];
               return `
-                                  <div class="tooltip-container">
-                                    <a href="recetario.html" class="prep-chip">
-                                      <span class="prep-chip-icon">${def.icon}</span>
-                                      ${def.label}
-                                  </a>
-                                  <div role="tooltip" id="help-tooltip" class="tooltip">
-                                     <i>💡</i><strong>Click!, Ver recetas</strong>
-                                   </div>
-                                  </div>
-                                  `;
+                            <div class="tooltip-container">
+                              <a href="recetario.html" class="prep-chip">
+                                <span class="prep-chip-icon">${def.icon}</span>
+                                ${def.label}
+                            </a>
+                            <div role="tooltip" id="help-tooltip" class="tooltip">
+                               <i>💡</i><strong>Click!, Ver recetas</strong>
+                             </div>
+                            </div>
+                            `;
             })
             .join("");
         }
@@ -1708,66 +2955,36 @@
 
           // Build back face
           flipBack.innerHTML = `
-                          <button type="button" class="flip-toggle" aria-label="Volver">
-                              <span class="flip-icon-front">i</span>
-                              <span class="flip-icon-back">←</span>
-                          </button>
-                          <div>
-                              <span class="flip-back-tag">${(card.dataset.category || "Producto Grupollo").toUpperCase()}</span>
-                              <h4 class="flip-back-title">${name}</h4>
-                              <p class="flip-back-desc">${description}</p>
-                              <p class="flip-back-prep-label">⚙️ Métodos de preparación</p>
-                              <div class="flip-prep-chips">${buildPrepChips(prep)}</div>
-                          </div>
-                          <div class="flip-back-footer">
-                              <p class="flip-back-price text-center">${priceHTML}</p>
-                              <div class="flex gap-2">
-                              ${
-                                addBtn
-                                  ? `
-                                  <button type="button" class="btn-primary text-sm px-4 py-2 flip-back-add"
-                                  data-id="${card.dataset.id}"
-                          data-name="${card.dataset.name}"
-                          data-price="${card.dataset.price}">Añadir</button>
-      <div 
-                          class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
-                        >
-                          <button
-                            class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
-                          >
-                            −
-                          </button>
-                          <input
-                            type="text"
-                            class="font-black text-brandBlack w-8 text-center text-lg grow"
-                            value="1"
-                          />
-                          <button
-                            class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
-                          >
-                            +
-                          </button>
-                        </div>
-                        </div>
-                              `
-                                  : ""
-                              }
-                          </div>
-                      `;
+                    <button type="button" class="flip-toggle" aria-label="Volver">
+                        <span class="flip-icon-front">i</span>
+                        <span class="flip-icon-back">←</span>
+                    </button>
+                    <div>
+                        <span class="flip-back-tag">${(card.dataset.category || "Producto Grupollo").toUpperCase()}</span>
+                        <h4 class="flip-back-title">${name}</h4>
+                        <p class="flip-back-desc">${description}</p>
+                        <p class="flip-back-prep-label">⚙️ Métodos de preparación</p>
+                        <div class="flip-prep-chips">${buildPrepChips(prep)}</div>
+                    </div>
+                    <div class="flip-back-footer">
+                        <span class="flip-back-price">${priceHTML}</span>
+                        ${addBtn ? `<button type="button" class="btn-primary text-sm px-4 py-2 flip-back-add">Añadir</button>` : ""}
+                    </div>
+                `;
 
           // Assemble and re-attach
           flipInner.appendChild(flipFront);
           flipInner.appendChild(flipBack);
           card.appendChild(flipInner);
+
           // Wire the back-face Añadir button to delegate to the front-face one
           // (whose click handler was already attached by script.js)
           const backAddBtn = flipBack.querySelector(".flip-back-add");
           if (backAddBtn && addBtn) {
             backAddBtn.addEventListener("click", (e) => {
               e.stopPropagation();
-              addCart(e, backAddBtn);
               // Trigger the original button's click — runs full cart pipeline
-              // addBtn.click();
+              addBtn.click();
             });
           }
 
@@ -1792,15 +3009,11 @@
           document.querySelectorAll(".product-card").forEach(enhanceCard);
         }
 
-        // if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () => {
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", initFlipCards);
+        } else {
           initFlipCards();
-          console.log("DOMContentLoaded");
-          initShopingCart();
-        });
-        // } else {
-        //   initFlipCards();
-        // }
+        }
       })();
     </script>
     <script src="shopingCart.js?v=2"></script>

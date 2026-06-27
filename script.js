@@ -890,10 +890,76 @@ document.addEventListener("DOMContentLoaded", () => {
   // 5. PRODUCT FILTERS (producto.html)
   // ================================================================
 
-  const filterBtns = document.querySelectorAll(".filter-btn");
-  const productsGrid = document.getElementById("productsGrid");
+  function productHtml(product) {
+    if (!product) return "";
+    let labelHtml = "";
+    if (product.label) {
+      labelHtml = `<div
+      class="absolute -top-6 right-0 z-[100] shadow-xl text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[8deg] border-2 border-white whitespace-nowrap ${product.label_fondo ? product.label_fondo : "bg-brandRed"}"
+      > ${product.label}
+      </div>`;
+    }
+    return `<div
+                class="bg-brandDarkGray rounded-[35px] p-6 relative pt-24 mt-20 shadow-xl product-card border border-white/5 hover:border-brandGold/50"
+                data-category="${product.category}"
+                data-id="${product.id}"
+                data-name="${product.name}"
+                data-price="${product.price}"
+              >
+                ${labelHtml}
+                <img
+                  src="img/Productos/Molida_de_Pollo.png"
+                  alt="${product.name}"
+                  class="product-img-3d w-40 md:w-48 h-auto"
+                />
+                <h3
+                  class="text-xl font-fredoka text-white text-center mb-1 mt-2"
+                >
+                ${product.name}
+                </h3>
+                <p class="text-center text-brandGold mb-4 text-sm">
+                  Versátil y saludable
+                </p>
+                <div class="grid grid-cols-1 space-y-6 items-center">
+                  <span class="text-xl text-center font-extrabold text-brandRed"
+                    >$${product.price}<span class="text-xs font-normal text-gray-400"
+                      >/kg</span
+                    ></span
+                  >
+                </div>
+                <div class="flex gap-2">
+                  <button
+                    class="btn-primary text-sm px-4 py-2 add-to-cart"
+                    data-id="${product.id}"
+                    data-name="${product.name}"
+                    data-price="${product.price}"
+                  >
+                    Añadir
+                  </button>
+                  <div
+                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
+                  >
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
+                    >
+                      −
+                    </button>
+                    <input
+                      type="text"
+                      class="font-black text-brandBlack w-8 text-center text-lg grow"
+                      value="1"
+                    />
+                    <button
+                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
+                    >
+                      +
+                    </button>
+                  </div>
+                </div>
+              </div>`;
+  }
 
-  if (filterBtns.length > 0 && productsGrid) {
+  function botonesFiltro(filterBtns, productsGrid) {
     filterBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
         const filter = btn.dataset.filter;
@@ -935,6 +1001,168 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       });
     });
+  }
+
+  const filterBtns = document.querySelectorAll(".filter-btn");
+  const productsGridFrescos = document.getElementById("productsGridFrescos");
+  const productsGridCongelados = document.getElementById(
+    "productsGridCongelados",
+  );
+
+  const productsFrescos = [
+    {
+      id: 1,
+      name: "Filete de Tilapia",
+      category: "pescado / camarones",
+      price: 98,
+      label: "✨ Nuevo",
+      label_fondo: "bg-brandGold",
+    },
+    {
+      id: 2,
+      name: "Camarones",
+      category: "pescado / camarones",
+      price: 98,
+      label: "🔥 Popular",
+      label_fondo: "bg-brandRed",
+    },
+    {
+      id: 3,
+      name: "Pescado Empanizado",
+      category: "pescado / camarones",
+      price: 98,
+      label: "⭐ Familiar",
+      label_fondo: "bg-brandBlack",
+    },
+    {
+      id: 4,
+      name: "Dedos de Pescado",
+      category: "pescado / camarones",
+      price: 98,
+      label: "❄️ Congelado",
+      label_fondo: "bg-blue-600",
+    },
+    {
+      id: 5,
+      name: "Dedos de Queso",
+      category: "pescado / camarones",
+      price: 98,
+      label: "🔥 Mayoreo",
+      label_fondo: "bg-brandRed",
+    },
+
+    { id: 20, name: "Pierna de Cerdo", category: "cerdo y res", price: 98 },
+    {
+      id: 21,
+      name: "Hamburguesa de Sirloin",
+      category: "cerdo y res",
+      price: 98,
+    },
+    { id: 22, name: "Arrachera", category: "cerdo y res", price: 98 },
+
+    {
+      id: 40,
+      name: "Nuggets de Pollo",
+      category: "pollo y nuggets",
+      price: 98,
+    },
+    {
+      id: 41,
+      name: "Tenders de Pollo",
+      category: "pollo y nuggets",
+      price: 98,
+    },
+    {
+      id: 42,
+      name: "Condon Blue / Pechuga Rellena",
+      category: "pollo y nuggets",
+      price: 98,
+    },
+    {
+      id: 43,
+      name: "Milanesa de Pollo",
+      category: "pollo y nuggets",
+      price: 98,
+    },
+    {
+      id: 44,
+      name: "Hamburguesa de Pollo",
+      category: "pollo y nuggets",
+      price: 98,
+    },
+    {
+      id: 45,
+      name: "Medallon de Pollo",
+      category: "pollo y nuggets",
+      price: 98,
+    },
+    { id: 46, name: "Nuggetsaurio", category: "pollo y nuggets", price: 98 },
+  ];
+  const productsCongelados = [
+    { id: 60, name: "Aros de Cebolla", category: "papas y snacks", price: 98 },
+    {
+      id: 61,
+      name: "Camote a la Francesa",
+      category: "papas y snacks",
+      price: 98,
+    },
+    { id: 62, name: "Papas Gajo", category: "papas y snacks", price: 98 },
+    {
+      id: 63,
+      name: "Papas a la Francesa Crunch",
+      category: "papas y snacks",
+      price: 98,
+    },
+    { id: 64, name: "Tortita de Papa", category: "papas y snacks", price: 98 },
+    { id: 65, name: "Papa Wafle", category: "papas y snacks", price: 98 },
+
+    {
+      id: 80,
+      name: "Trozos de Pechuga Empanizadas",
+      category: "alitas y boneless",
+      price: 98,
+    },
+    {
+      id: 81,
+      name: "Boneless Naturales",
+      category: "alitas y boneless",
+      price: 98,
+    },
+    {
+      id: 82,
+      name: "Boneless Pimienta Limón",
+      category: "alitas y boneless",
+      price: 98,
+    },
+    {
+      id: 82,
+      name: "Boneless Valentina",
+      category: "alitas y boneless",
+      price: 98,
+    },
+  ];
+
+  let productsHtml = "";
+  let producto = null;
+  if (productsFrescos.length > 0 && productsGridFrescos) {
+    for (let i = 0; i < productsFrescos.length; i++) {
+      producto = productHtml(productsFrescos[i]);
+      productsHtml += producto;
+    }
+    productsGridFrescos.innerHTML = productsHtml;
+  }
+  productsHtml = "";
+  if (productsCongelados.length > 0 && productsGridCongelados) {
+    for (let i = 0; i < productsCongelados.length; i++) {
+      producto = productHtml(productsCongelados[i]);
+      productsHtml += producto;
+    }
+    productsGridCongelados.innerHTML = productsHtml;
+  }
+
+  botonesAddToCart();
+  if (filterBtns.length > 0 && productsGridFrescos) {
+    botonesFiltro(filterBtns, productsGridFrescos);
   }
 
   // ================================================================
