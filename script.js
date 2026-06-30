@@ -959,50 +959,6 @@ document.addEventListener("DOMContentLoaded", () => {
               </div>`;
   }
 
-  function botonesFiltro(filterBtns, productsGrid) {
-    filterBtns.forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const filter = btn.dataset.filter;
-
-        // Update active state
-        filterBtns.forEach((b) => {
-          b.classList.remove("active", "bg-[#D15E1D]", "text-white");
-          b.classList.add("bg-white", "text-[#4A2C10]");
-        });
-        btn.classList.add("active", "bg-[#D15E1D]", "text-white");
-        btn.classList.remove("bg-white", "text-[#4A2C10]");
-
-        // Filter products with animation
-        const cards = productsGrid.querySelectorAll(".product-card");
-        cards.forEach((card) => {
-          const category = card.dataset.category;
-          if (filter === "all" || category === filter) {
-            gsap.to(card, {
-              opacity: 1,
-              scale: 1,
-              y: 0,
-              duration: 0.4,
-              ease: "back.out(1.2)",
-              display: "block",
-            });
-            card.style.display = "";
-          } else {
-            gsap.to(card, {
-              opacity: 0,
-              scale: 0.8,
-              y: 20,
-              duration: 0.3,
-              ease: "power2.in",
-              onComplete: () => {
-                card.style.display = "none";
-              },
-            });
-          }
-        });
-      });
-    });
-  }
-
   const filterBtns = document.querySelectorAll(".filter-btn");
   const productsGridFrescos = document.getElementById("productsGridFrescos");
   const productsGridCongelados = document.getElementById(
@@ -1144,13 +1100,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let productsHtml = "";
   let producto = null;
-  if (productsFrescos.length > 0 && productsGridFrescos) {
-    for (let i = 0; i < productsFrescos.length; i++) {
-      producto = productHtml(productsFrescos[i]);
-      productsHtml += producto;
-    }
-    productsGridFrescos.innerHTML = productsHtml;
-  }
+  // if (productsFrescos.length > 0 && productsGridFrescos) {
+  //   for (let i = 0; i < productsFrescos.length; i++) {
+  //     producto = productHtml(productsFrescos[i]);
+  //     productsHtml += producto;
+  //   }
+  //   productsGridFrescos.innerHTML = productsHtml;
+  // }
   productsHtml = "";
   if (productsCongelados.length > 0 && productsGridCongelados) {
     for (let i = 0; i < productsCongelados.length; i++) {
@@ -1252,6 +1208,52 @@ document.addEventListener("DOMContentLoaded", () => {
   ScrollTrigger.refresh();
 });
 
+function botonesFiltro(filterBtns, productsGrid) {
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.dataset.filter;
+
+      // Update active state
+      filterBtns.forEach((b) => {
+        b.classList.remove("active", "bg-[#D15E1D]", "text-white");
+        b.classList.add("bg-white", "text-[#4A2C10]");
+      });
+      btn.classList.add("active", "bg-[#D15E1D]", "text-white");
+      btn.classList.remove("bg-white", "text-[#4A2C10]");
+
+      // Filter products with animation
+      // const cards = productsGrid.querySelectorAll(".product-card");
+      const cards = productsGrid.querySelectorAll(".gp-scene");
+      console.log(cards);
+      cards.forEach((card) => {
+        // const category = card.dataset.category;
+        const category = card.dataset.filter;
+        if (filter === "all" || category === filter) {
+          gsap.to(card, {
+            opacity: 1,
+            scale: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "back.out(1.2)",
+            display: "block",
+          });
+          card.style.display = "";
+        } else {
+          gsap.to(card, {
+            opacity: 0,
+            scale: 0.8,
+            y: 20,
+            duration: 0.3,
+            ease: "power2.in",
+            onComplete: () => {
+              card.style.display = "none";
+            },
+          });
+        }
+      });
+    });
+  });
+}
 // =================================================================
 // GRUPOLLO EXTENSIONS — Seasonal Themes · WhatsApp · Scroll Reveals
 // =================================================================

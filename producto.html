@@ -338,6 +338,252 @@
         }
       }
     </style>
+    <!--Nuevo-->
+    <style>
+      /* ============================================================
+       TOKENS DE MARCA & ESTILOS GENERALES
+       ============================================================ */
+      :root {
+        --page-bg: linear-gradient(
+          160deg,
+          #160a0e 0%,
+          #0b0608 58%,
+          #110709 100%
+        );
+        --card-bg: linear-gradient(
+          155deg,
+          #20141a 0%,
+          #160f13 55%,
+          #0f0a0c 100%
+        );
+        --border: rgba(245, 160, 40, 0.55);
+        --accent: #ff8a1f;
+        --red: #ff3d3d;
+        --gold: #d8a93f;
+        --text: #f6efe9;
+        --muted: #b6a39a;
+        --pill-grad: linear-gradient(135deg, #ff9d2b, #ff6a00);
+        --dark: #1a0f06;
+      }
+      .gp-pill {
+        flex: 1;
+        padding: 8px 6px;
+        border-radius: 999px;
+        font-size: 12.5px;
+        font-weight: 700;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.04);
+        color: #cdbdb4;
+        cursor: pointer;
+        transition: all 0.15s;
+      }
+      .gp-pill.active {
+        border-color: transparent;
+        background: var(--pill-grad);
+        color: var(--dark);
+      }
+      .gp-pill:hover {
+        filter: brightness(1.12);
+      }
+
+      .gp-add-btn {
+        width: 100%;
+        padding: 13px;
+        border-radius: 999px;
+        border: none;
+        background: var(--pill-grad);
+        color: var(--dark);
+        font-weight: 800;
+        font-size: 14.5px;
+        letter-spacing: 0.4px;
+        cursor: pointer;
+        transition:
+          filter 0.15s,
+          transform 0.08s;
+      }
+      .gp-add-btn:hover {
+        filter: brightness(1.08);
+      }
+      .gp-add-btn:active {
+        transform: translateY(1px);
+      }
+
+      .gp-icon-btn {
+        cursor: pointer;
+        transition: filter 0.15s;
+        border: 1px solid var(--gold);
+        color: var(--gold);
+        background: rgba(0, 0, 0, 0.3);
+        display: grid;
+        place-items: center;
+      }
+      .gp-icon-btn:hover {
+        filter: brightness(1.2);
+      }
+
+      /* ============================================================
+       TARJETA EFECTO FLIP (3D)
+       ============================================================ */
+      .gp-scene {
+        position: relative;
+        height: 502px;
+        perspective: 1700px;
+      }
+
+      .gp-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        transform-style: preserve-3d;
+        transition: transform 0.6s cubic-bezier(0.2, 0.75, 0.25, 1);
+      }
+
+      .gp-inner.flipped {
+        transform: rotateY(180deg);
+      }
+
+      .gp-face {
+        position: absolute;
+        inset: 0;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+        display: flex;
+        flex-direction: column;
+        background: var(--card-bg);
+        border: 1px solid var(--border);
+        border-radius: 22px;
+        padding: 16px;
+        box-shadow:
+          0 0 0 1px rgba(245, 160, 40, 0.12),
+          0 22px 44px -22px rgba(0, 0, 0, 0.85),
+          inset 0 1px 0 rgba(255, 255, 255, 0.04);
+      }
+
+      .gp-face-front {
+        cursor: pointer;
+      }
+
+      .gp-face-back {
+        transform: rotateY(180deg);
+      }
+
+      /* ============================================================
+       CARRUSEL INTERNO (SWIPE)
+       ============================================================ */
+      .gp-carousel-modal {
+        position: absolute;
+        inset: 0;
+        border-radius: 22px;
+        padding: 16px;
+        background: var(--card-bg);
+        display: none;
+        flex-direction: column;
+        z-index: 5;
+      }
+      .gp-carousel-modal.active {
+        display: flex;
+      }
+
+      .gp-viewport {
+        flex: 1;
+        overflow: hidden;
+        margin-top: 12px;
+        touch-action: pan-y;
+        cursor: grab;
+      }
+      .gp-viewport:active {
+        cursor: grabbing;
+      }
+
+      .gp-track {
+        display: flex;
+        height: 100%;
+        transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+      }
+
+      .gp-slide {
+        min-width: 100%;
+        padding: 2px 4px;
+      }
+
+      .gp-slide-content {
+        height: 100%;
+        border-radius: 16px;
+        padding: 18px;
+        background: rgba(255, 255, 255, 0.035);
+        border: 1px solid rgba(245, 160, 40, 0.25);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .gp-arrow {
+        width: 36px;
+        height: 36px;
+        border-radius: 999px;
+        font-size: 20px;
+        font-weight: 700;
+        background: rgba(255, 255, 255, 0.05);
+        color: var(--text);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .gp-arrow:disabled {
+        color: rgba(255, 255, 255, 0.2);
+        cursor: default;
+      }
+
+      .gp-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        transition: all 0.2s;
+        background: rgba(255, 255, 255, 0.22);
+      }
+      .gp-dot.active {
+        width: 22px;
+        background: var(--accent);
+      }
+
+      /* Controles de Cantidad */
+      .gp-qty-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: var(--pill-grad);
+        border-radius: 999px;
+        padding: 5px 8px;
+      }
+      .gp-qty-container.compact {
+        padding: 4px 6px;
+      }
+      .gp-step {
+        width: 34px;
+        height: 34px;
+        border-radius: 999px;
+        border: none;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.16);
+        color: var(--dark);
+        font-size: 18px;
+        font-weight: 800;
+        display: grid;
+        place-items: center;
+      }
+      .gp-step:hover {
+        filter: brightness(1.15);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .gp-inner,
+        .gp-track {
+          transition: none;
+        }
+      }
+    </style>
   </head>
   <body class="bg-[#111111] overflow-x-hidden flex flex-col min-h-screen">
     <div id="pageLoader">
@@ -505,7 +751,7 @@
         <div class="container mx-auto">
           <div class="flex flex-wrap justify-center gap-5 mb-14">
             <button
-              class="section-tab active flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
+              class="section-tab section-panel active flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
               data-panel="frescos"
               onclick="switchPanel('frescos', this)"
             >
@@ -515,7 +761,7 @@
               >
             </button>
             <button
-              class="section-tab flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
+              class="section-tab section-panel flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
               data-panel="congelados"
               onclick="switchPanel('congelados', this)"
             >
@@ -525,7 +771,7 @@
               >
             </button>
             <button
-              class="section-tab flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
+              class="section-tab section-panel flex flex-col items-center gap-2 px-8 py-5 min-w-[140px]"
               data-panel="huevo"
               onclick="switchPanel('huevo', this)"
             >
@@ -574,19 +820,19 @@
               </button>
               <button
                 class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
-                data-filter="pescado / camarones"
+                data-filter="pescado_camarones"
               >
                 Pescado / Camarones
               </button>
               <button
                 class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
-                data-filter="cerdo y res"
+                data-filter="cerdo_res"
               >
                 Cerdo y Res
               </button>
               <button
                 class="filter-btn bg-brandDarkGray text-white px-6 py-3 rounded-full font-bold shadow-md hover:bg-brandGold hover:text-black"
-                data-filter="pollo y nuggets"
+                data-filter="pollo_nuggets"
               >
                 Pollo y Nuggets
               </button>
@@ -594,7 +840,7 @@
 
             <div
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"
-              id="productsGridFrescos"
+              id="productsgridfrescos"
             ></div>
           </div>
 
@@ -615,7 +861,7 @@
             </div>
             <div
               class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-10"
-              id="productsGridCongelados"
+              id="productsgridcongelados"
             ></div>
           </div>
 
@@ -635,195 +881,10 @@
                 garantizada.
               </p>
             </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-              <div
-                class="bg-brandDarkGray border border-white/5 rounded-[35px] p-8 shadow-xl product-card text-center pt-24 mt-20 relative hover:border-brandGold/50"
-              >
-                <img
-                  src="img/Productos/Huevo_Blanco.png"
-                  alt="Huevo Blanco"
-                  class="product-img-3d w-40 md:w-48 h-auto"
-                />
-                <h3 class="text-2xl font-fredoka text-white mb-2 text-center">
-                  Huevo Blanco
-                </h3>
-                <p class="text-brandGold mb-6 text-sm text-center">
-                  Cartón de 30 piezas. Fresco y de granja.
-                </p>
-                <div class="grid grid-cols-1 space-y-6 items-center">
-                  <span
-                    class="text-2xl font-extrabold text-brandRed text-center"
-                    >$85<span class="text-xs font-normal text-gray-400"
-                      >/cartón</span
-                    ></span
-                  >
-                </div>
-                <div class="flex gap-2 justify-center">
-                  <button
-                    class="btn-primary text-sm px-6 py-3 add-to-cart"
-                    data-id="h1"
-                    data-name="Huevo Blanco (30pz)"
-                    data-price="85"
-                  >
-                    Añadir
-                  </button>
-                  <div
-                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
-                  >
-                    <button
-                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
-                      data-id="1"
-                    >
-                      −
-                    </button>
-                    <!-- <span
-                      class="font-black text-brandBlack w-8 text-center text-lg"
-                      >1</span
-                    > -->
-                    <input
-                      type="text"
-                      class="font-black text-brandBlack w-8 text-center text-lg grow"
-                      value="1"
-                    />
-                    <button
-                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
-                      data-id="h1"
-                      data-name="Huevo Blanco (30pz)"
-                      data-price="85"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="bg-brandDarkGray border border-white/5 rounded-[35px] p-8 shadow-xl product-card text-center pt-24 mt-20 relative hover:border-brandGold/50"
-              >
-                <img
-                  src="img/Productos/Huevo_moreno.png"
-                  alt="Huevo Moreno"
-                  class="product-img-3d w-40 md:w-48 h-auto"
-                />
-                <h3 class="text-2xl font-fredoka text-white mb-2 text-center">
-                  Huevo Moreno
-                </h3>
-                <p class="text-brandGold mb-6 text-sm text-center">
-                  Cartón de 30 piezas. Preferido de los restaurantes.
-                </p>
-                <div class="grid grid-cols-1 space-y-6 items-center">
-                  <span
-                    class="text-2xl font-extrabold text-brandRed text-center"
-                    >$90<span class="text-xs font-normal text-gray-400"
-                      >/cartón</span
-                    ></span
-                  >
-                </div>
-                <div class="flex gap-2 justify-center">
-                  <button
-                    class="btn-primary text-sm px-6 py-3 add-to-cart"
-                    data-id="h2"
-                    data-name="Huevo Moreno (30pz)"
-                    data-price="90"
-                  >
-                    Añadir
-                  </button>
-                  <div
-                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
-                  >
-                    <button
-                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
-                      data-id="1"
-                    >
-                      −
-                    </button>
-                    <!-- <span
-                      class="font-black text-brandBlack w-8 text-center text-lg"
-                      >1</span
-                    > -->
-                    <input
-                      type="text"
-                      class="font-black text-brandBlack w-8 text-center text-lg grow"
-                      value="1"
-                    />
-                    <button
-                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
-                      data-id="h2"
-                      data-name="Huevo Moreno (30pz)"
-                      data-price="90"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div
-                class="bg-brandDarkGray border border-white/5 rounded-[35px] p-8 shadow-xl product-card text-center pt-24 mt-20 relative hover:border-brandGold/50"
-              >
-                <div
-                  class="absolute -top-6 right-0 z-[100] shadow-xl bg-brandRed text-white px-4 py-1.5 rounded-xl text-[0.7rem] font-black uppercase tracking-wider transform rotate-[8deg] border-2 border-white whitespace-nowrap"
-                >
-                  🔥 Mayoreo
-                </div>
-                <img
-                  src="img/Productos/Huevo_por_kilo.png"
-                  alt="Huevo por Kilo"
-                  class="product-img-3d w-40 md:w-48 h-auto"
-                />
-                <h3
-                  class="text-2xl font-fredoka text-white mb-2 mt-2 text-center"
-                >
-                  Huevo por Kilo
-                </h3>
-                <p class="text-brandGold mb-6 text-sm text-center">
-                  Ideal para restaurantes y comedores. Precio especial.
-                </p>
-                <div class="grid grid-cols-1 space-y-6 items-center">
-                  <span
-                    class="text-2xl font-extrabold text-brandRed text-center"
-                    >$38<span class="text-xs font-normal text-gray-400"
-                      >/kg</span
-                    ></span
-                  >
-                </div>
-                <div class="flex gap-2 justify-center">
-                  <button
-                    class="btn-primary text-sm px-6 py-3 add-to-cart"
-                    data-id="h3"
-                    data-name="Huevo por Kilo"
-                    data-price="38"
-                  >
-                    Añadir
-                  </button>
-                  <div
-                    class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F] container-qty"
-                  >
-                    <button
-                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus"
-                      data-id="1"
-                    >
-                      −
-                    </button>
-                    <!-- <span
-                      class="font-black text-brandBlack w-8 text-center text-lg"
-                      >1</span
-                    > -->
-                    <input
-                      type="text"
-                      class="font-black text-brandBlack w-8 text-center text-lg grow"
-                      value="1"
-                    />
-                    <button
-                      class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus"
-                      data-id="h3"
-                      data-name="Huevo por Kilo"
-                      data-price="38"
-                    >
-                      +
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10"
+              id="productsgridhuevo"
+            ></div>
           </div>
           <div class="product-panel" id="panel-marcas">
             <div
@@ -1496,7 +1557,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="script.js?v=1"></script>
+    <script src="script.js"></script>
     <script>
       function switchPanel(name, btn) {
         document
@@ -1507,6 +1568,8 @@
           .forEach((b) => b.classList.remove("active"));
         document.getElementById("panel-" + name).classList.add("active");
         btn.classList.add("active");
+
+        renderProducts();
       }
 
       /* ========================================================
@@ -1795,7 +1858,6 @@
         // if (document.readyState === "loading") {
         document.addEventListener("DOMContentLoaded", () => {
           initFlipCards();
-          console.log("DOMContentLoaded");
           initShopingCart();
         });
         // } else {
@@ -1805,5 +1867,495 @@
     </script>
     <script src="shopingCart.js?v=2"></script>
     <script src="script.js"></script>
+    <!--Nuevo-->
+    <script>
+      const CATEGORIES = [
+        { id: "todos", label: "Todos", emoji: "🍽️" },
+        { id: "pollo", label: "Pollo", emoji: "🐔" },
+        { id: "pavo", label: "Pavo", emoji: "🦃" },
+        { id: "res", label: "Res", emoji: "🥩" },
+        { id: "cerdo", label: "Cerdo", emoji: "🐷" },
+        { id: "pescado", label: "Pescado", emoji: "🐟" },
+        { id: "huevo", label: "Huevo", emoji: "🥚" },
+      ];
+
+      // --- ESTADO GLOBAL DE LA APP ---
+      let currentCategory = "todos";
+
+      // Almacén para los índices activos de carrusel por cada tarjeta
+      let carouselSlides = Object.fromEntries(
+        Object.keys(PRODUCTS).map((id) => [id, 0]),
+      );
+
+      // --- HELPERS ---
+      const money = (n) =>
+        n.toLocaleString("es-MX", {
+          style: "currency",
+          currency: "MXN",
+          minimumFractionDigits: Number.isInteger(n) ? 0 : 2,
+          maximumFractionDigits: 2,
+        });
+
+      const getBadge = (pres) =>
+        pres === "fresco"
+          ? {
+              bg: "rgba(110,210,120,0.12)",
+              bd: "rgba(130,220,140,0.40)",
+              fg: "#b9f0c0",
+              icon: "🌿",
+              label: "Fresco",
+            }
+          : {
+              bg: "rgba(120,180,255,0.12)",
+              bd: "rgba(140,190,255,0.40)",
+              fg: "#bcd8ff",
+              icon: "❄",
+              label: "Empaquetado",
+            };
+
+      // ============================================================
+      // RENDERIZADO PRINCIPAL Y ACTUALIZACIONES DOM
+      // ============================================================
+
+      function init() {
+        // renderCategories();
+        renderProducts();
+        // updateCartSummary();
+        const productsGridFrescos = document.getElementById(
+          "productsgridfrescos",
+        );
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        botonesFiltro(filterBtns, productsGridFrescos);
+      }
+
+      function renderCategories() {
+        const nav = document.getElementById("categories-nav");
+        nav.innerHTML = CATEGORIES.map(
+          (cat) => `
+        <button class="gp-cat ${cat.id === currentCategory ? "active" : ""}" onclick="setCategory('${cat.id}')">
+          <span aria-hidden="true">${cat.emoji}</span> ${cat.label}
+        </button>
+      `,
+        ).join("");
+      }
+
+      function setCategory(id) {
+        currentCategory = id;
+        renderCategories();
+        renderProducts();
+      }
+
+      function updateCartSummary() {
+        const summaryNode = document.getElementById("cart-summary");
+        let items = 0,
+          subtotal = 0;
+
+        for (const p of PRODUCTS) {
+          const e = cart[p.id];
+          if (!e || !e.qty) continue;
+          const f = p.formats.find((x) => x.id === e.format) || p.formats[0];
+          items += e.qty;
+          subtotal += f.price * e.qty;
+        }
+
+        if (items > 0) {
+          summaryNode.style.background = "rgba(255,138,31,0.12)";
+          summaryNode.style.borderColor = "rgba(245,160,40,0.5)";
+          summaryNode.innerHTML = `
+          <span style="font-size: 18px;">🛒</span>
+          <span style="display: flex; flex-direction: column; line-height: 1.15;">
+            <span style="font-size: 11px; color: var(--muted);">${items} ${items === 1 ? "artículo" : "artículos"}</span>
+            <strong style="font-size: 15px; color: var(--accent);">${money(subtotal)}</strong>
+          </span>
+        `;
+        } else {
+          summaryNode.style.background = "rgba(255,255,255,0.04)";
+          summaryNode.style.borderColor = "rgba(255,255,255,0.10)";
+          summaryNode.innerHTML = `
+          <span style="font-size: 18px;">🛒</span>
+          <span style="font-size: 13px; color: var(--muted); font-weight: 600;">Carrito vacío</span>
+        `;
+        }
+      }
+
+      function renderProducts() {
+        // const grid = document.getElementById("products-grid");
+        const category = document.querySelector("button.section-panel.active")
+          .dataset.panel;
+        const grid = document.getElementById(`productsgrid${category}`);
+        const visibleProducts = [];
+        currentCategory =
+          document.querySelector(".filter-btn.active").dataset.filter;
+        let encontrado = false;
+        console.log(currentCategory);
+        if (currentCategory === "all" && category === "frescos") {
+          for (const id of Object.keys(PRODUCTS)) {
+            if (encontrado && PRODUCTS[id].category !== category) break;
+            if (PRODUCTS[id].category === category) {
+              encontrado = true;
+              visibleProducts.push([id, PRODUCTS[id]]);
+            }
+          }
+        } else {
+          for (const id of Object.keys(PRODUCTS)) {
+            // if (encontrado && PRODUCTS[id].filter !== currentCategory) break;
+            if (PRODUCTS[id].category === category) {
+              if (
+                currentCategory !== "all" &&
+                PRODUCTS[id].filter !== currentCategory
+              ) {
+                continue;
+              }
+              visibleProducts.push([id, PRODUCTS[id]]);
+            }
+            // encontrado = true;
+          }
+        }
+
+        grid.innerHTML = visibleProducts
+          .map((pro) => {
+            const id = pro[0];
+            const p = pro[1];
+            const entry = cart[id];
+            const fmt =
+              p.formats.find((f) => f.id === entry?.format) || p.formats[0];
+            const badge = getBadge(p.presentation);
+            const isFresh = p.presentation === "fresco";
+            const methodLabel = isFresh
+              ? "Ideas para cocinar"
+              : "Métodos de preparación";
+            const methodIcon = isFresh ? "🍲" : "⚙️";
+            const carouselTitle = isFresh
+              ? "Recetas sugeridas"
+              : "Métodos de preparación";
+
+            // Selector de formatos HTML
+            //     const formatsHTML = p.formats
+            //       .map(
+            //         (f) => `
+            //   <button class="gp-pill ${f.id === entry?.format ? "active" : ""}" onclick="changeFormat(event, '${p.id}', '${f.id}')" data-format='${f.id}'>
+            //     ${f.label}
+            //   </button>
+            // `,
+            //       )
+            //       .join("");
+
+            const formatsHTML = p.formats
+              .map(
+                (f) => `
+          <button class="gp-pill ${f.id === fmt.id ? "active" : ""}" onclick="changeFormat(event, '${id}', '${f.id}')" data-format='${f.id}'>
+            ${f.label}
+          </button>
+        `,
+              )
+              .join("");
+
+            // Controladores de cantidad (Frontal y Trasero)
+            let qty = 0;
+            if (entry) qty = entry.qty;
+            // const qtyControlFront =
+            //   qty === 0
+            //     ? `<button class="gp-add-btn add-to-cart" onclick="addToCart(event, '${p.id}')">AGREGAR AL CARRITO</button>`
+            //     : createQtyControlHTML(p.id, qty, fmt.label, false);
+
+            const qtyControlFront =
+              qty === 0
+                ? `<button class="gp-add-btn" onclick="addCart(event, '${id}')">AGREGAR AL CARRITO</button>`
+                : createQtyControlHTML(id, qty, fmt.label, false);
+
+            // const qtyControlBack =
+            //   qty === 0
+            //     ? `<button class="gp-add-btn add-to-cart" style="padding: 11px 26px; font-size: 14px; width: auto;" onclick="addToCart(event, '${p.id}')">AÑADIR</button>`
+            //     : `<div style="min-width: 132px;">${createQtyControlHTML(p.id, qty, fmt.label, true)}</div>`;
+
+            const qtyControlBack =
+              qty === 0
+                ? `<button class="gp-add-btn" style="padding: 11px 26px; font-size: 14px; width: auto;" onclick="addCart(event, '${id}')">AÑADIR</button>`
+                : `<div style="min-width: 132px;">${createQtyControlHTML(id, qty, fmt.label, true)}</div>`;
+
+            // Slides del carrusel interno
+            const slidesHTML = p.slides
+              .map(
+                (s) => `
+          <div class="gp-slide">
+            <div class="gp-slide-content">
+              <span style="font-size: 46px;" aria-hidden="true">${s.icon}</span>
+              <span style="font-size: 19px; font-weight: 700; color: var(--text);">${s.title}</span>
+              <span style="font-size: 14.5px; line-height: 1.5; color: var(--muted);">${s.text}</span>
+            </div>
+          </div>
+        `,
+              )
+              .join("");
+
+            // Puntos indicativos del carrusel (dots)
+            const currentSlide = carouselSlides[id];
+            const dotsHTML = p.slides
+              .map(
+                (_, idx) => `
+          <button class="gp-dot ${idx === currentSlide ? "active" : ""}" onclick="goToSlide(event, '${id}', ${idx})" aria-label="Ir al slide ${idx + 1}"></button>
+        `,
+              )
+              .join("");
+
+            return `
+          <div class="gp-scene" id="scene-${id}" data-category="${p.category}" data-filter="${p.filter}">
+            <div class="gp-inner" id="inner-${id}">
+
+              <div class="gp-face gp-face-front" onclick="flipCard('${id}', true)">
+                <div style="position: relative; flex: 1; border-radius: 16px; display: flex; align-items: center; justify-content: center; background: radial-gradient(circle at 50% 42%, rgba(255,138,31,0.16), rgba(0,0,0,0) 62%); overflow: hidden;">
+                  <span style="position: absolute; top: 8px; left: 8px; display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; padding: 5px 10px; border-radius: 999px; background: ${badge.bg}; border: 1px solid ${badge.bd}; color: ${badge.fg};">
+                    <span aria-hidden="true">${badge.icon}</span> ${badge.label}
+                  </span>
+                  <span title="Ver detalle" style="position: absolute; top: 8px; right: 8px; width: 30px; height: 30px; border-radius: 999px; font-size: 14px; border: 1px solid var(--gold); color: var(--gold); background: rgba(0,0,0,0.35); display: grid; place-items: center;">↻</span>
+                  <span style="font-size: 92px; filter: drop-shadow(0 12px 22px rgba(0,0,0,0.55));" aria-hidden="true">${p.emoji}</span>
+                </div>
+                <div style="margin-top: 12px;">
+                  <span style="font-size: 11px; font-weight: 700; letter-spacing: 1.6px; color: var(--accent);">${p.tag}</span>
+                  <h3 style="margin: 3px 0 0; font-size: 21px; font-weight: 700; color: var(--text); line-height: 1.1;">${p.name}</h3>
+                  <div style="margin-top: 6px; display: flex; align-items: baseline; gap: 4px;">
+                    <span style="font-size: 26px; font-weight: 800; color: var(--red);">${money(fmt.price)}</span>
+                    <span style="font-size: 13px; color: var(--muted); font-weight: 500;">/ ${fmt.unit}</span>
+                  </div>
+                </div>
+                <div onclick="event.stopPropagation()" style="margin-top: 12px;">
+                  <div style="display: flex; gap: 8px; margin-bottom: 12px;">${formatsHTML}</div>
+                  ${qtyControlFront}
+                </div>
+              </div>
+
+              <div class="gp-face gp-face-back">
+                <button class="gp-icon-btn" onclick="flipCard('${id}', false)" style="align-self: flex-start; width: 38px; height: 38px; border-radius: 999px; font-size: 18px;" aria-label="Volver">←</button>
+                <span style="margin-top: 12px; font-size: 11px; font-weight: 700; letter-spacing: 1.6px; color: var(--accent);">${p.tag}</span>
+                <h3 style="margin: 4px 0 0; font-size: 23px; font-weight: 700; color: var(--text);">${p.name}</h3>
+                <p style="margin: 8px 0 0; font-size: 14px; line-height: 1.45; color: var(--muted);">${p.description}</p>
+                <div style="flex: 1;"></div>
+
+                <button class="gp-icon-btn" onclick="toggleCarousel('${id}', true, event)" style="display: flex; align-items: center; justify-content: space-between; gap: 8px; width: 100%; padding: 12px 14px; border-radius: 14px; background: rgba(255,138,31,0.10); border: 1px solid rgba(245,160,40,0.40); color: var(--accent); font-weight: 700; font-size: 13.5px;">
+                  <span style="display: inline-flex; align-items: center; gap: 8px;"><span aria-hidden="true">${methodIcon}</span> ${methodLabel}</span>
+                  <span style="font-size: 16px;">›</span>
+                </button>
+                <div style="height: 1px; background: rgba(245,160,40,0.22); margin: 14px 0;"></div>
+
+                <div onclick="event.stopPropagation()" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div style="display: flex; align-items: baseline; gap: 3px;">
+                    <span style="font-size: 24px; font-weight: 800; color: var(--red);">${money(fmt.price)}</span>
+                    <span style="font-size: 12px; color: var(--muted);">/ ${fmt.unit}</span>
+                  </div>
+                  ${qtyControlBack}
+                </div>
+
+                <div class="gp-carousel-modal" id="carousel-${id}" onclick="event.stopPropagation()">
+                  <div style="display: flex; align-items: center; justify-content: space-between;">
+                    <span style="font-size: 13px; font-weight: 700; letter-spacing: 0.4px; color: var(--accent);">${methodIcon} ${carouselTitle}</span>
+                    <button class="gp-icon-btn" onclick="toggleCarousel('${id}', false, event)" style="width: 32px; height: 32px; border-radius: 999px; font-size: 16px;" aria-label="Cerrar">✕</button>
+                  </div>
+
+                  <div class="gp-viewport" id="viewport-${id}">
+                    <div class="gp-track" id="track-${id}" style="transform: translateX(-${currentSlide * 100}%);">
+                      ${slidesHTML}
+                    </div>
+                  </div>
+
+                  <div style="display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 12px;">
+                    <button class="gp-icon-btn gp-arrow" onclick="moveSlide('${id}', -1, event)" ${currentSlide === 0 ? "disabled" : ""}>‹</button>
+                    <div style="display: flex; gap: 7px;">${dotsHTML}</div>
+                    <button class="gp-icon-btn gp-arrow" onclick="moveSlide('${id}', 1, event)" ${currentSlide === p.slides.length - 1 ? "disabled" : ""}>›</button>
+                  </div>
+                  <span style="text-align: center; font-size: 11.5px; color: rgba(182,163,154,0.7); margin-top: 8px;">Desliza para ver más →</span>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        `;
+          })
+          .join("");
+
+        // Acoplar los detectores de eventos Pointer para la emulación de Swipe táctil/mouse
+        visibleProducts.forEach(attachSwipeEvents);
+      }
+
+      function createQtyControlHTML(id, qty, formatLabel, isCompact) {
+        const isTrash = qty === 1;
+        return `
+        <div class="gp-qty-container ${isCompact ? "compact" : ""}">
+          <button onclick="decrementQty(event, '${id}')" class="gp-step" aria-label="${isTrash ? "Quitar del carrito" : "Restar"}">
+            ${isTrash ? "🗑" : "−"}
+          </button>
+          <div style="text-align: center; color: var(--dark); line-height: 1;">
+            <div style="font-weight: 800; font-size: ${isCompact ? "16px" : "18px"};">${qty}</div>
+            ${!isCompact ? `<div style="font-size: 10.5px; font-weight: 600; opacity: 0.75;">${formatLabel.toLowerCase()}</div>` : ""}
+          </div>
+          <button onclick="incrementQty(event, '${id}')" class="gp-step" aria-label="Sumar">+</button>
+        </div>
+      `;
+      }
+
+      // ============================================================
+      // MANEJADORES DE EVENTOS INTERACTIVOS (ACCIONES)
+      // ============================================================
+
+      function flipCard(id, shouldFlip) {
+        const inner = document.getElementById(`inner-${id}`);
+        if (shouldFlip) {
+          inner.classList.add("flipped");
+        } else {
+          inner.classList.remove("flipped");
+        }
+      }
+
+      function changeFormat(e, id, format) {
+        e.stopPropagation();
+        if (!cart[id]) {
+          const content = e.target.parentNode;
+          const btn = content.querySelector(".gp-pill.active");
+          btn.classList.remove("active");
+          e.target.classList.add("active");
+          e.target;
+          return;
+        }
+        cart[id].format = format;
+        renderProducts();
+        // updateCartSummary();
+        updateCartUI();
+      }
+
+      function addToCart(e, id) {
+        e.stopPropagation();
+        if (!cart[id]) return;
+        cart[id].qty = 1;
+        renderProducts();
+        // updateCartSummary();
+      }
+
+      function incrementQty(e, id) {
+        e.stopPropagation();
+        if (!cart[id]) return;
+        cart[id].qty += 1;
+        saveCart();
+        renderProducts();
+        updateCartUI();
+        // updateCartSummary();
+      }
+
+      function decrementQty(e, id) {
+        e.stopPropagation();
+        if (!cart[id]) return;
+        cart[id].qty = Math.max(0, cart[id].qty - 1);
+        saveCart();
+        renderProducts();
+        updateCartUI();
+        // updateCartSummary();
+      }
+
+      function toggleCarousel(id, open, e) {
+        if (e) e.stopPropagation();
+        const modal = document.getElementById(`carousel-${id}`);
+        if (open) {
+          carouselSlides[id] = 0; // Reset inicial
+          modal.classList.add("active");
+          updateCarouselDOM(id);
+        } else {
+          modal.classList.remove("active");
+        }
+      }
+
+      function moveSlide(id, direction, e) {
+        if (e) e.stopPropagation();
+        // const product = PRODUCTS.find((p) => p.id === id);
+        const product = PRODUCTS[id];
+        const maxIdx = product.slides.length - 1;
+        carouselSlides[id] = Math.max(
+          0,
+          Math.min(maxIdx, carouselSlides[id] + direction),
+        );
+        updateCarouselDOM(id);
+      }
+
+      function goToSlide(id, index, e) {
+        if (e) e.stopPropagation();
+        carouselSlides[id] = index;
+        updateCarouselDOM(id);
+      }
+
+      function updateCarouselDOM(id) {
+        // const product = PRODUCTS.find((p) => p.id === id);
+        const product = PRODUCTS[id];
+        const currentSlide = carouselSlides[id];
+        const track = document.getElementById(`track-${id}`);
+        if (!track) return;
+
+        // Desplazamiento del track
+        track.style.transform = `translateX(-${currentSlide * 100}%)`;
+
+        // Actualizar estado de las flechas y los puntos activos
+        const modal = document.getElementById(`carousel-${id}`);
+        const arrows = modal.querySelectorAll(".gp-arrow");
+        arrows[0].disabled = currentSlide === 0;
+        arrows[1].disabled = currentSlide === product.slides.length - 1;
+
+        const dots = modal.querySelectorAll(".gp-dot");
+        dots.forEach((dot, idx) => {
+          if (idx === currentSlide) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+
+      // ============================================================
+      // EMULACIÓN DE EVENTO SWIPE (POINTER EVENTS)
+      // ============================================================
+
+      function attachSwipeEvents(product) {
+        const id = product.id;
+        const viewport = document.getElementById(`viewport-${id}`);
+        const track = document.getElementById(`track-${id}`);
+        if (!viewport || !track) return;
+
+        let isDragging = false;
+        let startX = 0;
+        let currentDx = 0;
+
+        viewport.addEventListener("pointerdown", (e) => {
+          isDragging = true;
+          startX = e.clientX;
+          currentDx = 0;
+          track.style.transition = "none";
+        });
+
+        viewport.addEventListener("pointermove", (e) => {
+          if (!isDragging) return;
+          currentDx = e.clientX - startX;
+          const currentOffset = -(carouselSlides[id] * viewport.offsetWidth);
+          track.style.transform = `translateX(${currentOffset + currentDx}px)`;
+        });
+
+        const endDrag = () => {
+          if (!isDragging) return;
+          isDragging = false;
+          track.style.transition = ""; // Devuelve la transición CSS suave
+
+          const threshold = 50; // Pixeles para gatillar cambio
+          const maxIdx = product.slides.length - 1;
+
+          if (currentDx < -threshold && carouselSlides[id] < maxIdx) {
+            carouselSlides[id] += 1;
+          } else if (currentDx > threshold && carouselSlides[id] > 0) {
+            carouselSlides[id] -= 1;
+          }
+          updateCarouselDOM(id);
+        };
+
+        viewport.addEventListener("pointerup", endDrag);
+        viewport.addEventListener("pointerleave", endDrag);
+      }
+
+      // Arrancar la App al cargar el documento
+      document.addEventListener("DOMContentLoaded", init);
+    </script>
   </body>
 </html>

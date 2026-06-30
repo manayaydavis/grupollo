@@ -2,6 +2,1103 @@
 // 4. SHOPPING CART (INTEGRADO CON SISTEMA DE SELECCIÓN PREVIA)
 // ================================================================
 
+const PRODUCTS = Object.fromEntries([
+  [
+    1,
+    {
+      category: "frescos",
+      filter: "pescado_camarones",
+      brand: "x",
+      tag: "PESCADO FRESCO",
+      name: "Filete de Tilapia",
+      emoji: "🐟",
+      presentation: "fresco",
+      description:
+        "Filete de tilapia fresco, sin espinas, de carne blanca y suave. Cocción rápida y ligera.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 79, unit: "bolsa 500 g" },
+        { id: "caja", label: "Caja", price: 720, unit: "caja 5 kg" },
+        { id: "granel", label: "Granel", price: 148, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🌿",
+          title: "Empapelado",
+          text: "Envuelve el filete con jitomate, cebolla y epazote; hornea 15 min a 190 °C. Ligero y jugoso.",
+        },
+        {
+          icon: "🍅",
+          title: "A la veracruzana",
+          text: "Guisa con jitomate, aceitunas, alcaparras y chile güero. Sirve con arroz blanco.",
+        },
+        {
+          icon: "🍲",
+          title: "Caldo de pescado",
+          text: "Cuece con verduras, chile y epazote. Caldo reconfortante listo en 20 min.",
+        },
+      ],
+    },
+  ],
+  [
+    2,
+    {
+      category: "frescos",
+      filter: "pescado_camarones",
+      brand: "y",
+      tag: "CAMARÓN FRESCO",
+      name: "Camarones",
+      emoji: "🐟",
+      presentation: "fresco",
+      description:
+        "Filete de tilapia fresco, sin espinas, de carne blanca y suave. Cocción rápida y ligera.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 79, unit: "bolsa 500 g" },
+        { id: "caja", label: "Caja", price: 720, unit: "caja 5 kg" },
+        { id: "granel", label: "Granel", price: 148, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🌿",
+          title: "Empapelado",
+          text: "Envuelve el filete con jitomate, cebolla y epazote; hornea 15 min a 190 °C. Ligero y jugoso.",
+        },
+        {
+          icon: "🍅",
+          title: "A la veracruzana",
+          text: "Guisa con jitomate, aceitunas, alcaparras y chile güero. Sirve con arroz blanco.",
+        },
+        {
+          icon: "🍲",
+          title: "Caldo de pescado",
+          text: "Cuece con verduras, chile y epazote. Caldo reconfortante listo en 20 min.",
+        },
+      ],
+    },
+  ],
+  [
+    3,
+    {
+      category: "frescos",
+      filter: "pescado_camarones",
+      brand: "x",
+      tag: "PESCADO FRESCO",
+      name: "Pescado Empanizado",
+      emoji: "🐟",
+      presentation: "fresco",
+      description:
+        "Filete de tilapia fresco, sin espinas, de carne blanca y suave. Cocción rápida y ligera.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 79, unit: "bolsa 500 g" },
+        { id: "caja", label: "Caja", price: 720, unit: "caja 5 kg" },
+        { id: "granel", label: "Granel", price: 148, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🌿",
+          title: "Empapelado",
+          text: "Envuelve el filete con jitomate, cebolla y epazote; hornea 15 min a 190 °C. Ligero y jugoso.",
+        },
+        {
+          icon: "🍅",
+          title: "A la veracruzana",
+          text: "Guisa con jitomate, aceitunas, alcaparras y chile güero. Sirve con arroz blanco.",
+        },
+        {
+          icon: "🍲",
+          title: "Caldo de pescado",
+          text: "Cuece con verduras, chile y epazote. Caldo reconfortante listo en 20 min.",
+        },
+      ],
+    },
+  ],
+  [
+    4,
+    {
+      category: "frescos",
+      filter: "pescado_camarones",
+      brand: "x",
+      tag: "PESCADO FRESCO",
+      name: "Dedos de Pescado",
+      emoji: "🐟",
+      presentation: "fresco",
+      description:
+        "Filete de tilapia fresco, sin espinas, de carne blanca y suave. Cocción rápida y ligera.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 79, unit: "bolsa 500 g" },
+        { id: "caja", label: "Caja", price: 720, unit: "caja 5 kg" },
+        { id: "granel", label: "Granel", price: 148, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🌿",
+          title: "Empapelado",
+          text: "Envuelve el filete con jitomate, cebolla y epazote; hornea 15 min a 190 °C. Ligero y jugoso.",
+        },
+        {
+          icon: "🍅",
+          title: "A la veracruzana",
+          text: "Guisa con jitomate, aceitunas, alcaparras y chile güero. Sirve con arroz blanco.",
+        },
+        {
+          icon: "🍲",
+          title: "Caldo de pescado",
+          text: "Cuece con verduras, chile y epazote. Caldo reconfortante listo en 20 min.",
+        },
+      ],
+    },
+  ],
+  [
+    5,
+    {
+      category: "frescos",
+      filter: "pescado_camarones",
+      brand: "y",
+      tag: "QUESO FRESCO",
+      name: "Dedos de Queso",
+      emoji: "🐟",
+      presentation: "fresco",
+      description:
+        "Filete de tilapia fresco, sin espinas, de carne blanca y suave. Cocción rápida y ligera.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 79, unit: "bolsa 500 g" },
+        { id: "caja", label: "Caja", price: 720, unit: "caja 5 kg" },
+        { id: "granel", label: "Granel", price: 148, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🌿",
+          title: "Empapelado",
+          text: "Envuelve el filete con jitomate, cebolla y epazote; hornea 15 min a 190 °C. Ligero y jugoso.",
+        },
+        {
+          icon: "🍅",
+          title: "A la veracruzana",
+          text: "Guisa con jitomate, aceitunas, alcaparras y chile güero. Sirve con arroz blanco.",
+        },
+        {
+          icon: "🍲",
+          title: "Caldo de pescado",
+          text: "Cuece con verduras, chile y epazote. Caldo reconfortante listo en 20 min.",
+        },
+      ],
+    },
+  ],
+
+  [
+    51,
+    {
+      category: "frescos",
+      filter: "cerdo_res",
+      brand: "x",
+      tag: "CERDO FRESCO",
+      name: "Pierna de Cerdo",
+      emoji: "🐷",
+      presentation: "fresco",
+      description:
+        "Chuleta de cerdo ahumada, precocida y lista para dorar. Sabor intenso en pocos minutos.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 98, unit: "bolsa 700 g" },
+        { id: "caja", label: "Caja", price: 810, unit: "caja 6 kg" },
+        { id: "granel", label: "Granel", price: 128, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Fuego medio-alto, 2–3 min por lado solo para dorar y calentar. Ya viene ahumada y cocida.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Marca sobre brasas 2 min por lado. Barniza con un toque de miel o BBQ al final.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "180 °C por 10–12 min. Acompaña con piña asada para realzar el ahumado.",
+        },
+      ],
+    },
+  ],
+  [
+    52,
+    {
+      category: "frescos",
+      filter: "cerdo_res",
+      brand: "y",
+      tag: "SIRLOIN FRESCO",
+      name: "Hamburguesa de Sirloin",
+      emoji: "🐷",
+      presentation: "fresco",
+      description:
+        "Chuleta de cerdo ahumada, precocida y lista para dorar. Sabor intenso en pocos minutos.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 98, unit: "bolsa 700 g" },
+        { id: "caja", label: "Caja", price: 810, unit: "caja 6 kg" },
+        { id: "granel", label: "Granel", price: 128, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Fuego medio-alto, 2–3 min por lado solo para dorar y calentar. Ya viene ahumada y cocida.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Marca sobre brasas 2 min por lado. Barniza con un toque de miel o BBQ al final.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "180 °C por 10–12 min. Acompaña con piña asada para realzar el ahumado.",
+        },
+      ],
+    },
+  ],
+  [
+    53,
+    {
+      category: "frescos",
+      filter: "cerdo_res",
+      brand: "y",
+      tag: "ARRACHERA FRESCA",
+      name: "Arrachera",
+      emoji: "🐷",
+      presentation: "fresco",
+      description:
+        "Chuleta de cerdo ahumada, precocida y lista para dorar. Sabor intenso en pocos minutos.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 98, unit: "bolsa 700 g" },
+        { id: "caja", label: "Caja", price: 810, unit: "caja 6 kg" },
+        { id: "granel", label: "Granel", price: 128, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Fuego medio-alto, 2–3 min por lado solo para dorar y calentar. Ya viene ahumada y cocida.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Marca sobre brasas 2 min por lado. Barniza con un toque de miel o BBQ al final.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "180 °C por 10–12 min. Acompaña con piña asada para realzar el ahumado.",
+        },
+      ],
+    },
+  ],
+
+  [
+    101,
+    {
+      category: "frescos",
+      filter: "pollo_nuggets",
+      brand: "x",
+      tag: "NUGGET",
+      name: "Nuggets de Pollo",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    102,
+    {
+      category: "frescos",
+      filter: "pollo_nuggets",
+      brand: "y",
+      tag: "POLLO",
+      name: "Tenders de Pollo",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    103,
+    {
+      category: "frescos",
+      filter: "pollo_nuggets",
+      brand: "x",
+      tag: "POLLO",
+      name: "Cordon Blue / Pechuga Rellena",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    104,
+    {
+      category: "frescos",
+      filter: "pollo_nuggets",
+      brand: "y",
+      tag: "POLLO",
+      name: "Milanesa de Pollo",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    105,
+    {
+      category: "frescos",
+      filter: "pollo_nuggets",
+      brand: "x",
+      tag: "POLLO",
+      name: "Hamburguesa de Pollo",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    106,
+    {
+      category: "frescos",
+      filter: "pollo_nuggets",
+      brand: "y",
+      tag: "POLLO",
+      name: "Medallon de Pollo",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    107,
+    {
+      category: "frescos",
+      filter: "pollo_nuggets",
+      brand: "y",
+      tag: "NUGGET",
+      name: "Nuggetsaurio",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+
+  [
+    151,
+    {
+      category: "congelados",
+      filter: "papas_snacks",
+      brand: "x",
+      tag: "SNACK",
+      name: "Aros de Cebolla",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    152,
+    {
+      category: "congelados",
+      filter: "papas_snacks",
+      brand: "x",
+      tag: "SNACK",
+      name: "Camote a la Francesa",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    153,
+    {
+      category: "congelados",
+      filter: "papas_snacks",
+      brand: "y",
+      tag: "PAPAS",
+      name: "Papas Gajo",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    154,
+    {
+      category: "congelados",
+      filter: "papas_snacks",
+      brand: "x",
+      tag: "PAPAS",
+      name: "Papas a la Francesa Crunch",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    155,
+    {
+      category: "congelados",
+      filter: "papas_snacks",
+      brand: "x",
+      tag: "PAPAS",
+      name: "Tortita de Papa",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    156,
+    {
+      category: "congelados",
+      filter: "papas_snacks",
+      brand: "y",
+      tag: "PAPAS",
+      name: "Papa Wafle",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+
+  [
+    201,
+    {
+      category: "congelados",
+      filter: "alitas_boneless",
+      brand: "x",
+      tag: "PECHUGAS",
+      name: "Trozos de Pechuga Empanizadas",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    202,
+    {
+      category: "congelados",
+      filter: "alitas_boneless",
+      brand: "x",
+      tag: "BONELESS",
+      name: "Boneless Naturales",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    203,
+    {
+      category: "congelados",
+      filter: "alitas_boneless",
+      brand: "y",
+      tag: "BONELESS",
+      name: "Boneless Pimienta Limón",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    204,
+    {
+      category: "congelados",
+      filter: "alitas_boneless",
+      brand: "x",
+      tag: "BONELESS",
+      name: "Boneless Valentina",
+      emoji: "🍗",
+      presentation: "empaquetado",
+      description:
+        "Pechuga fileteada delgada, lista para empanizar, plancha o relleno. Cocción rápida y uniforme.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 142, unit: "bolsa 1 kg" },
+        { id: "caja", label: "Caja", price: 1290, unit: "caja 10 kg" },
+        { id: "granel", label: "Granel", price: 135, unit: "kg" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Sartén",
+          text: "Calienta 1 cda de aceite a fuego medio-alto. Sella 3–4 min por lado hasta dorar. Temperatura interna 74 °C.",
+        },
+        {
+          icon: "🔥",
+          title: "Horno",
+          text: "Precalienta a 200 °C. Hornea 18–22 min. Barniza con aceite y reposa 5 min antes de cortar.",
+        },
+        {
+          icon: "🍖",
+          title: "Parrilla",
+          text: "Brasas a fuego medio. Asa 5–6 min por lado y marca en diagonal. Pincela con aceite para que no se pegue.",
+        },
+        {
+          icon: "💨",
+          title: "Freidora de aire",
+          text: "180 °C por 12–14 min, voltea a la mitad. Rocía aceite ligero: dorado por fuera, jugoso por dentro.",
+        },
+      ],
+    },
+  ],
+  [
+    251,
+    {
+      category: "huevo",
+      filter: "huevo",
+      tag: "HUEVO",
+      name: "Huevo Blanco",
+      emoji: "🥚",
+      presentation: "empaquetado",
+      description:
+        "Huevo blanco fresco de gallina, calibre mediano. Fuente de proteína para todos los días.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 89, unit: "cartón 30 pzas" },
+        { id: "caja", label: "Caja", price: 1080, unit: "caja 360 pzas" },
+        { id: "granel", label: "Granel", price: 2.9, unit: "pieza" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Revuelto",
+          text: "Bate con una pizca de sal, vierte en sartén con mantequilla a fuego bajo y mueve hasta cuajar suave.",
+        },
+        {
+          icon: "☀️",
+          title: "Estrellado",
+          text: "Aceite caliente, rompe el huevo y cuece 2 min. Para yema líquida, tapa 30 seg al final.",
+        },
+        {
+          icon: "💧",
+          title: "Pochado",
+          text: "Agua a punto de hervir con un chorrito de vinagre. Cuece 3 min sin que hierva fuerte.",
+        },
+      ],
+    },
+  ],
+  [
+    252,
+    {
+      category: "huevo",
+      filter: "huevo",
+      tag: "HUEVO",
+      name: "Huevo Moreno",
+      emoji: "🥚",
+      presentation: "empaquetado",
+      description:
+        "Huevo blanco fresco de gallina, calibre mediano. Fuente de proteína para todos los días.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 89, unit: "cartón 30 pzas" },
+        { id: "caja", label: "Caja", price: 1080, unit: "caja 360 pzas" },
+        { id: "granel", label: "Granel", price: 2.9, unit: "pieza" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Revuelto",
+          text: "Bate con una pizca de sal, vierte en sartén con mantequilla a fuego bajo y mueve hasta cuajar suave.",
+        },
+        {
+          icon: "☀️",
+          title: "Estrellado",
+          text: "Aceite caliente, rompe el huevo y cuece 2 min. Para yema líquida, tapa 30 seg al final.",
+        },
+        {
+          icon: "💧",
+          title: "Pochado",
+          text: "Agua a punto de hervir con un chorrito de vinagre. Cuece 3 min sin que hierva fuerte.",
+        },
+      ],
+    },
+  ],
+  [
+    253,
+    {
+      category: "huevo",
+      filter: "huevo",
+      tag: "HUEVO",
+      name: "Huevo por Kilo",
+      emoji: "🥚",
+      presentation: "empaquetado",
+      description:
+        "Huevo blanco fresco de gallina, calibre mediano. Fuente de proteína para todos los días.",
+      formats: [
+        { id: "bolsa", label: "Bolsa", price: 89, unit: "cartón 30 pzas" },
+        { id: "caja", label: "Caja", price: 1080, unit: "caja 360 pzas" },
+        { id: "granel", label: "Granel", price: 2.9, unit: "pieza" },
+      ],
+      slides: [
+        {
+          icon: "🍳",
+          title: "Revuelto",
+          text: "Bate con una pizca de sal, vierte en sartén con mantequilla a fuego bajo y mueve hasta cuajar suave.",
+        },
+        {
+          icon: "☀️",
+          title: "Estrellado",
+          text: "Aceite caliente, rompe el huevo y cuece 2 min. Para yema líquida, tapa 30 seg al final.",
+        },
+        {
+          icon: "💧",
+          title: "Pochado",
+          text: "Agua a punto de hervir con un chorrito de vinagre. Cuece 3 min sin que hierva fuerte.",
+        },
+      ],
+    },
+  ],
+]);
+
 let cart = JSON.parse(localStorage.getItem("grupolloCart")) || [];
 
 const container = document.getElementById("toastContainer");
@@ -136,21 +1233,43 @@ if (cartOverlay) cartOverlay.addEventListener("click", closeCart);
 
 // Add to cart buttons
 
-function addCart(e, btn) {
+function addCart(e, id) {
   const target = e.currentTarget;
-  const id = target.dataset.id;
-  const name = target.dataset.name;
-  const price = parseFloat(target.dataset.price);
+  // const id = target.dataset.id;
+  // const name = target.dataset.name;
+  // const price = parseFloat(target.dataset.price);
 
   // Button pop animation
   gsap.to(target, { scale: 0.85, duration: 0.1, yoyo: true, repeat: 1 });
 
-  let padre = btn.parentNode;
-  let cantidadInput = padre.querySelector("input");
-  if (!cantidadInput) return;
-  let cantidad = parseInt(cantidadInput.value);
+  let padre = target.parentNode;
+  let presentacion = padre.querySelector(".gp-pill.active");
+  // if (!cantidadInput) return;
+  // let cantidad = parseInt(cantidadInput.value);
+  // addItemToCart(id, name, price);
 
-  addItemToCart(id, name, price, cantidad);
+  if (!cart[id]) {
+    // Object.fromEntries(PRODUCTS.map((p) => [p.id, { format: "granel", qty: 0 }]))
+    let productosActuales = Object.entries(cart).map(([key, val]) => [
+      key,
+      val,
+    ]);
+    const product = PRODUCTS[id] || null;
+    if (!product) {
+      showToast("Producto no encontrado", "warning");
+      return;
+    }
+    productosActuales.push([
+      id,
+      { format: presentacion.dataset.format || "", qty: 0 },
+    ]);
+
+    cart = Object.fromEntries(productosActuales);
+  }
+  cart[id].qty += 1;
+  saveCart();
+  updateCartUI();
+  renderProducts();
 
   // Show toast
   showToast(`${name} agregado al pedido`, "success");
@@ -194,20 +1313,22 @@ function addItemToCart(id, name, price, quantity = 1) {
 }
 
 function removeItemFromCart(id) {
-  cart = cart.filter((item) => item.id !== id);
+  // cart = cart.filter((item) => item.id !== id);
+  delete cart[id];
   saveCart();
   updateCartUI();
+  renderProducts();
 }
 
 function updateQuantity(id, delta, btn = null) {
-  const item = cart.find((item) => item.id === id);
+  // const item = cart.find((item) => item.id === id);
+  const item = cart[id];
   if (item) {
-    item.quantity += delta;
-    if (item.quantity <= 0) {
-      removeItemFromCart(id);
-    } else {
+    if (item.qty + delta > 0) {
+      item.qty += delta;
       saveCart();
       updateCartUI();
+      renderProducts();
     }
     return;
   }
@@ -230,7 +1351,9 @@ function updateCartUI() {
   const discountPercent =
     currentUser && currentUser.discount ? currentUser.discount : 0;
 
-  if (cart.length === 0) {
+  const productsIds = Object.keys(cart);
+  // if (cart.length === 0) {
+  if (productsIds.length === 0) {
     cartItemsContainer.innerHTML = `
              <div class="text-center mt-20">
                  <div class="text-7xl mb-6">🍗</div>
@@ -238,9 +1361,24 @@ function updateCartUI() {
                  <p class="text-[#6B7280] text-lg mt-2">¡El mejor pollo te está esperando!</p>
              </div>`;
   } else {
-    cart.forEach((item) => {
-      total += item.price * item.quantity;
-      count += item.quantity;
+    // for (const p of PRODUCTS) {
+    //   const e = cart[p.id];
+    //   if (!e || !e.qty) continue;
+    //   const f = p.formats.find((x) => x.id === e.format) || p.formats[0];
+    //   items += e.qty;
+    //   subtotal += f.price * e.qty;
+    // }
+
+    // cart.forEach((item) => {
+    for (let i = 0; i < productsIds.length; i++) {
+      const id = productsIds[i];
+      const p = PRODUCTS[id];
+      const item = cart[id];
+      const f = p.formats.find((x) => x.id === item.format) || p.formats[0];
+      // total += item.price * item.quantity;
+      // count += item.quantity;
+      total += f.price * item.qty;
+      count += item.qty;
 
       const el = document.createElement("div");
       el.className =
@@ -248,25 +1386,25 @@ function updateCartUI() {
       el.innerHTML = `
                  <div class="flex justify-between items-start mb-3">
                      <div class="flex-1">
-                         <h4 class="font-black text-brandBlack text-lg uppercase tracking-tight">${item.name}</h4>
-                         <p class="text-sm text-[#2B2B2B] mt-1">${item.quantity} x $${item.price.toFixed(2)}</p>
+                         <h4 class="font-black text-brandBlack text-lg uppercase tracking-tight">${p.name}</h4>
+                         <p class="text-sm text-[#2B2B2B] mt-1">${item.qty} x $${f.price.toFixed(2)}</p>
                      </div>
-                     <button class="text-[#9CA3AF] hover:text-brandRed transition-colors remove-item" data-id="${item.id}">
+                     <button class="text-[#9CA3AF] hover:text-brandRed transition-colors remove-item" data-id="${id}">
                          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                      </button>
                  </div>
                  <div class="flex justify-between items-center">
-                     <p class="text-brandRed font-black text-xl">$${(item.price * item.quantity).toFixed(2)}</p>
+                     <p class="text-brandRed font-black text-xl">$${(f.price * item.qty).toFixed(2)}</p>
                      <div class="flex items-center gap-3 bg-white p-1 rounded-full shadow-inner border-2 border-[#F2B50F]">
-                         <button class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus" data-id="${item.id}">−</button>
-                         <span class="font-black text-brandBlack w-8 text-center text-lg">${item.quantity}</span>
-                         <button class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus" data-id="${item.id}">+</button>
+                         <button class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-minus" data-id="${id}">−</button>
+                         <span class="font-black text-brandBlack w-8 text-center text-lg">${item.qty}</span>
+                         <button class="w-10 h-10 rounded-full bg-[#FFF4D2] text-brandBlack font-black flex items-center justify-center hover:bg-[#111111] hover:text-[#F2B50F] transition-colors qty-plus" data-id="${id}">+</button>
                      </div>
                  </div>
              `;
       cartItemsContainer.appendChild(el);
-    });
-
+      // });
+    }
     // Bind cart item buttons
     cartItemsContainer.querySelectorAll(".remove-item").forEach((btn) => {
       btn.addEventListener("click", () => removeItemFromCart(btn.dataset.id));
@@ -507,7 +1645,6 @@ function initShopingCart() {
   });
 
   document.querySelectorAll(".container-qty").forEach((div) => {
-    console.log(div);
     addEventStopPropagation(div);
   });
 
